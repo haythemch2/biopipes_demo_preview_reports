@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <meta name="description" content="ASA?P results for \"Short reads test 02\" project">
+        <meta name="author" content="Oliver Schwengers">
+
+        <title>ASA&#179;P: Short reads test 02</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="../css/dashboard.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="../js/back-to-top.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip( {html: true} );
+            });
+        </script>
+
+        <link href="../css/asap.css" rel="stylesheet">
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.min.js"></script>
+	<script src="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.min.js"></script>
+
+        <style>
+            #chartCont svg {
+                height: 200px;
+                width: 800px;
+            }
+        </style>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="../index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Short reads test 02</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="../help.html">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Analyses</a></li>
+                <li><a href="../qc.html">Quality Control</a></li>
+                <li><a href="../assemblies.html">Assembly</a></li>
+                <li><a href="../scaffolds.html">Scaffolds</a></li>
+                <li><a href="../annotations.html">Annotation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Characterization</a></li>
+                <li><a href="../taxonomy.html">Taxonomic Classification</a></li>
+                <li><a href="../mlst.html">MLST</a></li>
+                <li><a href="../abr.html">Antibiotic Resistances</a></li>
+                <li><a href="../vf.html">Virulence Factors</a></li>
+                <!--<li><a href="../plasmids.html">Plasmids</a></li>-->
+                <!--<li><a href="../phages.html">Phages</a></li>-->
+                <li><a href="../mapping.html">Reference Mapping</a></li>
+                <li><a href="../snps.html">SNP Detection</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Comparative Analyses</a></li>
+                            <li><a href="../corepan.html">Core/Pan Genome</a></li>
+                <li><a href="../phylogeny.html">Phylogeny</a></li>
+            </ul>
+        </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                    <ol class="breadcrumb">
+                        <li><a href="../index.html">Dashboard</a></li>
+                        <li><a href="../qc.html">Quality Control</a></li>
+                        <li class="active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">M. meleagridis 24B8 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#basic">Basic Statistics</a></li>
+                                <li><a href="#pbq">Per Base Quality</a></li>
+                                <li><a href="#psq">Per Sequence Qualities</a></li>
+                                <li><a href="#pbsc">Per Base Sequence Contents</a></li>
+                                <li><a href="#psgcc">Per Sequence GC Contents</a></li>
+                                <li><a href="#pbnc">Per Base N Contents</a></li>
+                                <li><a href="#sld">Sequence Length Distributions</a></li>
+                                <li><a href="#kp">Kmer Profiles</a></li>
+                            </ul>
+                        </li>
+                        <!-- trigger help-modal -->
+                        <i class="fa fa-question fa-3x helpBtn" data-toggle="modal" data-target="#myModal"></i>
+                    </ol>
+
+                    <!-- help-modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h2 class="modal-title" id="myModalLabel">ASA&#179;P quality control detail</h2>
+                          </div>
+                          <div class="modal-body">
+                            <p>Contains several comparisons of read sets before (Raw) and after quality control (QC) generated
+                              by <code>Fast QC</code>. For paired end sequenced reads the comparison consists of four data
+                              sets. Forward and reverse reads, before and after quality control. Select a comparison by clicking
+                              on the genome name (top middle) to open the drop down menu.</p>
+
+                            <h3>Table raw</h3>
+
+                            <p>Displays the properties of the raw data, including <code>File</code> names, the <code># Reads</code>,
+                              read <code>Lengths</code>, <code>Quality</code> and <code>GC</code> percentage.</p>
+
+                            <h3>Table QC</h3>
+
+                            <p>Displays the properties of data after quality control, including <code>File</code> names, the
+                              <code># Reads</code>, read <code>Lengths</code>, <code>Quality</code> and <code>GC</code> percentage.</p>
+
+                            <h3>Boxplot potential contaminations [%]</h3>
+
+                            <p>The percentage of <code>reads that could not be mapped to the reference</code> but to different
+                              contamination targets is shown per target. The different targets include human, mouse PhiX
+                              and vectors.</p>
+
+                            <h3>Interactive diagram groups</h3>
+
+                            <p>The first diagram of each quartet refers to the forward reads of raw data, the second to forward
+                              quality controlled data, the third to reverse reads of raw data and the fourth to reverse reads
+                              of quality controlled data. Via mouse over on the diagram the according file name is displayed.</p>
+
+                            <h4>Per base qualities</h4>
+
+                            <p>Diagrams with the <code>quality scores across all bases</code>. On the x-axis the base position
+                              in the reads is displayed. On the y-axis the <code>Quality</code> as PHRED score is shown.</p>
+
+                            <h4>Per sequence qualities</h4>
+
+                            <p>Diagrams with the <code>quality score distribution over all sequences</code>. On the x-axis the
+                              mean sequence <code>Quality</code> as PHRED score of a read is shown. On the y-axis the number
+                              of reads is display.</p>
+
+                            <h5>Per base sequence contents</h5>
+
+                            <p>Diagrams with the <code>sequence content across all bases</code>. On the x-axis the base position
+                              in the reads is displayed. On the y-axis the percentage of each base (A, C, G, T) across all
+                              reads is displayed.</p>
+
+                            <h4>Per sequence GC contents</h4>
+
+                            <p>Diagrams with the <code>GC distribution over all sequences</code>. The red graph shows the GC
+                              count per read, the blue graph shows the theoretical distribution. On the x-axis the mean GC
+                              content of the reads is display. On the y-axis the number of reads is display.</p>
+
+                            <h4>Per base N contents</h4>
+
+                            <p>Diagrams with the <code>N content across all bases</code>. On the x-axis the base position in
+                              the reads is displayed. On the y-axis the percentage of bases characterised as 'N' (not assignable)
+                              is displayed.</p>
+
+                            <h4>Sequence length distributions</h4>
+
+                            <p>Diagrams with the <code>distribution of sequence lengths over all sequences</code>. On the x-axis
+                              the sequence lengths of the reads are displayed. On the y-axis the number of reads is displayed.</p>
+
+                            <h4>Kmer profiles</h4>
+
+                            <p>Diagrams with the <code>log2 ratio from observations to expected kmers</code>. The six kmers
+                              with the highest log2 obs/exp are displayed. On the x-axis the base position in the reads is
+                              display. On the y-axis the log2 ratio from observations to expected kmers is displayed.</p>
+
+                            <h3>Glossary</h3>
+
+                            <ul>
+                              <li><strong>GC</strong>: GC content in percent.</li>
+
+                              <li><strong>Length</strong>: Minimal/ mean/ maximal read length for this particular file.</li>
+
+                              <li><strong>Potential Contaminations</strong>: Read percentage of potential contaminations. Based
+                                on a 10% random subset mapping against a contamination references data base (e.g. containing
+                                phiX sequences).</li>
+
+                              <li><strong>Quality</strong>: Minimal/ mean/ maximal PHRED score of sequenced reads for this particular
+                                genome (error probability; PHRED 20: 1 in 100; PHRED 30: 1 in 1000).</li>
+
+                              <li><strong># Reads</strong>: Number of sequenced reads for this particular file.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div id="basic" class="row">
+                        <div class="col-md-6">
+                            <table class="table table-striped">
+                                <caption>Raw</caption>
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-6">File</th>
+                                        <th class="text-center"># Reads</th>
+                                        <th class="text-center"><abbr title="[min / max]">Lengths</abbr></th>
+                                        <th class="text-center"><abbr title="PHRED score [min / mean / max]">Quality</abbr></th>
+                                        <th class="text-center"><abbr title="GC content [%]">GC</abbr></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="col-md-6">24B8_S2_R1_001.fastq</td>
+                                        <td class="text-center">544,311</td>
+                                        <td class="text-center">35 / 150.7 / 151</td>
+                                        <td class="text-center">34 / 36.3 / 36</td>
+                                        <td class="text-center">26</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-md-6">24B8_S2_R2_001.fastq</td>
+                                        <td class="text-center">544,311</td>
+                                        <td class="text-center">35 / 150.7 / 151</td>
+                                        <td class="text-center">32 / 35.9 / 36</td>
+                                        <td class="text-center">26</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-striped">
+                                <caption>QC</caption>
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-6">File</th>
+                                        <th class="text-center"># Reads</th>
+                                        <th class="text-center"><abbr title="[min / mean / max]">Lengths</abbr></th>
+                                        <th class="text-center"><abbr title="PHRED score [min / mean / max]">Quality</abbr></th>
+                                        <th class="text-center"><abbr title="GC content [%]">GC</abbr></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="col-md-6">24B8_S2_R1_001.fastq</td>
+                                        <td class="text-center">526,853</td>
+                                        <td class="text-center">20 / 148.5 / 151</td>
+                                        <td class="text-center">36 / 36.5 / 36</td>
+                                        <td class="text-center">26</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-md-6">24B8_S2_R2_001.fastq</td>
+                                        <td class="text-center">526,853</td>
+                                        <td class="text-center">20 / 147 / 151</td>
+                                        <td class="text-center">35 / 36.4 / 36</td>
+                                        <td class="text-center">26</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <!-- contamination figure -->
+                    <div class="row voffset" id="charts">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Potential Contaminations [%]</h3>
+                                </div>
+                                <div id="chartCont"><svg></svg></div>
+                                <script type="text/javascript">
+                                    nv.addGraph( function() {
+                                        var chart = nv.models.discreteBarChart()
+                                            .x( function(d) { return d.label } )
+                                            .y( function(d) { return d.value } )
+                                            .showValues( true );
+                                        d3.select( '#chartCont svg' )
+                                            .datum(
+                                                [ {
+                                                    key: "bla",
+                                                    values: [
+                                                            { "label": "Human", "value": 145/105370*100 },
+                                                            { "label": "Mouse", "value": 123/105370*100 },
+                                                            { "label": "PhiX", "value": 0/105370*100 },
+                                                            { "label": "Vectors", "value": 2/105370*100 },
+                                                    ]
+                                                } ]
+                                            )
+                                            .call( chart );
+                                        return chart;
+                                    } );
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- base quality figures -->
+                    <div id="pbq" class="row voffset">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Per Base Qualities</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/raw/24B8_S2_R1_001/per_base_quality.png" data-toggle="tooltip" title="Raw: per base quality: 24B8_S2_R1_001.fastq">
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/qc/24B8_S2_R1_001/per_base_quality.png" data-toggle="tooltip" title="QC: per base quality: 24B8_S2_R1_001.fastq">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/raw/24B8_S2_R2_001/per_base_quality.png" data-toggle="tooltip" title="Raw: per base quality: 24B8_S2_R2_001.fastq">
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/qc/24B8_S2_R2_001/per_base_quality.png" data-toggle="tooltip" title="QC: per base quality: 24B8_S2_R2_001.fastq">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- sequence quality figures -->
+                    <div id="psq" class="row voffset">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Per Sequence Qualities</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/raw/24B8_S2_R1_001/per_sequence_quality.png" data-toggle="tooltip" title="Raw: per sequence quality: 24B8_S2_R1_001.fastq">
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/qc/24B8_S2_R1_001/per_sequence_quality.png" data-toggle="tooltip" title="QC: per sequence quality: 24B8_S2_R1_001.fastq">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/raw/24B8_S2_R2_001/per_sequence_quality.png" data-toggle="tooltip" title="Raw: per sequence quality: 24B8_S2_R2_001.fastq">
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/qc/24B8_S2_R2_001/per_sequence_quality.png" data-toggle="tooltip" title="QC: per sequence quality: 24B8_S2_R2_001.fastq">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- per base sequence content figures -->
+                    <div id="pbsc" class="row voffset">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Per Base Sequence Contents</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/raw/24B8_S2_R1_001/per_base_sequence_content.png" data-toggle="tooltip" title="Raw: per base content: 24B8_S2_R1_001.fastq">
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/qc/24B8_S2_R1_001/per_base_sequence_content.png" data-toggle="tooltip" title="QC: per base content: 24B8_S2_R1_001.fastq">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/raw/24B8_S2_R2_001/per_base_sequence_content.png" data-toggle="tooltip" title="Raw: per base content: 24B8_S2_R2_001.fastq">
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/qc/24B8_S2_R2_001/per_base_sequence_content.png" data-toggle="tooltip" title="QC: per base content: 24B8_S2_R2_001.fastq">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- per sequence GC content figures -->
+                    <div id="psgcc" class="row voffset">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Per Sequence GC Contents</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/raw/24B8_S2_R1_001/per_sequence_gc_content.png" data-toggle="tooltip" title="Raw: per sequence GC content: 24B8_S2_R1_001.fastq">
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/qc/24B8_S2_R1_001/per_sequence_gc_content.png" data-toggle="tooltip" title="QC: per sequence GC content: 24B8_S2_R1_001.fastq">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/raw/24B8_S2_R2_001/per_sequence_gc_content.png" data-toggle="tooltip" title="Raw: per sequence GC content: 24B8_S2_R2_001.fastq">
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/qc/24B8_S2_R2_001/per_sequence_gc_content.png" data-toggle="tooltip" title="QC: per sequence GC content: 24B8_S2_R2_001.fastq">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- per base N content figures -->
+                    <div id="pbnc" class="row voffset">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Per Base N Contents</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/raw/24B8_S2_R1_001/per_base_n_content.png" data-toggle="tooltip" title="Raw: per base N content: 24B8_S2_R1_001.fastq">
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/qc/24B8_S2_R1_001/per_base_n_content.png" data-toggle="tooltip" title="QC: per base N content: 24B8_S2_R1_001.fastq">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/raw/24B8_S2_R2_001/per_base_n_content.png" data-toggle="tooltip" title="Raw: per base N content: 24B8_S2_R2_001.fastq">
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/qc/24B8_S2_R2_001/per_base_n_content.png" data-toggle="tooltip" title="QC: per base N content: 24B8_S2_R2_001.fastq">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- sequence length distribution figures -->
+                    <div id="sld" class="row voffset">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Sequence Length Distributions</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/raw/24B8_S2_R1_001/sequence_length_distribution.png" data-toggle="tooltip" title="Raw: sequence length distribution: 24B8_S2_R1_001.fastq">
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/qc/24B8_S2_R1_001/sequence_length_distribution.png" data-toggle="tooltip" title="QC: sequence length distribution: 24B8_S2_R1_001.fastq">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/raw/24B8_S2_R2_001/sequence_length_distribution.png" data-toggle="tooltip" title="Raw: sequence length distribution: 24B8_S2_R2_001.fastq">
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <img class="img-responsive thumbnail" src="Mycoplasma_meleagridis_24B8/qc/24B8_S2_R2_001/sequence_length_distribution.png" data-toggle="tooltip" title="QC: sequence length distribution: 24B8_S2_R2_001.fastq">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

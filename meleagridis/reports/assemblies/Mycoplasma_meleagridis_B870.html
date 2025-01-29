@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <meta name="description" content="ASA?P results for \"Short reads test 02\" project">
+        <meta name="author" content="Oliver Schwengers">
+
+        <title>ASA&#179;P: Short reads test 02</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="../css/dashboard.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="../js/back-to-top.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip( {html: true} );
+            });
+        </script>
+
+        <link href="../css/asap.css" rel="stylesheet">
+
+
+	<link href="../css/datatables.min.css" rel="stylesheet">
+        <script src="../js/datatables.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#contigTable').DataTable( {
+                    paging:   true,
+                    ordering: true,
+                    info:     true,
+		    dom: "<'row'<'col-md-3'l><'col-md-3 col-md-offset-5'f><'col-md-1'B>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+                    buttons: [
+                        {
+                            extend: 'csv',
+                            text: 'csv',
+                            filename: 'assembly-M_meleagridis_B870',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3, 4 ]
+                            }
+                        }
+                    ]
+                } );
+            } );
+        </script>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load( "current", {packages: ["corechart"]} );
+            google.charts.setOnLoadCallback( drawChart );
+            function drawChart() {
+                // chart data
+                const chartDataContigLength = google.visualization.arrayToDataTable( [
+                    ['Name', 'Value'],
+                     ['NODE_1_length_226297_cov_96.796990', 226297], ['NODE_2_length_216060_cov_118.676831', 216060], ['NODE_3_length_189113_cov_93.626145', 189113], ['NODE_4_length_2062_cov_145.238791', 2062], ['NODE_5_length_1003_cov_188.347732', 1003], ['NODE_6_length_996_cov_176.018498', 996], ['NODE_7_length_886_cov_184.355995', 886], ['NODE_8_length_584_cov_180.388560', 584], ['NODE_9_length_528_cov_159.957871', 528], ['NODE_10_length_353_cov_185.920290', 353], ['NODE_11_length_155_cov_105.179487', 155], ['NODE_12_length_155_cov_100.179487', 155], ['NODE_13_length_155_cov_93.269231', 155], ['NODE_14_length_155_cov_92.807692', 155], ['NODE_15_length_155_cov_91.705128', 155], ['NODE_16_length_155_cov_88.320513', 155], ['NODE_17_length_155_cov_88.089744', 155], ['NODE_18_length_155_cov_85.730769', 155], ['NODE_19_length_155_cov_83.089744', 155], ['NODE_20_length_155_cov_83.064103', 155], ['NODE_21_length_155_cov_78.320513', 155],
+                ]);
+                const chartDataContigCoverage = google.visualization.arrayToDataTable( [
+                    ['Name', 'Value'],
+                     ['NODE_1_length_226297_cov_96.796990', 97], ['NODE_2_length_216060_cov_118.676831', 119], ['NODE_3_length_189113_cov_93.626145', 94], ['NODE_4_length_2062_cov_145.238791', 145], ['NODE_5_length_1003_cov_188.347732', 188], ['NODE_6_length_996_cov_176.018498', 176], ['NODE_7_length_886_cov_184.355995', 184], ['NODE_8_length_584_cov_180.388560', 180], ['NODE_9_length_528_cov_159.957871', 160], ['NODE_10_length_353_cov_185.920290', 186], ['NODE_11_length_155_cov_105.179487', 105], ['NODE_12_length_155_cov_100.179487', 100], ['NODE_13_length_155_cov_93.269231', 93], ['NODE_14_length_155_cov_92.807692', 93], ['NODE_15_length_155_cov_91.705128', 92], ['NODE_16_length_155_cov_88.320513', 88], ['NODE_17_length_155_cov_88.089744', 88], ['NODE_18_length_155_cov_85.730769', 86], ['NODE_19_length_155_cov_83.089744', 83], ['NODE_20_length_155_cov_83.064103', 83], ['NODE_21_length_155_cov_78.320513', 78],
+                ]);
+                const chartDataContigGC = google.visualization.arrayToDataTable( [
+                    ['Name', 'Value'],
+                     ['NODE_1_length_226297_cov_96.796990', 26], ['NODE_2_length_216060_cov_118.676831', 26], ['NODE_3_length_189113_cov_93.626145', 25], ['NODE_4_length_2062_cov_145.238791', 47], ['NODE_5_length_1003_cov_188.347732', 48], ['NODE_6_length_996_cov_176.018498', 25], ['NODE_7_length_886_cov_184.355995', 37], ['NODE_8_length_584_cov_180.388560', 46], ['NODE_9_length_528_cov_159.957871', 44], ['NODE_10_length_353_cov_185.920290', 28], ['NODE_11_length_155_cov_105.179487', 50], ['NODE_12_length_155_cov_100.179487', 46], ['NODE_13_length_155_cov_93.269231', 48], ['NODE_14_length_155_cov_92.807692', 44], ['NODE_15_length_155_cov_91.705128', 41], ['NODE_16_length_155_cov_88.320513', 44], ['NODE_17_length_155_cov_88.089744', 48], ['NODE_18_length_155_cov_85.730769', 48], ['NODE_19_length_155_cov_83.089744', 51], ['NODE_20_length_155_cov_83.064103', 46], ['NODE_21_length_155_cov_78.320513', 46],
+                ]);
+
+                const options = {
+                    title: '',
+                    width: 400,
+                    height: 300,
+                    theme: {
+                        chartArea: {left: '10%', top: '10%', width: '92%', height: '80%'},
+                        legend: {position: 'none'},
+                        titlePosition: 'out',
+			axisTitlesPosition: 'out',
+                        hAxis: {
+                            textPosition: 'out',
+                            slantedText: false,
+                            maxAlternation: 1,
+                            maxTextLines: 1,
+                            minTextSpacing: 14,
+                        },
+                        vAxis: {
+                            textPosition: 'out',
+                        }
+                    },
+                    colors: ['#428BCA'],
+                    fontSize: 14,
+                    bar: {
+                        gap: 0
+                    },
+                };
+
+                options.title = 'Contig Lengths';
+		options.theme.hAxis.format = 'short'
+                options.histogram = {
+                    hideBucketItems: false,
+                    bucketSize: 10000
+                };
+                const chartContigLength = new google.visualization.Histogram(document.getElementById( 'chartContigLength' ) );
+                chartContigLength.draw( chartDataContigLength, options );
+
+                options.title = 'Contig Coverage';
+                options.histogram = {
+                    hideBucketItems: false,
+                    bucketSize: 10,
+                    maxNumBuckets: 100,
+                    minValue: 0
+                };
+                const chartContigCoverage = new google.visualization.Histogram(document.getElementById( 'chartContigCoverage' ) );
+                chartContigCoverage.draw( chartDataContigCoverage, options );
+
+                options.title = 'Contig GC Contents';
+		options.hAxis = {ticks: [ 20, 40, 60, 80 ] };
+                options.histogram = {
+                    hideBucketItems: false,
+                    bucketSize: 1,
+                    minValue: 15,
+                    maxValue: 85
+                };
+                const chartContigGCContent = new google.visualization.Histogram(document.getElementById( 'chartContigGC' ) );
+                chartContigGCContent.draw( chartDataContigGC, options );
+            }
+            </script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="../index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Short reads test 02</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="../help.html">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Analyses</a></li>
+                <li><a href="../qc.html">Quality Control</a></li>
+                <li><a href="../assemblies.html">Assembly</a></li>
+                <li><a href="../scaffolds.html">Scaffolds</a></li>
+                <li><a href="../annotations.html">Annotation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Characterization</a></li>
+                <li><a href="../taxonomy.html">Taxonomic Classification</a></li>
+                <li><a href="../mlst.html">MLST</a></li>
+                <li><a href="../abr.html">Antibiotic Resistances</a></li>
+                <li><a href="../vf.html">Virulence Factors</a></li>
+                <!--<li><a href="../plasmids.html">Plasmids</a></li>-->
+                <!--<li><a href="../phages.html">Phages</a></li>-->
+                <li><a href="../mapping.html">Reference Mapping</a></li>
+                <li><a href="../snps.html">SNP Detection</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Comparative Analyses</a></li>
+                            <li><a href="../corepan.html">Core/Pan Genome</a></li>
+                <li><a href="../phylogeny.html">Phylogeny</a></li>
+            </ul>
+        </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                    <ol class="breadcrumb">
+                        <li><a href="../index.html">Dashboard</a></li>
+                        <li><a href="../assemblies.html">Assemblies</a></li>
+                        <li class="active">M. meleagridis B870</li>
+                        <!-- trigger help-modal -->
+                        <i class="fa fa-question fa-3x helpBtn" data-toggle="modal" data-target="#myModal"></i>
+                    </ol>
+
+                    <!-- help-modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h2 class="modal-title" id="myModalLabel">ASA&#179;P assembly detail</h2>
+                          </div>
+                          <div class="modal-body">
+                            <h3>Histograms of contig specifications</h3>
+
+                            <h5>Contig lengths</h5>
+
+                            <p>Histogram of <code>contig length</code> in kb. Via mouse over the number of contigs in each bin
+                              is displayed.</p>
+
+                            <h5>Contig coverage</h5>
+
+                            <p>Histogram of the <code>average read coverage</code> per contig. Via mouse over the average coverage
+                              of each bin is displayed.</p>
+
+                            <h5>Contig GC contents</h5>
+
+                            <p>Stacked histogram of <code>GC contents</code> per contig. Via mouse over the GC content of each
+                              individual contig is displayed.</p>
+
+                            <h3>Basic assembly statistics</h3>
+
+                            <p>Provides information on the assembly in general and on the contig length.</p>
+
+                            <h3>Interactive data table contigs</h3>
+
+                            <p><code>Individual sorting</code> can be applied via clicking on the respective column header.
+                              Use the <code>Search</code> function (top right of the table) to display only genomes that
+                              contain the search term in any of their table fields. The <code>number of entries</code> displayed
+                              per page can be chosen on the top left of the table. Mose over on underlined table headers
+                              to display further information on it.</p>
+
+                            <h3>Downloads</h3>
+
+                            <p>The contigs and scaffolds used in this assembly as well as the ones discarded (not used for assembly)
+                              can be downloaded as <code>fasta</code> on the right below the histograms. The table can be
+                              saved as a comma separated value (<code>csv</code>) file via a click on the csv button (search
+                              and sorting are contained in the downloaded file).</p>
+
+                            <h3>Glossary</h3>
+
+                            <ul>
+                              <li><strong>Contigs</strong>: Set of overlapping DNA segments (reads).</li>
+
+                              <li><strong>Coverage</strong>: Mean read coverage of this contig.</li>
+
+                              <li><strong># Gaps</strong>: Amount of space (bp) between assembled nucleotides in this contig.</li>
+
+                              <li><strong>GC</strong>: GC content in percent.</li>
+
+                              <li><strong>Length</strong>: Length of the contig in base pairs.</li>
+
+                              <li><strong>N50 length</strong>: Given ordered contigs from longest to smallest, length of the
+                                contig at 50% of the genome length.</li>
+
+                              <li><strong>N90 length</strong>: Given ordered contigs from longest to smallest, length of the
+                                contig at 90% of the genome length.</li>
+
+                              <li><strong>Name</strong>: Name of this contig.</li>
+
+                              <li><strong>Scaffolds</strong>: Consists of aligned contigs with the sequence 'NNNNNNNNNNCTAGCTAGCTAGCNNNNNNNNNN'
+                                in between them.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4" id="chartContigLength"></div>
+                        <div class="col-lg-4 col-md-4" id="chartContigCoverage"></div>
+                        <div class="col-lg-4 col-md-4" id="chartContigGC"></div>
+                    </div>
+
+                    <!-- Assembly overview -->
+                    <div class="row voffset">
+                        <div class="col-sm-3 col-md-3 col-md-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Genome Assembly</caption>
+                                <tbody>
+                                    <tr><td>Contigs [#]</td><td class="text-center">21</td></tr>
+                                    <tr><td>Genome Size [Mb]</td><td class="text-center">639,587</td></tr>
+                                    <tr><td>N50 [kb]</td><td class="text-center">216,060</td></tr>
+                                    <tr><td>N90 [kb]</td><td class="text-center">189,113</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Contig lengths -->
+                        <div class="col-sm-3 col-md-3 col-md-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Contig Lengths</caption>
+                                <tbody>
+                                    <tr><td>Min [bp]</td><td class="text-center">155</td></tr>
+                                    <tr><td>Max [kb]</td><td class="text-center">226,297</td></tr>
+                                    <tr><td>Mean [kb]</td><td class="text-center">30,457</td></tr>
+                                    <tr><td>Median [kb]</td><td class="text-center">155</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Downloads -->
+                        <div id="downloadsTypes" class="col-sm-2 col-md-2 col-md-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Downloads</caption>
+                                <tbody>
+                                    <tr><td>Contigs /<br>Scaffolds</td><td class="text-center"><a href="./Mycoplasma_meleagridis_B870/Mycoplasma_meleagridis_B870.fasta">fasta</a></td></tr>
+                                    <tr><td>Discarded Contigs /<br>Scaffolds</td><td class="text-center"><a href="./Mycoplasma_meleagridis_B870/Mycoplasma_meleagridis_B870-discarded.fasta">fasta</a></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row voffset">
+                        <!-- Contig Table -->
+                        <div class="col-sm-10 col-md-10">
+                            <h2><small>Contigs</small></h2>
+                            <table id="contigTable" class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th class="text-center">Length</th>
+                                        <th class="text-center">Coverage</th>
+                                        <th class="text-center"><abbr title="GC content [%]">GC</abbr></th>
+                                        <th class="text-center"># Gaps</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>NODE_1_length_226297_cov_96.796990</td>
+                                        <td class="text-center">226,297</td>
+                                        <td class="text-center">97</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_2_length_216060_cov_118.676831</td>
+                                        <td class="text-center">216,060</td>
+                                        <td class="text-center">119</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_3_length_189113_cov_93.626145</td>
+                                        <td class="text-center">189,113</td>
+                                        <td class="text-center">94</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_4_length_2062_cov_145.238791</td>
+                                        <td class="text-center">2,062</td>
+                                        <td class="text-center">145</td>
+                                        <td class="text-center">47</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_5_length_1003_cov_188.347732</td>
+                                        <td class="text-center">1,003</td>
+                                        <td class="text-center">188</td>
+                                        <td class="text-center">48</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_6_length_996_cov_176.018498</td>
+                                        <td class="text-center">996</td>
+                                        <td class="text-center">176</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_7_length_886_cov_184.355995</td>
+                                        <td class="text-center">886</td>
+                                        <td class="text-center">184</td>
+                                        <td class="text-center">37</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_8_length_584_cov_180.388560</td>
+                                        <td class="text-center">584</td>
+                                        <td class="text-center">180</td>
+                                        <td class="text-center">46</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_9_length_528_cov_159.957871</td>
+                                        <td class="text-center">528</td>
+                                        <td class="text-center">160</td>
+                                        <td class="text-center">44</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_10_length_353_cov_185.920290</td>
+                                        <td class="text-center">353</td>
+                                        <td class="text-center">186</td>
+                                        <td class="text-center">28</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_11_length_155_cov_105.179487</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">105</td>
+                                        <td class="text-center">50</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_12_length_155_cov_100.179487</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">100</td>
+                                        <td class="text-center">46</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_13_length_155_cov_93.269231</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">93</td>
+                                        <td class="text-center">48</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_14_length_155_cov_92.807692</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">93</td>
+                                        <td class="text-center">44</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_15_length_155_cov_91.705128</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">92</td>
+                                        <td class="text-center">41</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_16_length_155_cov_88.320513</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">88</td>
+                                        <td class="text-center">44</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_17_length_155_cov_88.089744</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">88</td>
+                                        <td class="text-center">48</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_18_length_155_cov_85.730769</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">86</td>
+                                        <td class="text-center">48</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_19_length_155_cov_83.089744</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">83</td>
+                                        <td class="text-center">51</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_20_length_155_cov_83.064103</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">83</td>
+                                        <td class="text-center">46</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_21_length_155_cov_78.320513</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">78</td>
+                                        <td class="text-center">46</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

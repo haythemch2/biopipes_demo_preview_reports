@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <meta name="description" content="ASA?P results for \"Short reads test 02\" project">
+        <meta name="author" content="Oliver Schwengers">
+
+        <title>ASA&#179;P: Short reads test 02</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="../css/dashboard.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="../js/back-to-top.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip( {html: true} );
+            });
+        </script>
+
+        <link href="../css/asap.css" rel="stylesheet">
+
+
+	<link href="../css/datatables.min.css" rel="stylesheet">
+        <script src="../js/datatables.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#contigTable').DataTable( {
+                    paging:   true,
+                    ordering: true,
+                    info:     true,
+		    dom: "<'row'<'col-md-3'l><'col-md-3 col-md-offset-5'f><'col-md-1'B>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+                    buttons: [
+                        {
+                            extend: 'csv',
+                            text: 'csv',
+                            filename: 'assembly-M_meleagridis_25A4',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3, 4 ]
+                            }
+                        }
+                    ]
+                } );
+            } );
+        </script>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load( "current", {packages: ["corechart"]} );
+            google.charts.setOnLoadCallback( drawChart );
+            function drawChart() {
+                // chart data
+                const chartDataContigLength = google.visualization.arrayToDataTable( [
+                    ['Name', 'Value'],
+                     ['NODE_1_length_116661_cov_75.420315', 116661], ['NODE_2_length_108075_cov_62.217708', 108075], ['NODE_3_length_97026_cov_80.929840', 97026], ['NODE_4_length_93478_cov_52.593752', 93478], ['NODE_5_length_81493_cov_64.464749', 81493], ['NODE_6_length_74996_cov_54.316515', 74996], ['NODE_7_length_58293_cov_100.965267', 58293], ['NODE_8_length_36469_cov_60.148357', 36469], ['NODE_9_length_29778_cov_53.207030', 29778], ['NODE_10_length_29112_cov_51.750801', 29112], ['NODE_11_length_20714_cov_58.069874', 20714], ['NODE_12_length_15048_cov_53.975753', 15048], ['NODE_13_length_13206_cov_100.935334', 13206], ['NODE_14_length_11223_cov_51.284676', 11223], ['NODE_15_length_10070_cov_75.327930', 10070], ['NODE_16_length_6909_cov_62.817063', 6909], ['NODE_17_length_6892_cov_51.395745', 6892], ['NODE_18_length_5042_cov_10.420004', 5042], ['NODE_19_length_4913_cov_87.154880', 4913], ['NODE_20_length_4103_cov_75.745405', 4103], ['NODE_21_length_1851_cov_154.257610', 1851], ['NODE_22_length_810_cov_102.941337', 810], ['NODE_23_length_764_cov_297.342067', 764], ['NODE_24_length_659_cov_133.824742', 659], ['NODE_25_length_568_cov_96.150713', 568], ['NODE_26_length_554_cov_94.283019', 554], ['NODE_27_length_536_cov_57.496732', 536], ['NODE_28_length_532_cov_151.421978', 532], ['NODE_29_length_532_cov_59.619780', 532], ['NODE_30_length_492_cov_208.503614', 492], ['NODE_31_length_484_cov_362.577396', 484], ['NODE_32_length_393_cov_53.427215', 393], ['NODE_33_length_378_cov_218.581395', 378], ['NODE_34_length_368_cov_267.113402', 368], ['NODE_35_length_368_cov_60.237113', 368], ['NODE_36_length_348_cov_76.180812', 348], ['NODE_37_length_333_cov_40.621094', 333], ['NODE_38_length_303_cov_51.168142', 303], ['NODE_40_length_248_cov_123.538012', 248], ['NODE_41_length_244_cov_89.497006', 244], ['NODE_42_length_243_cov_80.933735', 243], ['NODE_43_length_232_cov_93.606452', 232], ['NODE_44_length_219_cov_137.711268', 219], ['NODE_45_length_157_cov_44.950000', 157], ['NODE_46_length_155_cov_145.358974', 155], ['NODE_47_length_155_cov_136.461538', 155], ['NODE_48_length_155_cov_108.423077', 155], ['NODE_49_length_155_cov_99.448718', 155], ['NODE_50_length_155_cov_95.000000', 155], ['NODE_51_length_155_cov_91.551282', 155], ['NODE_52_length_155_cov_89.551282', 155], ['NODE_53_length_155_cov_55.615385', 155], ['NODE_54_length_155_cov_53.512821', 155], ['NODE_55_length_155_cov_38.064103', 155], ['NODE_56_length_155_cov_35.384615', 155], ['NODE_57_length_154_cov_59.090909', 154], ['NODE_58_length_153_cov_45.618421', 153], ['NODE_59_length_153_cov_40.500000', 153], ['NODE_60_length_152_cov_67.493333', 152], ['NODE_61_length_152_cov_44.840000', 152], ['NODE_62_length_151_cov_60.500000', 151], ['NODE_63_length_151_cov_53.081081', 151], ['NODE_64_length_151_cov_51.202703', 151], ['NODE_65_length_151_cov_43.932432', 151], ['NODE_66_length_151_cov_38.067568', 151],
+                ]);
+                const chartDataContigCoverage = google.visualization.arrayToDataTable( [
+                    ['Name', 'Value'],
+                     ['NODE_1_length_116661_cov_75.420315', 75], ['NODE_2_length_108075_cov_62.217708', 62], ['NODE_3_length_97026_cov_80.929840', 81], ['NODE_4_length_93478_cov_52.593752', 53], ['NODE_5_length_81493_cov_64.464749', 64], ['NODE_6_length_74996_cov_54.316515', 54], ['NODE_7_length_58293_cov_100.965267', 101], ['NODE_8_length_36469_cov_60.148357', 60], ['NODE_9_length_29778_cov_53.207030', 53], ['NODE_10_length_29112_cov_51.750801', 52], ['NODE_11_length_20714_cov_58.069874', 58], ['NODE_12_length_15048_cov_53.975753', 54], ['NODE_13_length_13206_cov_100.935334', 101], ['NODE_14_length_11223_cov_51.284676', 51], ['NODE_15_length_10070_cov_75.327930', 75], ['NODE_16_length_6909_cov_62.817063', 63], ['NODE_17_length_6892_cov_51.395745', 51], ['NODE_18_length_5042_cov_10.420004', 10], ['NODE_19_length_4913_cov_87.154880', 87], ['NODE_20_length_4103_cov_75.745405', 76], ['NODE_21_length_1851_cov_154.257610', 154], ['NODE_22_length_810_cov_102.941337', 103], ['NODE_23_length_764_cov_297.342067', 297], ['NODE_24_length_659_cov_133.824742', 134], ['NODE_25_length_568_cov_96.150713', 96], ['NODE_26_length_554_cov_94.283019', 94], ['NODE_27_length_536_cov_57.496732', 57], ['NODE_28_length_532_cov_151.421978', 151], ['NODE_29_length_532_cov_59.619780', 60], ['NODE_30_length_492_cov_208.503614', 209], ['NODE_31_length_484_cov_362.577396', 363], ['NODE_32_length_393_cov_53.427215', 53], ['NODE_33_length_378_cov_218.581395', 219], ['NODE_34_length_368_cov_267.113402', 267], ['NODE_35_length_368_cov_60.237113', 60], ['NODE_36_length_348_cov_76.180812', 76], ['NODE_37_length_333_cov_40.621094', 41], ['NODE_38_length_303_cov_51.168142', 51], ['NODE_40_length_248_cov_123.538012', 124], ['NODE_41_length_244_cov_89.497006', 89], ['NODE_42_length_243_cov_80.933735', 81], ['NODE_43_length_232_cov_93.606452', 94], ['NODE_44_length_219_cov_137.711268', 138], ['NODE_45_length_157_cov_44.950000', 45], ['NODE_46_length_155_cov_145.358974', 145], ['NODE_47_length_155_cov_136.461538', 136], ['NODE_48_length_155_cov_108.423077', 108], ['NODE_49_length_155_cov_99.448718', 99], ['NODE_50_length_155_cov_95.000000', 95], ['NODE_51_length_155_cov_91.551282', 92], ['NODE_52_length_155_cov_89.551282', 90], ['NODE_53_length_155_cov_55.615385', 56], ['NODE_54_length_155_cov_53.512821', 54], ['NODE_55_length_155_cov_38.064103', 38], ['NODE_56_length_155_cov_35.384615', 35], ['NODE_57_length_154_cov_59.090909', 59], ['NODE_58_length_153_cov_45.618421', 46], ['NODE_59_length_153_cov_40.500000', 41], ['NODE_60_length_152_cov_67.493333', 67], ['NODE_61_length_152_cov_44.840000', 45], ['NODE_62_length_151_cov_60.500000', 61], ['NODE_63_length_151_cov_53.081081', 53], ['NODE_64_length_151_cov_51.202703', 51], ['NODE_65_length_151_cov_43.932432', 44], ['NODE_66_length_151_cov_38.067568', 38],
+                ]);
+                const chartDataContigGC = google.visualization.arrayToDataTable( [
+                    ['Name', 'Value'],
+                     ['NODE_1_length_116661_cov_75.420315', 27], ['NODE_2_length_108075_cov_62.217708', 28], ['NODE_3_length_97026_cov_80.929840', 26], ['NODE_4_length_93478_cov_52.593752', 26], ['NODE_5_length_81493_cov_64.464749', 26], ['NODE_6_length_74996_cov_54.316515', 26], ['NODE_7_length_58293_cov_100.965267', 26], ['NODE_8_length_36469_cov_60.148357', 26], ['NODE_9_length_29778_cov_53.207030', 25], ['NODE_10_length_29112_cov_51.750801', 25], ['NODE_11_length_20714_cov_58.069874', 25], ['NODE_12_length_15048_cov_53.975753', 26], ['NODE_13_length_13206_cov_100.935334', 26], ['NODE_14_length_11223_cov_51.284676', 28], ['NODE_15_length_10070_cov_75.327930', 25], ['NODE_16_length_6909_cov_62.817063', 27], ['NODE_17_length_6892_cov_51.395745', 26], ['NODE_18_length_5042_cov_10.420004', 56], ['NODE_19_length_4913_cov_87.154880', 25], ['NODE_20_length_4103_cov_75.745405', 20], ['NODE_21_length_1851_cov_154.257610', 28], ['NODE_22_length_810_cov_102.941337', 28], ['NODE_23_length_764_cov_297.342067', 26], ['NODE_24_length_659_cov_133.824742', 28], ['NODE_25_length_568_cov_96.150713', 25], ['NODE_26_length_554_cov_94.283019', 32], ['NODE_27_length_536_cov_57.496732', 23], ['NODE_28_length_532_cov_151.421978', 25], ['NODE_29_length_532_cov_59.619780', 24], ['NODE_30_length_492_cov_208.503614', 24], ['NODE_31_length_484_cov_362.577396', 24], ['NODE_32_length_393_cov_53.427215', 24], ['NODE_33_length_378_cov_218.581395', 27], ['NODE_34_length_368_cov_267.113402', 26], ['NODE_35_length_368_cov_60.237113', 27], ['NODE_36_length_348_cov_76.180812', 24], ['NODE_37_length_333_cov_40.621094', 24], ['NODE_38_length_303_cov_51.168142', 17], ['NODE_40_length_248_cov_123.538012', 29], ['NODE_41_length_244_cov_89.497006', 27], ['NODE_42_length_243_cov_80.933735', 24], ['NODE_43_length_232_cov_93.606452', 29], ['NODE_44_length_219_cov_137.711268', 29], ['NODE_45_length_157_cov_44.950000', 17], ['NODE_46_length_155_cov_145.358974', 23], ['NODE_47_length_155_cov_136.461538', 22], ['NODE_48_length_155_cov_108.423077', 32], ['NODE_49_length_155_cov_99.448718', 25], ['NODE_50_length_155_cov_95.000000', 29], ['NODE_51_length_155_cov_91.551282', 26], ['NODE_52_length_155_cov_89.551282', 26], ['NODE_53_length_155_cov_55.615385', 26], ['NODE_54_length_155_cov_53.512821', 25], ['NODE_55_length_155_cov_38.064103', 20], ['NODE_56_length_155_cov_35.384615', 28], ['NODE_57_length_154_cov_59.090909', 24], ['NODE_58_length_153_cov_45.618421', 33], ['NODE_59_length_153_cov_40.500000', 29], ['NODE_60_length_152_cov_67.493333', 31], ['NODE_61_length_152_cov_44.840000', 24], ['NODE_62_length_151_cov_60.500000', 26], ['NODE_63_length_151_cov_53.081081', 24], ['NODE_64_length_151_cov_51.202703', 21], ['NODE_65_length_151_cov_43.932432', 30], ['NODE_66_length_151_cov_38.067568', 28],
+                ]);
+
+                const options = {
+                    title: '',
+                    width: 400,
+                    height: 300,
+                    theme: {
+                        chartArea: {left: '10%', top: '10%', width: '92%', height: '80%'},
+                        legend: {position: 'none'},
+                        titlePosition: 'out',
+			axisTitlesPosition: 'out',
+                        hAxis: {
+                            textPosition: 'out',
+                            slantedText: false,
+                            maxAlternation: 1,
+                            maxTextLines: 1,
+                            minTextSpacing: 14,
+                        },
+                        vAxis: {
+                            textPosition: 'out',
+                        }
+                    },
+                    colors: ['#428BCA'],
+                    fontSize: 14,
+                    bar: {
+                        gap: 0
+                    },
+                };
+
+                options.title = 'Contig Lengths';
+		options.theme.hAxis.format = 'short'
+                options.histogram = {
+                    hideBucketItems: false,
+                    bucketSize: 10000
+                };
+                const chartContigLength = new google.visualization.Histogram(document.getElementById( 'chartContigLength' ) );
+                chartContigLength.draw( chartDataContigLength, options );
+
+                options.title = 'Contig Coverage';
+                options.histogram = {
+                    hideBucketItems: false,
+                    bucketSize: 10,
+                    maxNumBuckets: 100,
+                    minValue: 0
+                };
+                const chartContigCoverage = new google.visualization.Histogram(document.getElementById( 'chartContigCoverage' ) );
+                chartContigCoverage.draw( chartDataContigCoverage, options );
+
+                options.title = 'Contig GC Contents';
+		options.hAxis = {ticks: [ 20, 40, 60, 80 ] };
+                options.histogram = {
+                    hideBucketItems: false,
+                    bucketSize: 1,
+                    minValue: 15,
+                    maxValue: 85
+                };
+                const chartContigGCContent = new google.visualization.Histogram(document.getElementById( 'chartContigGC' ) );
+                chartContigGCContent.draw( chartDataContigGC, options );
+            }
+            </script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="../index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Short reads test 02</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="../help.html">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Analyses</a></li>
+                <li><a href="../qc.html">Quality Control</a></li>
+                <li><a href="../assemblies.html">Assembly</a></li>
+                <li><a href="../scaffolds.html">Scaffolds</a></li>
+                <li><a href="../annotations.html">Annotation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Characterization</a></li>
+                <li><a href="../taxonomy.html">Taxonomic Classification</a></li>
+                <li><a href="../mlst.html">MLST</a></li>
+                <li><a href="../abr.html">Antibiotic Resistances</a></li>
+                <li><a href="../vf.html">Virulence Factors</a></li>
+                <!--<li><a href="../plasmids.html">Plasmids</a></li>-->
+                <!--<li><a href="../phages.html">Phages</a></li>-->
+                <li><a href="../mapping.html">Reference Mapping</a></li>
+                <li><a href="../snps.html">SNP Detection</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Comparative Analyses</a></li>
+                            <li><a href="../corepan.html">Core/Pan Genome</a></li>
+                <li><a href="../phylogeny.html">Phylogeny</a></li>
+            </ul>
+        </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                    <ol class="breadcrumb">
+                        <li><a href="../index.html">Dashboard</a></li>
+                        <li><a href="../assemblies.html">Assemblies</a></li>
+                        <li class="active">M. meleagridis 25A4</li>
+                        <!-- trigger help-modal -->
+                        <i class="fa fa-question fa-3x helpBtn" data-toggle="modal" data-target="#myModal"></i>
+                    </ol>
+
+                    <!-- help-modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h2 class="modal-title" id="myModalLabel">ASA&#179;P assembly detail</h2>
+                          </div>
+                          <div class="modal-body">
+                            <h3>Histograms of contig specifications</h3>
+
+                            <h5>Contig lengths</h5>
+
+                            <p>Histogram of <code>contig length</code> in kb. Via mouse over the number of contigs in each bin
+                              is displayed.</p>
+
+                            <h5>Contig coverage</h5>
+
+                            <p>Histogram of the <code>average read coverage</code> per contig. Via mouse over the average coverage
+                              of each bin is displayed.</p>
+
+                            <h5>Contig GC contents</h5>
+
+                            <p>Stacked histogram of <code>GC contents</code> per contig. Via mouse over the GC content of each
+                              individual contig is displayed.</p>
+
+                            <h3>Basic assembly statistics</h3>
+
+                            <p>Provides information on the assembly in general and on the contig length.</p>
+
+                            <h3>Interactive data table contigs</h3>
+
+                            <p><code>Individual sorting</code> can be applied via clicking on the respective column header.
+                              Use the <code>Search</code> function (top right of the table) to display only genomes that
+                              contain the search term in any of their table fields. The <code>number of entries</code> displayed
+                              per page can be chosen on the top left of the table. Mose over on underlined table headers
+                              to display further information on it.</p>
+
+                            <h3>Downloads</h3>
+
+                            <p>The contigs and scaffolds used in this assembly as well as the ones discarded (not used for assembly)
+                              can be downloaded as <code>fasta</code> on the right below the histograms. The table can be
+                              saved as a comma separated value (<code>csv</code>) file via a click on the csv button (search
+                              and sorting are contained in the downloaded file).</p>
+
+                            <h3>Glossary</h3>
+
+                            <ul>
+                              <li><strong>Contigs</strong>: Set of overlapping DNA segments (reads).</li>
+
+                              <li><strong>Coverage</strong>: Mean read coverage of this contig.</li>
+
+                              <li><strong># Gaps</strong>: Amount of space (bp) between assembled nucleotides in this contig.</li>
+
+                              <li><strong>GC</strong>: GC content in percent.</li>
+
+                              <li><strong>Length</strong>: Length of the contig in base pairs.</li>
+
+                              <li><strong>N50 length</strong>: Given ordered contigs from longest to smallest, length of the
+                                contig at 50% of the genome length.</li>
+
+                              <li><strong>N90 length</strong>: Given ordered contigs from longest to smallest, length of the
+                                contig at 90% of the genome length.</li>
+
+                              <li><strong>Name</strong>: Name of this contig.</li>
+
+                              <li><strong>Scaffolds</strong>: Consists of aligned contigs with the sequence 'NNNNNNNNNNCTAGCTAGCTAGCNNNNNNNNNN'
+                                in between them.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4" id="chartContigLength"></div>
+                        <div class="col-lg-4 col-md-4" id="chartContigCoverage"></div>
+                        <div class="col-lg-4 col-md-4" id="chartContigGC"></div>
+                    </div>
+
+                    <!-- Assembly overview -->
+                    <div class="row voffset">
+                        <div class="col-sm-3 col-md-3 col-md-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Genome Assembly</caption>
+                                <tbody>
+                                    <tr><td>Contigs [#]</td><td class="text-center">65</td></tr>
+                                    <tr><td>Genome Size [Mb]</td><td class="text-center">838,341</td></tr>
+                                    <tr><td>N50 [kb]</td><td class="text-center">81,493</td></tr>
+                                    <tr><td>N90 [kb]</td><td class="text-center">15,048</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Contig lengths -->
+                        <div class="col-sm-3 col-md-3 col-md-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Contig Lengths</caption>
+                                <tbody>
+                                    <tr><td>Min [bp]</td><td class="text-center">151</td></tr>
+                                    <tr><td>Max [kb]</td><td class="text-center">116,661</td></tr>
+                                    <tr><td>Mean [kb]</td><td class="text-center">12,898</td></tr>
+                                    <tr><td>Median [kb]</td><td class="text-center">378</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Downloads -->
+                        <div id="downloadsTypes" class="col-sm-2 col-md-2 col-md-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Downloads</caption>
+                                <tbody>
+                                    <tr><td>Contigs /<br>Scaffolds</td><td class="text-center"><a href="./Mycoplasma_meleagridis_25A4/Mycoplasma_meleagridis_25A4.fasta">fasta</a></td></tr>
+                                    <tr><td>Discarded Contigs /<br>Scaffolds</td><td class="text-center"><a href="./Mycoplasma_meleagridis_25A4/Mycoplasma_meleagridis_25A4-discarded.fasta">fasta</a></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row voffset">
+                        <!-- Contig Table -->
+                        <div class="col-sm-10 col-md-10">
+                            <h2><small>Contigs</small></h2>
+                            <table id="contigTable" class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th class="text-center">Length</th>
+                                        <th class="text-center">Coverage</th>
+                                        <th class="text-center"><abbr title="GC content [%]">GC</abbr></th>
+                                        <th class="text-center"># Gaps</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>NODE_1_length_116661_cov_75.420315</td>
+                                        <td class="text-center">116,661</td>
+                                        <td class="text-center">75</td>
+                                        <td class="text-center">27</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_2_length_108075_cov_62.217708</td>
+                                        <td class="text-center">108,075</td>
+                                        <td class="text-center">62</td>
+                                        <td class="text-center">28</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_3_length_97026_cov_80.929840</td>
+                                        <td class="text-center">97,026</td>
+                                        <td class="text-center">81</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">192</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_4_length_93478_cov_52.593752</td>
+                                        <td class="text-center">93,478</td>
+                                        <td class="text-center">53</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_5_length_81493_cov_64.464749</td>
+                                        <td class="text-center">81,493</td>
+                                        <td class="text-center">64</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_6_length_74996_cov_54.316515</td>
+                                        <td class="text-center">74,996</td>
+                                        <td class="text-center">54</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_7_length_58293_cov_100.965267</td>
+                                        <td class="text-center">58,293</td>
+                                        <td class="text-center">101</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_8_length_36469_cov_60.148357</td>
+                                        <td class="text-center">36,469</td>
+                                        <td class="text-center">60</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_9_length_29778_cov_53.207030</td>
+                                        <td class="text-center">29,778</td>
+                                        <td class="text-center">53</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_10_length_29112_cov_51.750801</td>
+                                        <td class="text-center">29,112</td>
+                                        <td class="text-center">52</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_11_length_20714_cov_58.069874</td>
+                                        <td class="text-center">20,714</td>
+                                        <td class="text-center">58</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_12_length_15048_cov_53.975753</td>
+                                        <td class="text-center">15,048</td>
+                                        <td class="text-center">54</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_13_length_13206_cov_100.935334</td>
+                                        <td class="text-center">13,206</td>
+                                        <td class="text-center">101</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_14_length_11223_cov_51.284676</td>
+                                        <td class="text-center">11,223</td>
+                                        <td class="text-center">51</td>
+                                        <td class="text-center">28</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_15_length_10070_cov_75.327930</td>
+                                        <td class="text-center">10,070</td>
+                                        <td class="text-center">75</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_16_length_6909_cov_62.817063</td>
+                                        <td class="text-center">6,909</td>
+                                        <td class="text-center">63</td>
+                                        <td class="text-center">27</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_17_length_6892_cov_51.395745</td>
+                                        <td class="text-center">6,892</td>
+                                        <td class="text-center">51</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_18_length_5042_cov_10.420004</td>
+                                        <td class="text-center">5,042</td>
+                                        <td class="text-center">10</td>
+                                        <td class="text-center">56</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_19_length_4913_cov_87.154880</td>
+                                        <td class="text-center">4,913</td>
+                                        <td class="text-center">87</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_20_length_4103_cov_75.745405</td>
+                                        <td class="text-center">4,103</td>
+                                        <td class="text-center">76</td>
+                                        <td class="text-center">20</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_21_length_1851_cov_154.257610</td>
+                                        <td class="text-center">1,851</td>
+                                        <td class="text-center">154</td>
+                                        <td class="text-center">28</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_22_length_810_cov_102.941337</td>
+                                        <td class="text-center">810</td>
+                                        <td class="text-center">103</td>
+                                        <td class="text-center">28</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_23_length_764_cov_297.342067</td>
+                                        <td class="text-center">764</td>
+                                        <td class="text-center">297</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_24_length_659_cov_133.824742</td>
+                                        <td class="text-center">659</td>
+                                        <td class="text-center">134</td>
+                                        <td class="text-center">28</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_25_length_568_cov_96.150713</td>
+                                        <td class="text-center">568</td>
+                                        <td class="text-center">96</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_26_length_554_cov_94.283019</td>
+                                        <td class="text-center">554</td>
+                                        <td class="text-center">94</td>
+                                        <td class="text-center">32</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_27_length_536_cov_57.496732</td>
+                                        <td class="text-center">536</td>
+                                        <td class="text-center">57</td>
+                                        <td class="text-center">23</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_28_length_532_cov_151.421978</td>
+                                        <td class="text-center">532</td>
+                                        <td class="text-center">151</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_29_length_532_cov_59.619780</td>
+                                        <td class="text-center">532</td>
+                                        <td class="text-center">60</td>
+                                        <td class="text-center">24</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_30_length_492_cov_208.503614</td>
+                                        <td class="text-center">492</td>
+                                        <td class="text-center">209</td>
+                                        <td class="text-center">24</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_31_length_484_cov_362.577396</td>
+                                        <td class="text-center">484</td>
+                                        <td class="text-center">363</td>
+                                        <td class="text-center">24</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_32_length_393_cov_53.427215</td>
+                                        <td class="text-center">393</td>
+                                        <td class="text-center">53</td>
+                                        <td class="text-center">24</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_33_length_378_cov_218.581395</td>
+                                        <td class="text-center">378</td>
+                                        <td class="text-center">219</td>
+                                        <td class="text-center">27</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_34_length_368_cov_267.113402</td>
+                                        <td class="text-center">368</td>
+                                        <td class="text-center">267</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_35_length_368_cov_60.237113</td>
+                                        <td class="text-center">368</td>
+                                        <td class="text-center">60</td>
+                                        <td class="text-center">27</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_36_length_348_cov_76.180812</td>
+                                        <td class="text-center">348</td>
+                                        <td class="text-center">76</td>
+                                        <td class="text-center">24</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_37_length_333_cov_40.621094</td>
+                                        <td class="text-center">333</td>
+                                        <td class="text-center">41</td>
+                                        <td class="text-center">24</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_38_length_303_cov_51.168142</td>
+                                        <td class="text-center">303</td>
+                                        <td class="text-center">51</td>
+                                        <td class="text-center">17</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_40_length_248_cov_123.538012</td>
+                                        <td class="text-center">248</td>
+                                        <td class="text-center">124</td>
+                                        <td class="text-center">29</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_41_length_244_cov_89.497006</td>
+                                        <td class="text-center">244</td>
+                                        <td class="text-center">89</td>
+                                        <td class="text-center">27</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_42_length_243_cov_80.933735</td>
+                                        <td class="text-center">243</td>
+                                        <td class="text-center">81</td>
+                                        <td class="text-center">24</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_43_length_232_cov_93.606452</td>
+                                        <td class="text-center">232</td>
+                                        <td class="text-center">94</td>
+                                        <td class="text-center">29</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_44_length_219_cov_137.711268</td>
+                                        <td class="text-center">219</td>
+                                        <td class="text-center">138</td>
+                                        <td class="text-center">29</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_45_length_157_cov_44.950000</td>
+                                        <td class="text-center">157</td>
+                                        <td class="text-center">45</td>
+                                        <td class="text-center">17</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_46_length_155_cov_145.358974</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">145</td>
+                                        <td class="text-center">23</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_47_length_155_cov_136.461538</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">136</td>
+                                        <td class="text-center">22</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_48_length_155_cov_108.423077</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">108</td>
+                                        <td class="text-center">32</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_49_length_155_cov_99.448718</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">99</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_50_length_155_cov_95.000000</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">95</td>
+                                        <td class="text-center">29</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_51_length_155_cov_91.551282</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">92</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_52_length_155_cov_89.551282</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">90</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_53_length_155_cov_55.615385</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">56</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_54_length_155_cov_53.512821</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">54</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_55_length_155_cov_38.064103</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">38</td>
+                                        <td class="text-center">20</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_56_length_155_cov_35.384615</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">35</td>
+                                        <td class="text-center">28</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_57_length_154_cov_59.090909</td>
+                                        <td class="text-center">154</td>
+                                        <td class="text-center">59</td>
+                                        <td class="text-center">24</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_58_length_153_cov_45.618421</td>
+                                        <td class="text-center">153</td>
+                                        <td class="text-center">46</td>
+                                        <td class="text-center">33</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_59_length_153_cov_40.500000</td>
+                                        <td class="text-center">153</td>
+                                        <td class="text-center">41</td>
+                                        <td class="text-center">29</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_60_length_152_cov_67.493333</td>
+                                        <td class="text-center">152</td>
+                                        <td class="text-center">67</td>
+                                        <td class="text-center">31</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_61_length_152_cov_44.840000</td>
+                                        <td class="text-center">152</td>
+                                        <td class="text-center">45</td>
+                                        <td class="text-center">24</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_62_length_151_cov_60.500000</td>
+                                        <td class="text-center">151</td>
+                                        <td class="text-center">61</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_63_length_151_cov_53.081081</td>
+                                        <td class="text-center">151</td>
+                                        <td class="text-center">53</td>
+                                        <td class="text-center">24</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_64_length_151_cov_51.202703</td>
+                                        <td class="text-center">151</td>
+                                        <td class="text-center">51</td>
+                                        <td class="text-center">21</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_65_length_151_cov_43.932432</td>
+                                        <td class="text-center">151</td>
+                                        <td class="text-center">44</td>
+                                        <td class="text-center">30</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_66_length_151_cov_38.067568</td>
+                                        <td class="text-center">151</td>
+                                        <td class="text-center">38</td>
+                                        <td class="text-center">28</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

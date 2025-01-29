@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <meta name="description" content="ASA?P results for \"Short reads test 02\" project">
+        <meta name="author" content="Oliver Schwengers">
+
+        <title>ASA&#179;P: Short reads test 02</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="css/dashboard.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="js/back-to-top.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip( {html: true} );
+            });
+        </script>
+
+        <link href="css/asap.css" rel="stylesheet">
+
+        <script src="js/phylocanvas-asap.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js" integrity="sha256-LlHVI5rUauudM5ZcZaD6hHPHKrA7CSefHHnKgq+/AZc=" crossorigin="anonymous"></script>
+        <script src="js/time.js" defer></script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Short reads test 02</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="help.html">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Analyses</a></li>
+                <li><a href="qc.html">Quality Control</a></li>
+                <li><a href="assemblies.html">Assembly</a></li>
+                <li><a href="scaffolds.html">Scaffolds</a></li>
+                <li><a href="annotations.html">Annotation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Characterization</a></li>
+                <li><a href="taxonomy.html">Taxonomic Classification</a></li>
+                <li><a href="mlst.html">MLST</a></li>
+                <li><a href="abr.html">Antibiotic Resistances</a></li>
+                <li><a href="vf.html">Virulence Factors</a></li>
+                <!--<li><a href="plasmids.html">Plasmids</a></li>-->
+                <!--<li><a href="phages.html">Phages</a></li>-->
+                <li><a href="mapping.html">Reference Mapping</a></li>
+                <li><a href="snps.html">SNP Detection</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Comparative Analyses</a></li>
+                            <li><a href="corepan.html">Core/Pan Genome</a></li>
+                <li><a href="phylogeny.html">Phylogeny</a></li>
+            </ul>
+        </div>
+
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Dashboard</a></li>
+                        <li class="active">Phylogeny</li>
+                        <!-- trigger help-modal -->
+                        <i class="fa fa-question fa-3x helpBtn" data-toggle="modal" data-target="#myModal"></i>
+                    </ol>
+
+                    <!-- help-modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h2 class="modal-title" id="myModalLabel">ASA&#179;P phylogeny overview</h2>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              Based on a consensus sequence created with BCFtools during the SNP detection ASA&#179;P uses <code>FastTreeMP</code> to calculate
+                              a phylogenetic tree of all analyzed genomes for which reads have been provided. FastTreeMP follows an approximately-maximum-likelihood
+                              approach on the nucleotide level. The resulting newick file (.nwk) contains the tree representation
+                              including edge lengths and can be used for graphical display. The phylogenetic distances of the analysed
+                              genomes are calculated via <code>FastTreeMP</code> based on their SNPs. Information on the runtime
+                              of the analysis is provided. The calculated phylogenetic trees are displayed via <code>Phylocanvas</code>.</p>
+
+                            <h3>Phylogenetic tree display</h3>
+
+                            <p>A tree type (<code>rectangular</code>, <code>radial</code>, <code>circular</code>, <code>diagonal</code> and <code>hierarchical</code>)
+                                can be chosen via the drop down menu. The tree can be positioned via mouse drag and drop. The zoom function is controlled via mouse wheel.
+                                Via right clicks in a blank area of the diagram further display and export options show up (<code>like Export as Image</code>).
+                                Via a mouseover on a tree node the number of leaves associated with this subtree is displayed.
+                                Via a left click on a tree node the subtree is highlighted in blue.
+                                Via a right click on a tree node additional display and export options are available
+                                (including <code>Collapse/Expand Subtree</code> and <code>Export Subtree as Newick File</code>)</p>
+
+                            <h3>Downloads</h3>
+
+                            <p>The SNP based phylogenetic distances can be downloaded as <code>nwk</code> file under <code>Downloads</code>                      on the top right.</p>
+
+                            <h3>Links</h3>
+
+                            <ul>
+                              <li><a href="http://www.microbesonline.org/fasttree/">FastTreeMP</a>: Price, M.N., Dehal, P.S., and Arkin, A.P.
+                                  FastTree 2 -- Approximately Maximum-Likelihood Trees for Large Alignments.
+                                  PLoS ONE, 2010, 5(3):e9490. doi:10.1371/journal.pone.0009490.
+                                  <a href="https://www.ncbi.nlm.nih.gov/pubmed/20224823">PubMed</a>
+                              </li>
+
+                              <li><a href="http://phylocanvas.org/">Phylocanvas</a>: Centre for Genomic Pathogen Surveillance (2016 ).
+                                Interactive tree visualisation for the web.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-2">
+                            <!--dropdown to select treetype-->
+                            <div class="form-group">
+                                <label for="treeType">Tree Type</label>
+                                <select id="treeType" class="form-control" onchange="changeLook(this.value)">
+                                    <option value="rectangular">rectangular</option>
+                                    <option value="radial">radial</option>
+                                    <option value="circular">circular</option>
+                                    <option value="diagonal">diagonal</option>
+                                    <option value="hierarchical">hierarchical</option>
+                                </select>
+                            <!--<button id="savesvg" onclick="saveSvg()">save SVG</button>-->
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 col-md-offset-5">
+                            <table class="table table-hover table-condensed">
+                                <caption>Downloads</caption>
+                                <tbody>
+                                    <tr><td>SNP based tree</td><td class="text-center"><a href="./phylogeny/tree.nwk">nwk</a></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-3">
+                            <table class="table table-hover table-condensed">
+                                <caption>Runtime</caption>
+                                <tbody>
+                                    <tr><td><span class="glyphicon glyphicon-play" data-toggle="tooltip" data-original-title="Start date"></span></td><td><span class="time" data-time="2025-01-29T21:43:39.121Z"></span></tr>
+                                    <tr><td><span class="glyphicon glyphicon-stop" data-toggle="tooltip" data-original-title="Stop date"></span></td><td><span class="time" data-time="2025-01-29T21:44:05.646Z"></span></tr>
+                                    <tr><td><span class="glyphicon glyphicon-refresh" data-toggle="tooltip" data-original-title="Runtime"></span></td><td><span class="time-duration" data-start="2025-01-29T21:43:39.121Z" data-end="2025-01-29T21:44:05.646Z"></span></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div id="phylocanvas" ></div>
+                        <script type="application/javascript">
+                            const tree = Phylocanvas.createTree( 'phylocanvas' , { // generates the tree using the newick string
+                                scalebar: { // Scale-bar Plugin config options
+                                    active: true, //change to true for display
+                                    width: 60,
+                                    height: 20,
+                                    fillStyle: 'black',
+                                    strokeStyle: 'black',
+                                    lineWidth: 1,
+                                    font: '16px Sans-serif',
+                                    textBaseline: 'bottom',
+                                    textAlign: 'center',
+                                    digits: 2,
+                                    position: {
+                                        bottom: 10,
+                                        left: 10,
+                                    },
+                                }
+                            } );
+                            tree.load( "((M_meleagridis_B870:0.000001577,(M_meleagridis_26B9:0.000007595,(M_meleagridis_ATCCC:0.000003153,(JZXN01000001:0.000000005,(M_meleagridis_25A3:0.000009511,(M_meleagridis_25A4:0.000015719,M_meleagridis_210:0.000001628)0.960:0.000015768)1.000:0.000119742)1.000:0.000025233)0.960:0.000009224)0.820:0.000002106)0.090:0.000000005,M_meleagridis_26B8:0.000001577,(M_meleagridis_24B8:0.000004731,M_meleagridis_26:0.000001577)0.130:0.000000005);" );
+                            tree.setTreeType('rectangular');
+                            tree.draw();
+
+                            function changeLook(look) { // change displayed tree type
+                                tree.setTreeType(look);
+                            }
+
+                            // to save SVG of phylocanvas
+                            //            function saveSvg (){
+                            //                var svgToSave = tree.exportSVG.getSerialisedSVG();
+                            //                if(svgToSave){
+                            //                    var pom = document.createElement('a');
+                            //                    pom.setAttribute('href', 'data:text/xml;charset=utf-8,' + window.encodeURIComponent(svgToSave));
+                            //                    pom.setAttribute('download', 'TREENAME.svg');
+                            //                    var event = document.createEvent('MouseEvents');
+                            //                    event.initEvent('click', true, true);
+                            //                    pom.dispatchEvent(event);
+                            //                }
+                            //            };
+                            </script>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

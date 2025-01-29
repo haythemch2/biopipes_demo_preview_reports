@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <meta name="description" content="ASA?P results for \"Short reads test 02\" project">
+        <meta name="author" content="Oliver Schwengers">
+
+        <title>ASA&#179;P: Short reads test 02</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="../css/dashboard.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="../js/back-to-top.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip( {html: true} );
+            });
+        </script>
+
+        <link href="../css/asap.css" rel="stylesheet">
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.1/d3.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.js"></script>
+        <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.js"></script>
+
+        <script src="../js/synteny.js"></script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="../index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Short reads test 02</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="../help.html">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Analyses</a></li>
+                <li><a href="../qc.html">Quality Control</a></li>
+                <li><a href="../assemblies.html">Assembly</a></li>
+                <li><a href="../scaffolds.html">Scaffolds</a></li>
+                <li><a href="../annotations.html">Annotation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Characterization</a></li>
+                <li><a href="../taxonomy.html">Taxonomic Classification</a></li>
+                <li><a href="../mlst.html">MLST</a></li>
+                <li><a href="../abr.html">Antibiotic Resistances</a></li>
+                <li><a href="../vf.html">Virulence Factors</a></li>
+                <!--<li><a href="../plasmids.html">Plasmids</a></li>-->
+                <!--<li><a href="../phages.html">Phages</a></li>-->
+                <li><a href="../mapping.html">Reference Mapping</a></li>
+                <li><a href="../snps.html">SNP Detection</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Comparative Analyses</a></li>
+                            <li><a href="../corepan.html">Core/Pan Genome</a></li>
+                <li><a href="../phylogeny.html">Phylogeny</a></li>
+            </ul>
+        </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                    <ol class="breadcrumb">
+                        <li><a href="../index.html">Dashboard</a></li>
+                        <li><a href="../scaffolds.html">Scaffolds</a></li>
+                        <li class="active">M. meleagridis ATCCC</li>
+                        <!-- trigger help-modal -->
+                        <i class="fa fa-question fa-3x helpBtn" data-toggle="modal" data-target="#myModal"></i>
+                    </ol>
+
+                    <!-- help-modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h2 class="modal-title" id="myModalLabel">ASA&#179;P scaffolds detail</h2>
+                          </div>
+                          <div class="modal-body">
+                            <p>This site provides information on contig alignment and assignment to reference genome(s). The contigs of
+                              the particular Whole Genome Assembly (<code>WGA</code>) are compared to each of the reference
+                              genomes via Synteny plots. In order to visualize the scaffolding quality the comparison is
+                              done before and after the scaffolding process.</p>
+
+                            <h3>Basic scaffolding statistics</h3>
+
+                            <p>Provides information on scaffolding in general and on the scaffold length.</p>
+
+                            <h3>DNA synteny plots</h3>
+
+                            <p>The upper synteny plot of each genome comparison displays the position of all contigs in both
+                              genomes before the scaffolding process (<code>Pre Scaffolding</code>). The lower synteny plot
+                              after scaffolding (<code>Post Scaffolding</code>). On the x-axis the contig position in the
+                              reference genome is displayed. On the y-axis the contig position in the <code>WGA</code> is
+                              displayed. Contigs referenced to the minus strand are displayed in orange the ones referenced
+                              to the plus strand are displayed in blue. Mouse over a contig to receive information on its
+                              name, length assigned strand as well as start and end position in the reference.</p>
+
+                            <h3>Downloads</h3>
+
+                            <p>The scaffolds and the generated pseudo genome can be downloaded as <code>fasta</code> on the
+                              top right.</p>
+
+                            <h3>Glossary</h3>
+
+                            <ul>
+                              <li><strong># Contigs</strong>: Number of contigs (set of overlapping DNA segments).</li>
+
+                              <li><strong>Genome Size [Mb]</strong>: Size of the WGA in million/mega bases.</li>
+
+                              <li><strong>N50</strong>: Given ordered contigs from longest to smallest, length of the contig
+                                at 50% of the genome length.</li>
+
+                              <li><strong>N90</strong>: Given ordered contigs from longest to smallest, length of the contig
+                                at 90% of the genome length.</li>
+
+                              <li><strong># Scaffolds</strong>: Number of scaffolds (joined, aligned and assigned contigs) after
+                                polishing.</li>
+
+                              <li><strong>WGA</strong>: Whole Genome Assembly generated via joining all sequence elements after
+                                scaffolding with the sequence 'NNNNNNNNNNCTAGCTAGCTAGCNNNNNNNNNN'.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+
+                         <!-- Assembly overview -->
+                        <div class="col-sm-3 col-md-3 col-md-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Scaffolded Genome</caption>
+                                <tbody>
+                                    <tr><td>Scaffolds [#]</td><td class="text-center">15</td></tr>
+                                    <tr><td>Contigs [#]</td><td class="text-center">65</td></tr>
+                                    <tr><td>Genome Size [Mb]</td><td class="text-center">1,467,466</td></tr>
+                                    <tr><td>N50 [kb]</td><td class="text-center">236,900</td></tr>
+                                    <tr><td>N90 [kb]</td><td class="text-center">49,884</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Scaffold lengths -->
+                        <div class="col-sm-3 col-md-3 col-md-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Scaffold Lengths</caption>
+                                <tbody>
+                                    <tr><td>Min [bp]</td><td class="text-center">151</td></tr>
+                                    <tr><td>Max [kb]</td><td class="text-center">297,053</td></tr>
+                                    <tr><td>Mean [kb]</td><td class="text-center">18,343</td></tr>
+                                    <tr><td>Median [kb]</td><td class="text-center">369</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Downloads -->
+                        <div class="col-sm-2 col-md-2 col-md-offset-1 col-sm-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Downloads</caption>
+                                <tbody>
+                                    <tr><td>Scaffolds</td><td class="text-center"><a href="./Mycoplasma_meleagridis_ATCCC/Mycoplasma_meleagridis_ATCCC.fasta">fasta</a></td></tr>
+                                    <tr><td>Pseudo Genome</td><td class="text-center"><a href="./Mycoplasma_meleagridis_ATCCC/Mycoplasma_meleagridis_ATCCC-pseudo.fasta">fasta</a></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="row voffset">
+                        <div class="col">
+                            <h2><small>WGA vs. Mycoplasmameleagridisreference</small></h2>
+                            <div class="row">
+                                <div class="col-md-1 col-sd-2">
+                                    <h4><small>Pre Scaffolding</small></h4>
+                                </div>
+                                <div class="col-md-11 col-sd-10">
+                                    <section id="Mycoplasmameleagridisreference-pre" class="caption" role="region">
+                                    <script>
+                                        $(() => {
+                                            let data = [{"contig":"NODE_1_length_216063_cov_80.572088","contigLength":"216063","rStart":1,"rEnd":77,"cStart":1,"cEnd":77,"noNonIdentities":0,"length":77,"strand":"-"},{"contig":"NODE_1_length_216063_cov_80.572088","contigLength":"216063","rStart":1,"rEnd":193146,"cStart":57,"cEnd":193202,"noNonIdentities":2,"length":193146,"strand":"+"},{"contig":"NODE_1_length_216063_cov_80.572088","contigLength":"216063","rStart":1022,"rEnd":1328,"cStart":193158,"cEnd":193448,"noNonIdentities":43,"length":291,"strand":"+"},{"contig":"NODE_1_length_216063_cov_80.572088","contigLength":"216063","rStart":1,"rEnd":1158,"cStart":193344,"cEnd":194501,"noNonIdentities":0,"length":1158,"strand":"+"},{"contig":"NODE_1_length_216063_cov_80.572088","contigLength":"216063","rStart":1011,"rEnd":1226,"cStart":194470,"cEnd":194686,"noNonIdentities":3,"length":217,"strand":"+"},{"contig":"NODE_1_length_216063_cov_80.572088","contigLength":"216063","rStart":1,"rEnd":1039,"cStart":194776,"cEnd":195814,"noNonIdentities":4,"length":1039,"strand":"-"},{"contig":"NODE_1_length_216063_cov_80.572088","contigLength":"216063","rStart":1022,"rEnd":1226,"cStart":195794,"cEnd":195999,"noNonIdentities":1,"length":206,"strand":"+"},{"contig":"NODE_1_length_216063_cov_80.572088","contigLength":"216063","rStart":1,"rEnd":1328,"cStart":196133,"cEnd":197463,"noNonIdentities":3,"length":1331,"strand":"+"},{"contig":"NODE_1_length_216063_cov_80.572088","contigLength":"216063","rStart":1,"rEnd":18510,"cStart":197498,"cEnd":216007,"noNonIdentities":1,"length":18510,"strand":"+"},{"contig":"NODE_1_length_216063_cov_80.572088","contigLength":"216063","rStart":1,"rEnd":77,"cStart":215987,"cEnd":216063,"noNonIdentities":0,"length":77,"strand":"+"},{"contig":"NODE_2_length_191035_cov_60.716686","contigLength":"191035","rStart":1,"rEnd":1185,"cStart":1,"cEnd":1185,"noNonIdentities":0,"length":1185,"strand":"-"},{"contig":"NODE_2_length_191035_cov_60.716686","contigLength":"191035","rStart":1,"rEnd":247,"cStart":1215,"cEnd":1461,"noNonIdentities":1,"length":247,"strand":"-"},{"contig":"NODE_2_length_191035_cov_60.716686","contigLength":"191035","rStart":1,"rEnd":74371,"cStart":1441,"cEnd":75811,"noNonIdentities":3,"length":74371,"strand":"-"},{"contig":"NODE_2_length_191035_cov_60.716686","contigLength":"191035","rStart":90055,"rEnd":90708,"cStart":75245,"cEnd":75898,"noNonIdentities":62,"length":654,"strand":"+"},{"contig":"NODE_2_length_191035_cov_60.716686","contigLength":"191035","rStart":1,"rEnd":751,"cStart":75934,"cEnd":76684,"noNonIdentities":0,"length":751,"strand":"+"},{"contig":"NODE_2_length_191035_cov_60.716686","contigLength":"191035","rStart":1,"rEnd":442,"cStart":76679,"cEnd":77120,"noNonIdentities":4,"length":442,"strand":"+"},{"contig":"NODE_2_length_191035_cov_60.716686","contigLength":"191035","rStart":1,"rEnd":90708,"cStart":77100,"cEnd":167807,"noNonIdentities":5,"length":90708,"strand":"+"},{"contig":"NODE_2_length_191035_cov_60.716686","contigLength":"191035","rStart":1,"rEnd":591,"cStart":167929,"cEnd":168519,"noNonIdentities":2,"length":591,"strand":"+"},{"contig":"NODE_2_length_191035_cov_60.716686","contigLength":"191035","rStart":1,"rEnd":442,"cStart":168602,"cEnd":169043,"noNonIdentities":4,"length":442,"strand":"+"},{"contig":"NODE_2_length_191035_cov_60.716686","contigLength":"191035","rStart":1,"rEnd":21447,"cStart":169026,"cEnd":190472,"noNonIdentities":0,"length":21447,"strand":"-"},{"contig":"NODE_2_length_191035_cov_60.716686","contigLength":"191035","rStart":4250,"rEnd":4833,"cStart":190452,"cEnd":191035,"noNonIdentities":0,"length":584,"strand":"-"},{"contig":"NODE_3_length_141764_cov_69.767219","contigLength":"141764","rStart":24,"rEnd":109000,"cStart":1,"cEnd":108978,"noNonIdentities":1,"length":108978,"strand":"-"},{"contig":"NODE_3_length_141764_cov_69.767219","contigLength":"141764","rStart":1,"rEnd":32676,"cStart":109030,"cEnd":141708,"noNonIdentities":3,"length":32679,"strand":"-"},{"contig":"NODE_3_length_141764_cov_69.767219","contigLength":"141764","rStart":4757,"rEnd":4833,"cStart":141688,"cEnd":141764,"noNonIdentities":0,"length":77,"strand":"-"},{"contig":"NODE_4_length_116966_cov_33.078594","contigLength":"116966","rStart":13378,"rEnd":14191,"cStart":1949,"cEnd":2759,"noNonIdentities":131,"length":811,"strand":"-"},{"contig":"NODE_4_length_116966_cov_33.078594","contigLength":"116966","rStart":12424,"rEnd":13054,"cStart":3083,"cEnd":3709,"noNonIdentities":110,"length":627,"strand":"-"},{"contig":"NODE_4_length_116966_cov_33.078594","contigLength":"116966","rStart":9515,"rEnd":12132,"cStart":4001,"cEnd":6600,"noNonIdentities":464,"length":2600,"strand":"-"},{"contig":"NODE_4_length_116966_cov_33.078594","contigLength":"116966","rStart":53752,"rEnd":55053,"cStart":27396,"cEnd":28689,"noNonIdentities":238,"length":1294,"strand":"-"},{"contig":"NODE_4_length_116966_cov_33.078594","contigLength":"116966","rStart":167778,"rEnd":168241,"cStart":48082,"cEnd":48509,"noNonIdentities":73,"length":428,"strand":"+"},{"contig":"NODE_4_length_116966_cov_33.078594","contigLength":"116966","rStart":3506,"rEnd":3660,"cStart":57695,"cEnd":57850,"noNonIdentities":15,"length":156,"strand":"-"},{"contig":"NODE_4_length_116966_cov_33.078594","contigLength":"116966","rStart":167070,"rEnd":167233,"cStart":73392,"cEnd":73552,"noNonIdentities":3,"length":161,"strand":"+"},{"contig":"NODE_4_length_116966_cov_33.078594","contigLength":"116966","rStart":47962,"rEnd":48050,"cStart":75429,"cEnd":75518,"noNonIdentities":2,"length":90,"strand":"-"},{"contig":"NODE_5_length_97122_cov_35.365789","contigLength":"97122","rStart":183198,"rEnd":184451,"cStart":25272,"cEnd":26537,"noNonIdentities":191,"length":1266,"strand":"+"},{"contig":"NODE_5_length_97122_cov_35.365789","contigLength":"97122","rStart":28139,"rEnd":28224,"cStart":69156,"cEnd":69241,"noNonIdentities":1,"length":86,"strand":"+"},{"contig":"NODE_5_length_97122_cov_35.365789","contigLength":"97122","rStart":32558,"rEnd":32650,"cStart":93740,"cEnd":93832,"noNonIdentities":1,"length":93,"strand":"+"},{"contig":"NODE_6_length_93286_cov_28.439475","contigLength":"93286","rStart":85660,"rEnd":85739,"cStart":73424,"cEnd":73503,"noNonIdentities":2,"length":80,"strand":"-"},{"contig":"NODE_6_length_93286_cov_28.439475","contigLength":"93286","rStart":70949,"rEnd":72336,"cStart":78568,"cEnd":79957,"noNonIdentities":204,"length":1390,"strand":"-"},{"contig":"NODE_6_length_93286_cov_28.439475","contigLength":"93286","rStart":69436,"rEnd":70836,"cStart":80070,"cEnd":81482,"noNonIdentities":205,"length":1413,"strand":"-"},{"contig":"NODE_7_length_80990_cov_31.172803","contigLength":"80990","rStart":20562,"rEnd":21317,"cStart":39918,"cEnd":40673,"noNonIdentities":135,"length":756,"strand":"-"},{"contig":"NODE_8_length_78046_cov_59.480730","contigLength":"78046","rStart":35106,"rEnd":72698,"cStart":8,"cEnd":37600,"noNonIdentities":1,"length":37593,"strand":"-"},{"contig":"NODE_8_length_78046_cov_59.480730","contigLength":"78046","rStart":1,"rEnd":35184,"cStart":37699,"cEnd":72882,"noNonIdentities":0,"length":35184,"strand":"-"},{"contig":"NODE_8_length_78046_cov_59.480730","contigLength":"78046","rStart":1,"rEnd":247,"cStart":72868,"cEnd":73114,"noNonIdentities":1,"length":247,"strand":"-"},{"contig":"NODE_8_length_78046_cov_59.480730","contigLength":"78046","rStart":1,"rEnd":1109,"cStart":73230,"cEnd":74338,"noNonIdentities":1,"length":1109,"strand":"-"},{"contig":"NODE_8_length_78046_cov_59.480730","contigLength":"78046","rStart":1,"rEnd":421,"cStart":74330,"cEnd":74750,"noNonIdentities":30,"length":421,"strand":"+"},{"contig":"NODE_8_length_78046_cov_59.480730","contigLength":"78046","rStart":1,"rEnd":247,"cStart":74779,"cEnd":75025,"noNonIdentities":7,"length":247,"strand":"-"},{"contig":"NODE_8_length_78046_cov_59.480730","contigLength":"78046","rStart":1,"rEnd":2308,"cStart":75035,"cEnd":77341,"noNonIdentities":3,"length":2307,"strand":"-"},{"contig":"NODE_8_length_78046_cov_59.480730","contigLength":"78046","rStart":1,"rEnd":421,"cStart":77333,"cEnd":77753,"noNonIdentities":0,"length":421,"strand":"+"},{"contig":"NODE_8_length_78046_cov_59.480730","contigLength":"78046","rStart":1,"rEnd":247,"cStart":77782,"cEnd":78028,"noNonIdentities":6,"length":247,"strand":"-"},{"contig":"NODE_10_length_59123_cov_31.172052","contigLength":"59123","rStart":34000,"rEnd":34524,"cStart":6635,"cEnd":7159,"noNonIdentities":98,"length":525,"strand":"+"},{"contig":"NODE_10_length_59123_cov_31.172052","contigLength":"59123","rStart":72525,"rEnd":72716,"cStart":16556,"cEnd":16724,"noNonIdentities":29,"length":169,"strand":"+"},{"contig":"NODE_10_length_59123_cov_31.172052","contigLength":"59123","rStart":73043,"rEnd":73667,"cStart":17847,"cEnd":18471,"noNonIdentities":121,"length":625,"strand":"+"},{"contig":"NODE_10_length_59123_cov_31.172052","contigLength":"59123","rStart":6839,"rEnd":7114,"cStart":26631,"cEnd":26904,"noNonIdentities":36,"length":274,"strand":"+"},{"contig":"NODE_10_length_59123_cov_31.172052","contigLength":"59123","rStart":68482,"rEnd":69030,"cStart":31354,"cEnd":31902,"noNonIdentities":97,"length":549,"strand":"+"},{"contig":"NODE_10_length_59123_cov_31.172052","contigLength":"59123","rStart":53538,"rEnd":53905,"cStart":50507,"cEnd":50872,"noNonIdentities":47,"length":366,"strand":"-"},{"contig":"NODE_11_length_58293_cov_39.635753","contigLength":"58293","rStart":5259,"rEnd":6460,"cStart":119,"cEnd":1325,"noNonIdentities":214,"length":1207,"strand":"+"},{"contig":"NODE_12_length_49531_cov_30.749687","contigLength":"49531","rStart":27210,"rEnd":27739,"cStart":5155,"cEnd":5684,"noNonIdentities":95,"length":530,"strand":"+"},{"contig":"NODE_12_length_49531_cov_30.749687","contigLength":"49531","rStart":108920,"rEnd":109636,"cStart":17137,"cEnd":17847,"noNonIdentities":46,"length":711,"strand":"+"},{"contig":"NODE_12_length_49531_cov_30.749687","contigLength":"49531","rStart":87352,"rEnd":87854,"cStart":19453,"cEnd":19955,"noNonIdentities":115,"length":503,"strand":"+"},{"contig":"NODE_12_length_49531_cov_30.749687","contigLength":"49531","rStart":3,"rEnd":862,"cStart":48674,"cEnd":49531,"noNonIdentities":56,"length":858,"strand":"+"},{"contig":"NODE_13_length_45865_cov_28.142177","contigLength":"45865","rStart":41186,"rEnd":42219,"cStart":5390,"cEnd":6414,"noNonIdentities":173,"length":1025,"strand":"-"},{"contig":"NODE_13_length_45865_cov_28.142177","contigLength":"45865","rStart":784,"rEnd":1056,"cStart":32108,"cEnd":32380,"noNonIdentities":38,"length":273,"strand":"-"},{"contig":"NODE_13_length_45865_cov_28.142177","contigLength":"45865","rStart":4545,"rEnd":4823,"cStart":45587,"cEnd":45865,"noNonIdentities":33,"length":279,"strand":"-"},{"contig":"NODE_15_length_29209_cov_28.447000","contigLength":"29209","rStart":19130,"rEnd":19736,"cStart":14223,"cEnd":14826,"noNonIdentities":110,"length":604,"strand":"+"},{"contig":"NODE_15_length_29209_cov_28.447000","contigLength":"29209","rStart":59418,"rEnd":59940,"cStart":20657,"cEnd":21182,"noNonIdentities":106,"length":526,"strand":"-"},{"contig":"NODE_18_length_11223_cov_28.911179","contigLength":"11223","rStart":36213,"rEnd":36655,"cStart":5801,"cEnd":6243,"noNonIdentities":69,"length":443,"strand":"-"},{"contig":"NODE_23_length_4474_cov_60.290198","contigLength":"4474","rStart":366,"rEnd":442,"cStart":1,"cEnd":77,"noNonIdentities":0,"length":77,"strand":"+"},{"contig":"NODE_23_length_4474_cov_60.290198","contigLength":"4474","rStart":109560,"rEnd":113974,"cStart":60,"cEnd":4474,"noNonIdentities":0,"length":4415,"strand":"-"},{"contig":"NODE_25_length_4347_cov_27.372365","contigLength":"4347","rStart":3,"rEnd":71,"cStart":1,"cEnd":69,"noNonIdentities":0,"length":69,"strand":"-"},{"contig":"NODE_26_length_1743_cov_125.902161","contigLength":"1743","rStart":2265,"rEnd":4007,"cStart":1,"cEnd":1743,"noNonIdentities":4,"length":1743,"strand":"-"},{"contig":"NODE_28_length_1093_cov_47.635827","contigLength":"1093","rStart":1378,"rEnd":2454,"cStart":1,"cEnd":1093,"noNonIdentities":118,"length":1093,"strand":"+"},{"contig":"NODE_30_length_886_cov_133.971570","contigLength":"886","rStart":1456,"rEnd":2341,"cStart":1,"cEnd":886,"noNonIdentities":0,"length":886,"strand":"-"},{"contig":"NODE_33_length_669_cov_167.714527","contigLength":"669","rStart":786,"rEnd":1454,"cStart":1,"cEnd":669,"noNonIdentities":0,"length":669,"strand":"-"},{"contig":"NODE_39_length_421_cov_56.732558","contigLength":"421","rStart":109192,"rEnd":109612,"cStart":1,"cEnd":421,"noNonIdentities":0,"length":421,"strand":"-"},{"contig":"NODE_41_length_412_cov_50.029851","contigLength":"412","rStart":3161,"rEnd":3575,"cStart":1,"cEnd":412,"noNonIdentities":42,"length":412,"strand":"+"},{"contig":"NODE_42_length_411_cov_122.362275","contigLength":"411","rStart":452,"rEnd":862,"cStart":1,"cEnd":411,"noNonIdentities":0,"length":411,"strand":"-"},{"contig":"NODE_46_length_360_cov_108.091873","contigLength":"360","rStart":1371,"rEnd":1539,"cStart":1,"cEnd":169,"noNonIdentities":0,"length":169,"strand":"+"},{"contig":"NODE_47_length_353_cov_134.134058","contigLength":"353","rStart":38,"rEnd":390,"cStart":1,"cEnd":353,"noNonIdentities":0,"length":353,"strand":"+"},{"contig":"NODE_49_length_337_cov_48.665385","contigLength":"337","rStart":108928,"rEnd":109264,"cStart":1,"cEnd":337,"noNonIdentities":0,"length":337,"strand":"-"},{"contig":"NODE_50_length_318_cov_150.091286","contigLength":"318","rStart":3931,"rEnd":4248,"cStart":1,"cEnd":318,"noNonIdentities":0,"length":318,"strand":"-"},{"contig":"NODE_55_length_239_cov_96.308642","contigLength":"239","rStart":1201,"rEnd":1439,"cStart":1,"cEnd":239,"noNonIdentities":0,"length":239,"strand":"-"},{"contig":"NODE_56_length_236_cov_65.471698","contigLength":"236","rStart":1,"rEnd":77,"cStart":1,"cEnd":77,"noNonIdentities":0,"length":77,"strand":"-"},{"contig":"NODE_56_length_236_cov_65.471698","contigLength":"236","rStart":515,"rEnd":591,"cStart":160,"cEnd":236,"noNonIdentities":0,"length":77,"strand":"-"},{"contig":"NODE_57_length_228_cov_63.304636","contigLength":"228","rStart":79,"rEnd":306,"cStart":1,"cEnd":228,"noNonIdentities":1,"length":228,"strand":"-"},{"contig":"NODE_58_length_211_cov_58.500000","contigLength":"211","rStart":72007,"rEnd":72174,"cStart":12,"cEnd":179,"noNonIdentities":26,"length":168,"strand":"+"},{"contig":"NODE_58_length_211_cov_58.500000","contigLength":"211","rStart":1,"rEnd":77,"cStart":135,"cEnd":211,"noNonIdentities":0,"length":77,"strand":"+"},{"contig":"NODE_59_length_192_cov_65.721739","contigLength":"192","rStart":115,"rEnd":306,"cStart":1,"cEnd":192,"noNonIdentities":2,"length":192,"strand":"-"},{"contig":"NODE_60_length_172_cov_48.589474","contigLength":"172","rStart":3501,"rEnd":3672,"cStart":1,"cEnd":172,"noNonIdentities":7,"length":172,"strand":"-"},{"contig":"NODE_61_length_167_cov_73.855556","contigLength":"167","rStart":8,"rEnd":174,"cStart":1,"cEnd":167,"noNonIdentities":0,"length":167,"strand":"-"},{"contig":"NODE_63_length_155_cov_111.500000","contigLength":"155","rStart":3006,"rEnd":3160,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"-"},{"contig":"NODE_64_length_155_cov_109.743590","contigLength":"155","rStart":2630,"rEnd":2784,"cStart":1,"cEnd":155,"noNonIdentities":2,"length":155,"strand":"-"},{"contig":"NODE_65_length_155_cov_99.153846","contigLength":"155","rStart":4172,"rEnd":4326,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"+"},{"contig":"NODE_66_length_155_cov_98.589744","contigLength":"155","rStart":2462,"rEnd":2616,"cStart":1,"cEnd":155,"noNonIdentities":7,"length":155,"strand":"-"},{"contig":"NODE_68_length_155_cov_78.128205","contigLength":"155","rStart":3483,"rEnd":3637,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"-"},{"contig":"NODE_69_length_155_cov_76.333333","contigLength":"155","rStart":3272,"rEnd":3426,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"-"},{"contig":"NODE_70_length_155_cov_69.833333","contigLength":"155","rStart":344,"rEnd":498,"cStart":1,"cEnd":155,"noNonIdentities":1,"length":155,"strand":"-"},{"contig":"NODE_72_length_155_cov_68.230769","contigLength":"155","rStart":2265,"rEnd":2419,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"-"},{"contig":"NODE_73_length_155_cov_66.653846","contigLength":"155","rStart":374,"rEnd":528,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"-"},{"contig":"NODE_74_length_155_cov_65.692308","contigLength":"155","rStart":374,"rEnd":528,"cStart":1,"cEnd":155,"noNonIdentities":1,"length":155,"strand":"+"},{"contig":"NODE_75_length_155_cov_64.820513","contigLength":"155","rStart":1378,"rEnd":1532,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"-"},{"contig":"NODE_76_length_155_cov_63.089744","contigLength":"155","rStart":437,"rEnd":591,"cStart":1,"cEnd":155,"noNonIdentities":1,"length":155,"strand":"-"},{"contig":"NODE_77_length_155_cov_61.512821","contigLength":"155","rStart":4172,"rEnd":4326,"cStart":1,"cEnd":155,"noNonIdentities":1,"length":155,"strand":"+"},{"contig":"NODE_78_length_155_cov_59.602564","contigLength":"155","rStart":3853,"rEnd":4007,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"-"},{"contig":"NODE_85_length_155_cov_23.500000","contigLength":"155","rStart":35107,"rEnd":35261,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"-"}]
+                                            drawDotPlot( data, '#Mycoplasmameleagridisreference-pre', 'WGA - Pre Scaffolding', 'Mycoplasmameleagridisreference', 'Mycoplasma_meleagridis_ATCCC');
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1 col-sd-2">
+                                    <h4><small>Post Scaffolding</small></h4>
+                                </div>
+                                <div class="col-md-11 col-sd-10">
+                                    <section id="Mycoplasmameleagridisreference-post" class="caption" role="region">
+                                    <script>
+                                        $(() => {
+                                            let data = [{"contig":"Mmele_ATCCC_1","contigLength":"628","rStart":3931,"rEnd":4248,"cStart":1,"cEnd":318,"noNonIdentities":0,"length":318,"strand":"-"},{"contig":"Mmele_ATCCC_1","contigLength":"628","rStart":4172,"rEnd":4327,"cStart":318,"cEnd":473,"noNonIdentities":0,"length":156,"strand":"-"},{"contig":"Mmele_ATCCC_1","contigLength":"628","rStart":3853,"rEnd":4007,"cStart":474,"cEnd":628,"noNonIdentities":0,"length":155,"strand":"-"},{"contig":"Mmele_ATCCC_2","contigLength":"49884","rStart":38,"rEnd":390,"cStart":1,"cEnd":353,"noNonIdentities":0,"length":353,"strand":"-"},{"contig":"Mmele_ATCCC_2","contigLength":"49884","rStart":3,"rEnd":862,"cStart":354,"cEnd":1211,"noNonIdentities":56,"length":858,"strand":"-"},{"contig":"Mmele_ATCCC_2","contigLength":"49884","rStart":87352,"rEnd":87854,"cStart":29930,"cEnd":30432,"noNonIdentities":115,"length":503,"strand":"-"},{"contig":"Mmele_ATCCC_2","contigLength":"49884","rStart":108920,"rEnd":109636,"cStart":32038,"cEnd":32748,"noNonIdentities":46,"length":711,"strand":"-"},{"contig":"Mmele_ATCCC_2","contigLength":"49884","rStart":27210,"rEnd":27739,"cStart":44201,"cEnd":44730,"noNonIdentities":95,"length":530,"strand":"-"},{"contig":"Mmele_ATCCC_3","contigLength":"126331","rStart":32558,"rEnd":32650,"cStart":3291,"cEnd":3383,"noNonIdentities":1,"length":93,"strand":"-"},{"contig":"Mmele_ATCCC_3","contigLength":"126331","rStart":28139,"rEnd":28224,"cStart":27882,"cEnd":27967,"noNonIdentities":1,"length":86,"strand":"-"},{"contig":"Mmele_ATCCC_3","contigLength":"126331","rStart":183198,"rEnd":184451,"cStart":70586,"cEnd":71851,"noNonIdentities":191,"length":1266,"strand":"-"},{"contig":"Mmele_ATCCC_3","contigLength":"126331","rStart":59418,"rEnd":59940,"cStart":105150,"cEnd":105675,"noNonIdentities":106,"length":526,"strand":"+"},{"contig":"Mmele_ATCCC_3","contigLength":"126331","rStart":19130,"rEnd":19736,"cStart":111506,"cEnd":112109,"noNonIdentities":110,"length":604,"strand":"-"},{"contig":"Mmele_ATCCC_4","contigLength":"567","rStart":3006,"rEnd":3575,"cStart":1,"cEnd":567,"noNonIdentities":42,"length":567,"strand":"-"},{"contig":"Mmele_ATCCC_5","contigLength":"1504","rStart":1378,"rEnd":2454,"cStart":1,"cEnd":1093,"noNonIdentities":118,"length":1093,"strand":"-"},{"contig":"Mmele_ATCCC_5","contigLength":"1504","rStart":452,"rEnd":862,"cStart":1094,"cEnd":1504,"noNonIdentities":0,"length":411,"strand":"-"},{"contig":"Mmele_ATCCC_6","contigLength":"264412","rStart":366,"rEnd":442,"cStart":1,"cEnd":77,"noNonIdentities":0,"length":77,"strand":"+"},{"contig":"Mmele_ATCCC_6","contigLength":"264412","rStart":109560,"rEnd":113974,"cStart":60,"cEnd":4474,"noNonIdentities":0,"length":4415,"strand":"-"},{"contig":"Mmele_ATCCC_6","contigLength":"264412","rStart":109192,"rEnd":109612,"cStart":4475,"cEnd":4895,"noNonIdentities":0,"length":421,"strand":"-"},{"contig":"Mmele_ATCCC_6","contigLength":"264412","rStart":108928,"rEnd":109264,"cStart":4896,"cEnd":5232,"noNonIdentities":0,"length":337,"strand":"-"},{"contig":"Mmele_ATCCC_6","contigLength":"264412","rStart":24,"rEnd":109000,"cStart":5233,"cEnd":114210,"noNonIdentities":1,"length":108978,"strand":"-"},{"contig":"Mmele_ATCCC_6","contigLength":"264412","rStart":1,"rEnd":32676,"cStart":114262,"cEnd":146940,"noNonIdentities":3,"length":32679,"strand":"-"},{"contig":"Mmele_ATCCC_6","contigLength":"264412","rStart":4756,"rEnd":4833,"cStart":146920,"cEnd":146997,"noNonIdentities":0,"length":78,"strand":"-"},{"contig":"Mmele_ATCCC_6","contigLength":"264412","rStart":53538,"rEnd":53905,"cStart":155248,"cEnd":155613,"noNonIdentities":47,"length":366,"strand":"+"},{"contig":"Mmele_ATCCC_6","contigLength":"264412","rStart":68482,"rEnd":69030,"cStart":174218,"cEnd":174766,"noNonIdentities":97,"length":549,"strand":"-"},{"contig":"Mmele_ATCCC_6","contigLength":"264412","rStart":6839,"rEnd":7114,"cStart":179216,"cEnd":179489,"noNonIdentities":36,"length":274,"strand":"-"},{"contig":"Mmele_ATCCC_6","contigLength":"264412","rStart":73043,"rEnd":73667,"cStart":187649,"cEnd":188273,"noNonIdentities":121,"length":625,"strand":"-"},{"contig":"Mmele_ATCCC_6","contigLength":"264412","rStart":72525,"rEnd":72716,"cStart":189396,"cEnd":189564,"noNonIdentities":29,"length":169,"strand":"-"},{"contig":"Mmele_ATCCC_6","contigLength":"264412","rStart":34000,"rEnd":34524,"cStart":198961,"cEnd":199485,"noNonIdentities":98,"length":525,"strand":"-"},{"contig":"Mmele_ATCCC_6","contigLength":"264412","rStart":5259,"rEnd":6460,"cStart":263088,"cEnd":264294,"noNonIdentities":214,"length":1207,"strand":"-"},{"contig":"Mmele_ATCCC_7","contigLength":"464","rStart":1,"rEnd":77,"cStart":1,"cEnd":77,"noNonIdentities":0,"length":77,"strand":"-"},{"contig":"Mmele_ATCCC_7","contigLength":"464","rStart":501,"rEnd":591,"cStart":160,"cEnd":247,"noNonIdentities":3,"length":88,"strand":"-"},{"contig":"Mmele_ATCCC_7","contigLength":"464","rStart":79,"rEnd":308,"cStart":235,"cEnd":464,"noNonIdentities":1,"length":230,"strand":"-"},{"contig":"Mmele_ATCCC_8","contigLength":"78201","rStart":35107,"rEnd":35261,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"-"},{"contig":"Mmele_ATCCC_8","contigLength":"78201","rStart":35106,"rEnd":72698,"cStart":163,"cEnd":37755,"noNonIdentities":1,"length":37593,"strand":"-"},{"contig":"Mmele_ATCCC_8","contigLength":"78201","rStart":1,"rEnd":35184,"cStart":37854,"cEnd":73037,"noNonIdentities":0,"length":35184,"strand":"-"},{"contig":"Mmele_ATCCC_8","contigLength":"78201","rStart":1,"rEnd":247,"cStart":73023,"cEnd":73269,"noNonIdentities":1,"length":247,"strand":"-"},{"contig":"Mmele_ATCCC_8","contigLength":"78201","rStart":1,"rEnd":1109,"cStart":73385,"cEnd":74493,"noNonIdentities":1,"length":1109,"strand":"-"},{"contig":"Mmele_ATCCC_8","contigLength":"78201","rStart":1,"rEnd":421,"cStart":74485,"cEnd":74905,"noNonIdentities":30,"length":421,"strand":"+"},{"contig":"Mmele_ATCCC_8","contigLength":"78201","rStart":1,"rEnd":247,"cStart":74934,"cEnd":75180,"noNonIdentities":7,"length":247,"strand":"-"},{"contig":"Mmele_ATCCC_8","contigLength":"78201","rStart":1,"rEnd":2308,"cStart":75190,"cEnd":77496,"noNonIdentities":3,"length":2307,"strand":"-"},{"contig":"Mmele_ATCCC_8","contigLength":"78201","rStart":1,"rEnd":421,"cStart":77488,"cEnd":77908,"noNonIdentities":0,"length":421,"strand":"+"},{"contig":"Mmele_ATCCC_8","contigLength":"78201","rStart":1,"rEnd":247,"cStart":77937,"cEnd":78183,"noNonIdentities":6,"length":247,"strand":"-"},{"contig":"Mmele_ATCCC_9","contigLength":"1041","rStart":2265,"rEnd":2419,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"-"},{"contig":"Mmele_ATCCC_9","contigLength":"1041","rStart":1456,"rEnd":2342,"cStart":155,"cEnd":1041,"noNonIdentities":0,"length":887,"strand":"-"},{"contig":"Mmele_ATCCC_10","contigLength":"297053","rStart":1,"rEnd":77,"cStart":1,"cEnd":77,"noNonIdentities":0,"length":77,"strand":"-"},{"contig":"Mmele_ATCCC_10","contigLength":"297053","rStart":1,"rEnd":193146,"cStart":57,"cEnd":193202,"noNonIdentities":2,"length":193146,"strand":"+"},{"contig":"Mmele_ATCCC_10","contigLength":"297053","rStart":1022,"rEnd":1328,"cStart":193158,"cEnd":193448,"noNonIdentities":43,"length":291,"strand":"+"},{"contig":"Mmele_ATCCC_10","contigLength":"297053","rStart":1,"rEnd":1158,"cStart":193344,"cEnd":194501,"noNonIdentities":0,"length":1158,"strand":"+"},{"contig":"Mmele_ATCCC_10","contigLength":"297053","rStart":1011,"rEnd":1226,"cStart":194470,"cEnd":194686,"noNonIdentities":3,"length":217,"strand":"+"},{"contig":"Mmele_ATCCC_10","contigLength":"297053","rStart":1,"rEnd":1039,"cStart":194776,"cEnd":195814,"noNonIdentities":4,"length":1039,"strand":"-"},{"contig":"Mmele_ATCCC_10","contigLength":"297053","rStart":1022,"rEnd":1226,"cStart":195794,"cEnd":195999,"noNonIdentities":1,"length":206,"strand":"+"},{"contig":"Mmele_ATCCC_10","contigLength":"297053","rStart":1,"rEnd":1328,"cStart":196133,"cEnd":197463,"noNonIdentities":3,"length":1331,"strand":"+"},{"contig":"Mmele_ATCCC_10","contigLength":"297053","rStart":1,"rEnd":18510,"cStart":197498,"cEnd":216007,"noNonIdentities":1,"length":18510,"strand":"+"},{"contig":"Mmele_ATCCC_10","contigLength":"297053","rStart":1,"rEnd":77,"cStart":215987,"cEnd":216063,"noNonIdentities":0,"length":77,"strand":"+"},{"contig":"Mmele_ATCCC_10","contigLength":"297053","rStart":20562,"rEnd":21317,"cStart":256381,"cEnd":257136,"noNonIdentities":135,"length":756,"strand":"+"},{"contig":"Mmele_ATCCC_11","contigLength":"1931","rStart":2265,"rEnd":4007,"cStart":1,"cEnd":1743,"noNonIdentities":4,"length":1743,"strand":"+"},{"contig":"Mmele_ATCCC_11","contigLength":"1931","rStart":3483,"rEnd":3637,"cStart":1777,"cEnd":1931,"noNonIdentities":0,"length":155,"strand":"+"},{"contig":"Mmele_ATCCC_12","contigLength":"343","rStart":374,"rEnd":528,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"-"},{"contig":"Mmele_ATCCC_12","contigLength":"343","rStart":374,"rEnd":528,"cStart":189,"cEnd":343,"noNonIdentities":1,"length":155,"strand":"-"},{"contig":"Mmele_ATCCC_13","contigLength":"236900","rStart":41186,"rEnd":42219,"cStart":5390,"cEnd":6414,"noNonIdentities":173,"length":1025,"strand":"-"},{"contig":"Mmele_ATCCC_13","contigLength":"236900","rStart":784,"rEnd":1056,"cStart":32108,"cEnd":32380,"noNonIdentities":38,"length":273,"strand":"-"},{"contig":"Mmele_ATCCC_13","contigLength":"236900","rStart":4543,"rEnd":4823,"cStart":45587,"cEnd":45867,"noNonIdentities":33,"length":281,"strand":"-"},{"contig":"Mmele_ATCCC_13","contigLength":"236900","rStart":4249,"rEnd":4833,"cStart":45865,"cEnd":46449,"noNonIdentities":0,"length":585,"strand":"+"},{"contig":"Mmele_ATCCC_13","contigLength":"236900","rStart":1,"rEnd":21447,"cStart":46429,"cEnd":67875,"noNonIdentities":0,"length":21447,"strand":"+"},{"contig":"Mmele_ATCCC_13","contigLength":"236900","rStart":1,"rEnd":442,"cStart":67858,"cEnd":68299,"noNonIdentities":4,"length":442,"strand":"-"},{"contig":"Mmele_ATCCC_13","contigLength":"236900","rStart":1,"rEnd":591,"cStart":68382,"cEnd":68972,"noNonIdentities":2,"length":591,"strand":"-"},{"contig":"Mmele_ATCCC_13","contigLength":"236900","rStart":1,"rEnd":90708,"cStart":69094,"cEnd":159801,"noNonIdentities":5,"length":90708,"strand":"-"},{"contig":"Mmele_ATCCC_13","contigLength":"236900","rStart":1,"rEnd":442,"cStart":159781,"cEnd":160222,"noNonIdentities":4,"length":442,"strand":"-"},{"contig":"Mmele_ATCCC_13","contigLength":"236900","rStart":1,"rEnd":751,"cStart":160217,"cEnd":160967,"noNonIdentities":0,"length":751,"strand":"-"},{"contig":"Mmele_ATCCC_13","contigLength":"236900","rStart":1,"rEnd":74371,"cStart":161090,"cEnd":235460,"noNonIdentities":3,"length":74371,"strand":"+"},{"contig":"Mmele_ATCCC_13","contigLength":"236900","rStart":1,"rEnd":247,"cStart":235440,"cEnd":235686,"noNonIdentities":1,"length":247,"strand":"+"},{"contig":"Mmele_ATCCC_13","contigLength":"236900","rStart":1,"rEnd":1185,"cStart":235716,"cEnd":236900,"noNonIdentities":0,"length":1185,"strand":"+"},{"contig":"Mmele_ATCCC_14","contigLength":"857","rStart":1378,"rEnd":1532,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"+"},{"contig":"Mmele_ATCCC_14","contigLength":"857","rStart":786,"rEnd":1454,"cStart":189,"cEnd":857,"noNonIdentities":0,"length":669,"strand":"+"},{"contig":"Mmele_ATCCC_15","contigLength":"568","rStart":437,"rEnd":591,"cStart":1,"cEnd":155,"noNonIdentities":1,"length":155,"strand":"+"},{"contig":"Mmele_ATCCC_15","contigLength":"568","rStart":344,"rEnd":498,"cStart":189,"cEnd":343,"noNonIdentities":1,"length":155,"strand":"+"},{"contig":"Mmele_ATCCC_15","contigLength":"568","rStart":115,"rEnd":306,"cStart":377,"cEnd":568,"noNonIdentities":2,"length":192,"strand":"+"},{"contig":"Mmele_ATCCC_20","contigLength":"211","rStart":72007,"rEnd":72174,"cStart":12,"cEnd":179,"noNonIdentities":26,"length":168,"strand":"+"},{"contig":"Mmele_ATCCC_20","contigLength":"211","rStart":1,"rEnd":77,"cStart":135,"cEnd":211,"noNonIdentities":0,"length":77,"strand":"+"},{"contig":"Mmele_ATCCC_24","contigLength":"4347","rStart":3,"rEnd":71,"cStart":1,"cEnd":69,"noNonIdentities":0,"length":69,"strand":"-"},{"contig":"Mmele_ATCCC_38","contigLength":"239","rStart":1201,"rEnd":1439,"cStart":1,"cEnd":239,"noNonIdentities":0,"length":239,"strand":"-"},{"contig":"Mmele_ATCCC_43","contigLength":"155","rStart":3272,"rEnd":3426,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"-"},{"contig":"Mmele_ATCCC_56","contigLength":"11223","rStart":36213,"rEnd":36655,"cStart":5801,"cEnd":6243,"noNonIdentities":69,"length":443,"strand":"-"},{"contig":"Mmele_ATCCC_58","contigLength":"172","rStart":3501,"rEnd":3672,"cStart":1,"cEnd":172,"noNonIdentities":7,"length":172,"strand":"-"},{"contig":"Mmele_ATCCC_59","contigLength":"116966","rStart":13378,"rEnd":14191,"cStart":1949,"cEnd":2759,"noNonIdentities":131,"length":811,"strand":"-"},{"contig":"Mmele_ATCCC_59","contigLength":"116966","rStart":12424,"rEnd":13054,"cStart":3083,"cEnd":3709,"noNonIdentities":110,"length":627,"strand":"-"},{"contig":"Mmele_ATCCC_59","contigLength":"116966","rStart":9515,"rEnd":12132,"cStart":4001,"cEnd":6600,"noNonIdentities":464,"length":2600,"strand":"-"},{"contig":"Mmele_ATCCC_59","contigLength":"116966","rStart":53752,"rEnd":55053,"cStart":27396,"cEnd":28689,"noNonIdentities":238,"length":1294,"strand":"-"},{"contig":"Mmele_ATCCC_59","contigLength":"116966","rStart":167778,"rEnd":168241,"cStart":48082,"cEnd":48509,"noNonIdentities":73,"length":428,"strand":"+"},{"contig":"Mmele_ATCCC_59","contigLength":"116966","rStart":3506,"rEnd":3660,"cStart":57695,"cEnd":57850,"noNonIdentities":15,"length":156,"strand":"-"},{"contig":"Mmele_ATCCC_59","contigLength":"116966","rStart":167070,"rEnd":167233,"cStart":73392,"cEnd":73552,"noNonIdentities":3,"length":161,"strand":"+"},{"contig":"Mmele_ATCCC_59","contigLength":"116966","rStart":47962,"rEnd":48050,"cStart":75429,"cEnd":75518,"noNonIdentities":2,"length":90,"strand":"-"},{"contig":"Mmele_ATCCC_66","contigLength":"155","rStart":4172,"rEnd":4326,"cStart":1,"cEnd":155,"noNonIdentities":1,"length":155,"strand":"+"},{"contig":"Mmele_ATCCC_69","contigLength":"360","rStart":1371,"rEnd":1539,"cStart":1,"cEnd":169,"noNonIdentities":0,"length":169,"strand":"+"},{"contig":"Mmele_ATCCC_75","contigLength":"93286","rStart":85660,"rEnd":85739,"cStart":73424,"cEnd":73503,"noNonIdentities":2,"length":80,"strand":"-"},{"contig":"Mmele_ATCCC_75","contigLength":"93286","rStart":70949,"rEnd":72336,"cStart":78568,"cEnd":79957,"noNonIdentities":204,"length":1390,"strand":"-"},{"contig":"Mmele_ATCCC_75","contigLength":"93286","rStart":69436,"rEnd":70836,"cStart":80070,"cEnd":81482,"noNonIdentities":205,"length":1413,"strand":"-"},{"contig":"Mmele_ATCCC_76","contigLength":"155","rStart":2462,"rEnd":2616,"cStart":1,"cEnd":155,"noNonIdentities":7,"length":155,"strand":"-"},{"contig":"Mmele_ATCCC_78","contigLength":"155","rStart":2630,"rEnd":2784,"cStart":1,"cEnd":155,"noNonIdentities":2,"length":155,"strand":"-"},{"contig":"Mmele_ATCCC_79","contigLength":"167","rStart":8,"rEnd":174,"cStart":1,"cEnd":167,"noNonIdentities":0,"length":167,"strand":"-"}]
+                                            drawDotPlot( data, '#Mycoplasmameleagridisreference-post', 'WGA - Post Scaffolding', 'Mycoplasmameleagridisreference', 'Mycoplasma_meleagridis_ATCCC');
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

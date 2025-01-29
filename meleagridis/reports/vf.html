@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <meta name="description" content="ASA?P results for \"Short reads test 02\" project">
+        <meta name="author" content="Oliver Schwengers">
+
+        <title>ASA&#179;P: Short reads test 02</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="css/dashboard.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="js/back-to-top.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip( {html: true} );
+            });
+        </script>
+
+        <link href="css/asap.css" rel="stylesheet">
+
+	<link href="css/datatables.min.css" rel="stylesheet">
+        <script src="js/datatables.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#vf').DataTable( {
+                    paging:   true,
+                    ordering: true,
+                    info:     true,
+                    columnDefs: [
+                        { orderable: false, targets: [4] }
+                    ],
+		    dom: "<'row'<'col-md-3'l><'col-md-3 col-md-offset-5'f><'col-md-1'B>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+                    buttons: [
+                        {
+                            extend: 'csv',
+                            text: 'csv',
+                            filename: 'vf',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3 ]
+                            }
+                        }
+                    ]
+                } );
+            } );
+        </script>
+
+        <script src="js/gradient.js" defer></script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Short reads test 02</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="help.html">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Analyses</a></li>
+                <li><a href="qc.html">Quality Control</a></li>
+                <li><a href="assemblies.html">Assembly</a></li>
+                <li><a href="scaffolds.html">Scaffolds</a></li>
+                <li><a href="annotations.html">Annotation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Characterization</a></li>
+                <li><a href="taxonomy.html">Taxonomic Classification</a></li>
+                <li><a href="mlst.html">MLST</a></li>
+                <li><a href="abr.html">Antibiotic Resistances</a></li>
+                <li><a href="vf.html">Virulence Factors</a></li>
+                <!--<li><a href="plasmids.html">Plasmids</a></li>-->
+                <!--<li><a href="phages.html">Phages</a></li>-->
+                <li><a href="mapping.html">Reference Mapping</a></li>
+                <li><a href="snps.html">SNP Detection</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Comparative Analyses</a></li>
+                            <li><a href="corepan.html">Core/Pan Genome</a></li>
+                <li><a href="phylogeny.html">Phylogeny</a></li>
+            </ul>
+        </div>
+
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Dashboard</a></li>
+                        <li class="active">Virulence Factors</li>
+                        <!-- trigger help-modal -->
+                        <i class="fa fa-question fa-3x helpBtn" data-toggle="modal" data-target="#myModal"></i>
+                    </ol>
+
+                    <!-- help-modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h2 class="modal-title" id="myModalLabel">ASA&#179;P virulence factors overview</h2>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              As VF have a major impact on whether a bacterial strain is harmless or a severe pathogen ASA&#179;P provides a detection of potential
+                              VFs. Therefore, the pipeline identifies VFs via a <code>blastn</code> search against the virulence factor database (<code>VFDB</code>).
+                              Hits with a coverage of at least 80 % and a percent identity of 90 % or higher are taken into account. The corresponding
+                              loci are only assigned with their highest scoring hit. </p>
+
+                            <h3>Interactive data table</h3>
+
+                            <p><code>Individual sorting</code> can be applied via clicking on the respective column header. Use the <code>Search</code>  function (top right of the table) to display only genomes that contain the search term in any of their table fields. The
+                              <code>number of entries</code> displayed per page can be chosen on the top left of the table. <code>Blue horizontal bar plots</code>  are displayed in columns containing numeric values. They visualize the relative relation of this value compared to the
+                              according values of the other genomes. Mouse over on underlined term to display further information on it.</p>
+
+                            <h3>Downloads</h3>
+
+                            <p>The table can be saved as comma separated value (<code>csv</code>) file via click on the csv button (search and sorting are
+                              contained in the downloaded file).</p>
+
+                            <h3>Links</h3>
+
+                            <ul>
+                                <li><code>Details</code> on the virulence factors of a particular genome can be accessed via click on the magnifying glass in the overview table.</li>
+
+                                <li><a href="http://www.mgc.ac.cn/VFs/main.htm">VFDB</a>: Chen LH, Zheng DD, Liu B, Yang J and Jin Q
+                                    VFDB 2016: hierarchical and refined dataset for big data analysis-10 years on.
+                                    Nucleic Acids Res., 2016, 44(Database issue):D694-D697.
+                                    <a href="https://www.ncbi.nlm.nih.gov/pubmed/26578559">PubMed</a>
+                                </li>
+                            </ul>
+
+                            <h3>Glossary</h3>
+
+                            <ul>
+                              <li><strong>Genome</strong>: Name of the processed genome.</li>
+
+                              <li><strong>Locus</strong>: Designation of the annotated genomic region.</li>
+
+                              <li><strong># VFs</strong>: Number of assigned virulence factors hits per genome.</li>
+
+                              <li><strong># VF categories</strong>: Number of virulence factor categories per genome.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                    <div class="row" id="warnings">
+                    </div>
+
+                    <div class="row" id="stats">
+                        <div class="col-md-12">
+                            <table id="vf" class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th><span class="glyphicon glyphicon-barcode"></span></th>
+                                        <th>Genome</th>
+                                        <th class="text-center"># <abbr title="Number of detected virulence genes">VF</abbr>s</th>
+                                        <th class="text-center"># <abbr title="Number of distinct virulence gene categories">VF</abbr> Categories</th>
+                                        <th class="text-center">Details</th>
+                                        </tr>
+                                    </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>M. meleagridis 24B8</td>
+                                        <td class="text-center" gradient="1">0</td>
+                                        <td class="text-center" gradient="2">0</td>
+                                        <td class="text-center"><a href="./vf/Mycoplasma_meleagridis_24B8.html"><span class="glyphicon glyphicon-search"></span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>M. meleagridis 25A3</td>
+                                        <td class="text-center" gradient="1">0</td>
+                                        <td class="text-center" gradient="2">0</td>
+                                        <td class="text-center"><a href="./vf/Mycoplasma_meleagridis_25A3.html"><span class="glyphicon glyphicon-search"></span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>M. meleagridis 25A4</td>
+                                        <td class="text-center" gradient="1">0</td>
+                                        <td class="text-center" gradient="2">0</td>
+                                        <td class="text-center"><a href="./vf/Mycoplasma_meleagridis_25A4.html"><span class="glyphicon glyphicon-search"></span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>M. meleagridis 26B8</td>
+                                        <td class="text-center" gradient="1">0</td>
+                                        <td class="text-center" gradient="2">0</td>
+                                        <td class="text-center"><a href="./vf/Mycoplasma_meleagridis_26B8.html"><span class="glyphicon glyphicon-search"></span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>M. meleagridis 26B9</td>
+                                        <td class="text-center" gradient="1">0</td>
+                                        <td class="text-center" gradient="2">0</td>
+                                        <td class="text-center"><a href="./vf/Mycoplasma_meleagridis_26B9.html"><span class="glyphicon glyphicon-search"></span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>M. meleagridis 26</td>
+                                        <td class="text-center" gradient="1">0</td>
+                                        <td class="text-center" gradient="2">0</td>
+                                        <td class="text-center"><a href="./vf/Mycoplasma_meleagridis_26.html"><span class="glyphicon glyphicon-search"></span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>M. meleagridis 210</td>
+                                        <td class="text-center" gradient="1">0</td>
+                                        <td class="text-center" gradient="2">0</td>
+                                        <td class="text-center"><a href="./vf/Mycoplasma_meleagridis_210.html"><span class="glyphicon glyphicon-search"></span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>M. meleagridis ATCCC</td>
+                                        <td class="text-center" gradient="1">0</td>
+                                        <td class="text-center" gradient="2">0</td>
+                                        <td class="text-center"><a href="./vf/Mycoplasma_meleagridis_ATCCC.html"><span class="glyphicon glyphicon-search"></span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>M. meleagridis B870</td>
+                                        <td class="text-center" gradient="1">0</td>
+                                        <td class="text-center" gradient="2">0</td>
+                                        <td class="text-center"><a href="./vf/Mycoplasma_meleagridis_B870.html"><span class="glyphicon glyphicon-search"></span></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

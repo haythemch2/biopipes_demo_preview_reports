@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <meta name="description" content="ASA?P results for \"Short reads test 02\" project">
+        <meta name="author" content="Oliver Schwengers">
+
+        <title>ASA&#179;P: Short reads test 02</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="../css/dashboard.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="../js/back-to-top.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip( {html: true} );
+            });
+        </script>
+
+        <link href="../css/asap.css" rel="stylesheet">
+
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<link href="../css/datatables.min.css" rel="stylesheet">
+        <script src="../js/datatables.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#kmerTable').DataTable( {
+                    paging:   true,
+                    ordering: true,
+                    order: [[ 1, "desc" ]],
+                    info:     true,
+                    columnDefs: [
+                        { orderable: false, targets: [3] }
+                    ],
+		    dom: "<'row'<'col-md-3'l><'col-md-3 col-md-offset-5'f><'col-md-1'B>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+                    buttons: [
+                        {
+                            extend: 'csv',
+                            text: 'csv',
+                            filename: 'kmer-M_meleagridis_25A4',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3 ]
+                            }
+                        }
+                    ]
+                } );
+                $('#rRnaTable').DataTable( {
+                    paging:   true,
+                    ordering: true,
+                    order: [[ 1, "desc" ]],
+                    info:     true,
+                    columnDefs: [
+                        { orderable: false, targets: [3] }
+                    ],
+		    dom: "<'row'<'col-md-3'l><'col-md-3 col-md-offset-5'f><'col-md-1'B>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+                    buttons: [
+                        {
+                            extend: 'csv',
+                            text: 'csv',
+                            filename: 'rrna-M_meleagridis_25A4',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3 ]
+                            }
+                        }
+                    ]
+                } );
+            } );
+        </script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="../index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Short reads test 02</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="../help.html">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Analyses</a></li>
+                <li><a href="../qc.html">Quality Control</a></li>
+                <li><a href="../assemblies.html">Assembly</a></li>
+                <li><a href="../scaffolds.html">Scaffolds</a></li>
+                <li><a href="../annotations.html">Annotation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Characterization</a></li>
+                <li><a href="../taxonomy.html">Taxonomic Classification</a></li>
+                <li><a href="../mlst.html">MLST</a></li>
+                <li><a href="../abr.html">Antibiotic Resistances</a></li>
+                <li><a href="../vf.html">Virulence Factors</a></li>
+                <!--<li><a href="../plasmids.html">Plasmids</a></li>-->
+                <!--<li><a href="../phages.html">Phages</a></li>-->
+                <li><a href="../mapping.html">Reference Mapping</a></li>
+                <li><a href="../snps.html">SNP Detection</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Comparative Analyses</a></li>
+                            <li><a href="../corepan.html">Core/Pan Genome</a></li>
+                <li><a href="../phylogeny.html">Phylogeny</a></li>
+            </ul>
+        </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                    <ol class="breadcrumb">
+                        <li><a href="../index.html">Dashboard</a></li>
+                        <li><a href="../taxonomy.html">Taxonomy</a></li>
+                        <li class="active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">M. meleagridis 25A4 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#kmerRow">Kmer</a></li>
+                                <li><a href="#rrnaRow">16S</a></li>
+                                <li><a href="#aniRow">ANI</a></li>
+                            </ul>
+                        </li>
+                        <!-- trigger help-modal -->
+                        <i class="fa fa-question fa-3x helpBtn" data-toggle="modal" data-target="#myModal"></i>
+                    </ol>
+
+                    <!-- help-modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h2 class="modal-title" id="myModalLabel">ASA&#179;P taxonomy detail</h2>
+                          </div>
+                          <div class="modal-body">
+                            <h3>Interactive phylogeny visualization</h3>
+
+                            <p>The height of the <code>phylogenetic levels</code> symbolizes the number of contigs classified
+                              as such. The number of classified contigs may decreases with classification depth. On mouse
+                              over the current and the next lower phylogenetic level together with the number of contigs
+                              classified (weight) is displayed.</p>
+
+                            <h5>Kmer / ANI classifications</h5>
+
+                            <p>Taxonomy was calculated based on kmer profiles and ANI values.</p>
+
+                            <h5>16S rRNA classifications</h5>
+
+                            <p>Taxonomy was calculated based on 16S rRNAs.</p>
+
+                            <h3>Interactive data table features</h3>
+
+                            <p><code>Individual sorting</code> can be applied via clicking on the respective column header.
+                              Use the <code>Search</code> function (top right of the table) to display only genomes that
+                              contain the search term in any of their table fields. The <code>number of entries</code> displayed
+                              per page can be chosen on the top left of the table. Mouse over on underlined table headers
+                              to display further information on it.</p>
+
+                            <h5>Kmer / ANI classifications</h5>
+
+                            <p>The results from Mash / ANI are displayed.</p>
+
+                            <h5>16S rRNA classifications</h5>
+
+                            <p>Contains 16S rRNA classification results for all detected 16S sequences based on highest scoring 16S
+                              RNA.</p>
+
+                            <h3>Reference ANIs</h3>
+
+                            <p>Table of reference genomes and their percent average nucleotide identity and percentage of conserved
+                              DNA.</p>
+
+                            <h3>Downloads</h3>
+
+                            <p>The table can be saved as comma separated value (<code>csv</code>) file via click on the csv
+                              button (search and sorting are contained in the downloaded file).</p>
+
+                            <h3>Glossary</h3>
+
+                            <ul>
+                              <li><strong>ANI [%]</strong>: Percent average nucleotide identity. Based on the ANI publication
+                                the sequenced genome is split into 1020 bp fragments which are compared against the reference
+                                (in our approach Nucmer was used instead of blastN). For the calculation the length of the
+                                fragments with less than 30% non identities and an alignment length higher than 70% are summed
+                                and divided by the total length of the sequenced genome.</li>
+
+                              <li><strong>Classification</strong>: Deepest phylogenetic classification level for a single or
+                                group of contigs/16S RNAs.</li>
+
+                              <li><strong>Conserved DNA [%]</strong>: Percent conserved DNA. Based on the ANI publication the
+                                sequenced genome is split into 1020 bp fragments which are compared against the reference
+                                (in our approach Nucmer was used instead of blastN). For the calculation the length of the
+                                fragments that matched with 90% sequence identity or higher are summed and divided by the
+                                total length of the sequenced genome.</li>
+
+                              <li><strong>Contigs [#]</strong>: Number of contigs that have been identified to this phylogenetic
+                                level depth.</li>
+
+                              <li><strong>Contigs [%]</strong>: Percentage out all contigs that have been identified to this
+                                phylogenetic level depth.</li>
+
+                              <li><strong>Hits [#]</strong>: Number of 16S RNAs in the analysed genome that match this 16S RNA
+                                database entry.</li>
+
+                              <li><strong>Hits [%]</strong>: Percentage of all 16S RNAs in the analysed genome that match this
+                                16S RNA database entry.</li>
+
+                              <li><strong>Linage</strong>: List of phylogenetic levels this particular level and the according
+                                contigs are included.</li>
+
+                              <li><strong>Reference</strong>: Accession of the reference genome.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <!-- kmer -->
+                    <div class="row voffset">
+                        <div class="col">
+                            <h2><small>Kmer / ANI Classifications</small></h2>
+                            <table id="kmerTable" class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Classification</th>
+                                        <th class="text-center"><abbr title="ANI * conserved DNA">Rank</abbr></th>
+                                        <th class="text-center">Mash distance [#]</th>
+                                        <th class="text-center"><abbr title="Average Nucleotide Identity">ANI</abbr> [%]</th>
+                                        <th class="text-center">Conserved DNA [%]</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="info">
+                                        <td class="text-center"><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=1122248" target="_blank">Mycoplasma gallinarum DSM 19816</a></td>
+                                        <td class="text-center">0.871</td>
+                                        <td class="text-center">0.03</td>
+                                        <td class="text-center success">97.02</td>
+                                        <td class="text-center success">89.75</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <!-- 16S -->
+                    <div id="rrnaRow" class="row voffset">
+                        <div class="col">
+                            <h2><small>16S rRNA Classifications</small></h2>
+                            <div id="rRnaChart"></div>
+                            <script type="text/javascript">
+                                google.charts.load( "current", {packages:["sankey"]} );
+                                google.charts.setOnLoadCallback( function () {
+                                    const data = new google.visualization.DataTable();
+                                        data.addColumn('string', 'From');
+                                        data.addColumn('string', 'To');
+                                        data.addColumn('number', 'Weight');
+                                        data.addRows( [
+                                            [ 'Bacteria', 'Tenericutes', 1 ],
+                                            [ 'Tenericutes', 'Mollicutes', 1 ],
+                                            [ 'Mollicutes', 'Mycoplasmatales', 1 ],
+                                            [ 'Mycoplasmatales', 'Mycoplasmataceae', 1 ],
+                                            [ 'Mycoplasmataceae', 'Mycoplasma', 1 ],
+                                            [ 'Mycoplasma', 'Mycoplasma gallinarum DSM 19816', 1 ],
+                                        ] );
+                                    let options = {
+                                        height: 400,
+                                        sankey: {
+                                            iterations: 80,
+                                            node: {
+                                                width: 2,
+                                                nodePadding: 20
+                                            }
+                                        }
+                                    };
+                                    const chart = new google.visualization.Sankey( document.getElementById( 'rRnaChart' ) );
+                                        chart.draw( data, options );
+                                } );
+                            </script>
+                        </div>
+                    </div>
+                    <div class="row voffset">
+                        <div class="col">
+                            <table id="rRnaTable" class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Classification</th>
+                                        <th class="text-center">Hits [#]</th>
+                                        <th class="text-center">Hits [%]</abbr></th>
+                                        <th class="text-center">Lineage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="info">
+                                        <td class="text-center"><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=Mycoplasma+gallinarum+DSM+19816" target="_blank">Mycoplasma gallinarum DSM 19816</a></td>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center">100.0</td>
+                                        <td class="text-center"><span class="label label-default">Bacteria</span> <span class="label label-default">Tenericutes</span> <span class="label label-default">Mollicutes</span> <span class="label label-default">Mycoplasmatales</span> <span class="label label-default">Mycoplasmataceae</span> <span class="label label-default">Mycoplasma</span> <span class="label label-default">Mycoplasma gallinarum DSM 19816</span> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                        <!-- ANI -->
+                    <div id="aniRow" class="row voffset">
+                        <div class="col-md-6">
+                            <h2><small>Reference <abbr title="Average Nucleotide Identity">ANI</abbr>s</small></h2>
+                            <table id="refBased" class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Reference</th>
+                                        <th class="text-center"><abbr title="ANI * conserved DNA">Rank</abbr></th>
+                                        <th class="text-center"><abbr title="Average Nucleotide Identity">ANI</abbr> [%]</th>
+                                        <th class="text-center">Conserved DNA [%]</th>
+                                        </tr>
+                                    </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Mycoplasmameleagridisreference</td>
+                                        <td class="text-center">0.009</td>
+                                        <td class="text-center danger">88.63</td>
+                                        <td class="text-center danger">1.05</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

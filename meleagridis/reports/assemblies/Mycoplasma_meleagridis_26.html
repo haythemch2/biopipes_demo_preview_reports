@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <meta name="description" content="ASA?P results for \"Short reads test 02\" project">
+        <meta name="author" content="Oliver Schwengers">
+
+        <title>ASA&#179;P: Short reads test 02</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="../css/dashboard.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="../js/back-to-top.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip( {html: true} );
+            });
+        </script>
+
+        <link href="../css/asap.css" rel="stylesheet">
+
+
+	<link href="../css/datatables.min.css" rel="stylesheet">
+        <script src="../js/datatables.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#contigTable').DataTable( {
+                    paging:   true,
+                    ordering: true,
+                    info:     true,
+		    dom: "<'row'<'col-md-3'l><'col-md-3 col-md-offset-5'f><'col-md-1'B>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+                    buttons: [
+                        {
+                            extend: 'csv',
+                            text: 'csv',
+                            filename: 'assembly-M_meleagridis_26',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3, 4 ]
+                            }
+                        }
+                    ]
+                } );
+            } );
+        </script>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load( "current", {packages: ["corechart"]} );
+            google.charts.setOnLoadCallback( drawChart );
+            function drawChart() {
+                // chart data
+                const chartDataContigLength = google.visualization.arrayToDataTable( [
+                    ['Name', 'Value'],
+                     ['NODE_1_length_225816_cov_82.500122', 225816], ['NODE_2_length_216060_cov_95.499618', 216060], ['NODE_3_length_167723_cov_77.066444', 167723], ['NODE_4_length_21625_cov_82.763783', 21625], ['NODE_5_length_2062_cov_120.171788', 2062], ['NODE_6_length_1003_cov_154.033477', 1003], ['NODE_7_length_886_cov_160.960445', 886], ['NODE_8_length_584_cov_156.816568', 584], ['NODE_9_length_528_cov_140.762749', 528], ['NODE_10_length_360_cov_152.579505', 360], ['NODE_11_length_267_cov_79.794737', 267], ['NODE_12_length_221_cov_71.770833', 221], ['NODE_13_length_213_cov_73.919118', 213], ['NODE_14_length_206_cov_141.798450', 206], ['NODE_15_length_192_cov_87.191304', 192], ['NODE_16_length_167_cov_97.977778', 167], ['NODE_17_length_155_cov_81.525641', 155], ['NODE_18_length_155_cov_77.512821', 155], ['NODE_19_length_155_cov_76.153846', 155], ['NODE_20_length_155_cov_75.935897', 155], ['NODE_21_length_155_cov_75.179487', 155], ['NODE_22_length_155_cov_75.102564', 155], ['NODE_23_length_155_cov_74.769231', 155], ['NODE_24_length_155_cov_73.884615', 155], ['NODE_25_length_155_cov_73.128205', 155], ['NODE_26_length_155_cov_73.025641', 155], ['NODE_27_length_155_cov_64.756410', 155], ['NODE_28_length_155_cov_63.115385', 155], ['NODE_29_length_155_cov_57.666667', 155], ['NODE_30_length_155_cov_36.961538', 155],
+                ]);
+                const chartDataContigCoverage = google.visualization.arrayToDataTable( [
+                    ['Name', 'Value'],
+                     ['NODE_1_length_225816_cov_82.500122', 83], ['NODE_2_length_216060_cov_95.499618', 95], ['NODE_3_length_167723_cov_77.066444', 77], ['NODE_4_length_21625_cov_82.763783', 83], ['NODE_5_length_2062_cov_120.171788', 120], ['NODE_6_length_1003_cov_154.033477', 154], ['NODE_7_length_886_cov_160.960445', 161], ['NODE_8_length_584_cov_156.816568', 157], ['NODE_9_length_528_cov_140.762749', 141], ['NODE_10_length_360_cov_152.579505', 153], ['NODE_11_length_267_cov_79.794737', 80], ['NODE_12_length_221_cov_71.770833', 72], ['NODE_13_length_213_cov_73.919118', 74], ['NODE_14_length_206_cov_141.798450', 142], ['NODE_15_length_192_cov_87.191304', 87], ['NODE_16_length_167_cov_97.977778', 98], ['NODE_17_length_155_cov_81.525641', 82], ['NODE_18_length_155_cov_77.512821', 78], ['NODE_19_length_155_cov_76.153846', 76], ['NODE_20_length_155_cov_75.935897', 76], ['NODE_21_length_155_cov_75.179487', 75], ['NODE_22_length_155_cov_75.102564', 75], ['NODE_23_length_155_cov_74.769231', 75], ['NODE_24_length_155_cov_73.884615', 74], ['NODE_25_length_155_cov_73.128205', 73], ['NODE_26_length_155_cov_73.025641', 73], ['NODE_27_length_155_cov_64.756410', 65], ['NODE_28_length_155_cov_63.115385', 63], ['NODE_29_length_155_cov_57.666667', 58], ['NODE_30_length_155_cov_36.961538', 37],
+                ]);
+                const chartDataContigGC = google.visualization.arrayToDataTable( [
+                    ['Name', 'Value'],
+                     ['NODE_1_length_225816_cov_82.500122', 26], ['NODE_2_length_216060_cov_95.499618', 26], ['NODE_3_length_167723_cov_77.066444', 25], ['NODE_4_length_21625_cov_82.763783', 26], ['NODE_5_length_2062_cov_120.171788', 47], ['NODE_6_length_1003_cov_154.033477', 48], ['NODE_7_length_886_cov_160.960445', 37], ['NODE_8_length_584_cov_156.816568', 46], ['NODE_9_length_528_cov_140.762749', 44], ['NODE_10_length_360_cov_152.579505', 28], ['NODE_11_length_267_cov_79.794737', 23], ['NODE_12_length_221_cov_71.770833', 24], ['NODE_13_length_213_cov_73.919118', 28], ['NODE_14_length_206_cov_141.798450', 24], ['NODE_15_length_192_cov_87.191304', 24], ['NODE_16_length_167_cov_97.977778', 18], ['NODE_17_length_155_cov_81.525641', 25], ['NODE_18_length_155_cov_77.512821', 51], ['NODE_19_length_155_cov_76.153846', 46], ['NODE_20_length_155_cov_75.935897', 44], ['NODE_21_length_155_cov_75.179487', 41], ['NODE_22_length_155_cov_75.102564', 44], ['NODE_23_length_155_cov_74.769231', 48], ['NODE_24_length_155_cov_73.884615', 50], ['NODE_25_length_155_cov_73.128205', 46], ['NODE_26_length_155_cov_73.025641', 17], ['NODE_27_length_155_cov_64.756410', 48], ['NODE_28_length_155_cov_63.115385', 46], ['NODE_29_length_155_cov_57.666667', 48], ['NODE_30_length_155_cov_36.961538', 24],
+                ]);
+
+                const options = {
+                    title: '',
+                    width: 400,
+                    height: 300,
+                    theme: {
+                        chartArea: {left: '10%', top: '10%', width: '92%', height: '80%'},
+                        legend: {position: 'none'},
+                        titlePosition: 'out',
+			axisTitlesPosition: 'out',
+                        hAxis: {
+                            textPosition: 'out',
+                            slantedText: false,
+                            maxAlternation: 1,
+                            maxTextLines: 1,
+                            minTextSpacing: 14,
+                        },
+                        vAxis: {
+                            textPosition: 'out',
+                        }
+                    },
+                    colors: ['#428BCA'],
+                    fontSize: 14,
+                    bar: {
+                        gap: 0
+                    },
+                };
+
+                options.title = 'Contig Lengths';
+		options.theme.hAxis.format = 'short'
+                options.histogram = {
+                    hideBucketItems: false,
+                    bucketSize: 10000
+                };
+                const chartContigLength = new google.visualization.Histogram(document.getElementById( 'chartContigLength' ) );
+                chartContigLength.draw( chartDataContigLength, options );
+
+                options.title = 'Contig Coverage';
+                options.histogram = {
+                    hideBucketItems: false,
+                    bucketSize: 10,
+                    maxNumBuckets: 100,
+                    minValue: 0
+                };
+                const chartContigCoverage = new google.visualization.Histogram(document.getElementById( 'chartContigCoverage' ) );
+                chartContigCoverage.draw( chartDataContigCoverage, options );
+
+                options.title = 'Contig GC Contents';
+		options.hAxis = {ticks: [ 20, 40, 60, 80 ] };
+                options.histogram = {
+                    hideBucketItems: false,
+                    bucketSize: 1,
+                    minValue: 15,
+                    maxValue: 85
+                };
+                const chartContigGCContent = new google.visualization.Histogram(document.getElementById( 'chartContigGC' ) );
+                chartContigGCContent.draw( chartDataContigGC, options );
+            }
+            </script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="../index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Short reads test 02</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="../help.html">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Analyses</a></li>
+                <li><a href="../qc.html">Quality Control</a></li>
+                <li><a href="../assemblies.html">Assembly</a></li>
+                <li><a href="../scaffolds.html">Scaffolds</a></li>
+                <li><a href="../annotations.html">Annotation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Characterization</a></li>
+                <li><a href="../taxonomy.html">Taxonomic Classification</a></li>
+                <li><a href="../mlst.html">MLST</a></li>
+                <li><a href="../abr.html">Antibiotic Resistances</a></li>
+                <li><a href="../vf.html">Virulence Factors</a></li>
+                <!--<li><a href="../plasmids.html">Plasmids</a></li>-->
+                <!--<li><a href="../phages.html">Phages</a></li>-->
+                <li><a href="../mapping.html">Reference Mapping</a></li>
+                <li><a href="../snps.html">SNP Detection</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Comparative Analyses</a></li>
+                            <li><a href="../corepan.html">Core/Pan Genome</a></li>
+                <li><a href="../phylogeny.html">Phylogeny</a></li>
+            </ul>
+        </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                    <ol class="breadcrumb">
+                        <li><a href="../index.html">Dashboard</a></li>
+                        <li><a href="../assemblies.html">Assemblies</a></li>
+                        <li class="active">M. meleagridis 26</li>
+                        <!-- trigger help-modal -->
+                        <i class="fa fa-question fa-3x helpBtn" data-toggle="modal" data-target="#myModal"></i>
+                    </ol>
+
+                    <!-- help-modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h2 class="modal-title" id="myModalLabel">ASA&#179;P assembly detail</h2>
+                          </div>
+                          <div class="modal-body">
+                            <h3>Histograms of contig specifications</h3>
+
+                            <h5>Contig lengths</h5>
+
+                            <p>Histogram of <code>contig length</code> in kb. Via mouse over the number of contigs in each bin
+                              is displayed.</p>
+
+                            <h5>Contig coverage</h5>
+
+                            <p>Histogram of the <code>average read coverage</code> per contig. Via mouse over the average coverage
+                              of each bin is displayed.</p>
+
+                            <h5>Contig GC contents</h5>
+
+                            <p>Stacked histogram of <code>GC contents</code> per contig. Via mouse over the GC content of each
+                              individual contig is displayed.</p>
+
+                            <h3>Basic assembly statistics</h3>
+
+                            <p>Provides information on the assembly in general and on the contig length.</p>
+
+                            <h3>Interactive data table contigs</h3>
+
+                            <p><code>Individual sorting</code> can be applied via clicking on the respective column header.
+                              Use the <code>Search</code> function (top right of the table) to display only genomes that
+                              contain the search term in any of their table fields. The <code>number of entries</code> displayed
+                              per page can be chosen on the top left of the table. Mose over on underlined table headers
+                              to display further information on it.</p>
+
+                            <h3>Downloads</h3>
+
+                            <p>The contigs and scaffolds used in this assembly as well as the ones discarded (not used for assembly)
+                              can be downloaded as <code>fasta</code> on the right below the histograms. The table can be
+                              saved as a comma separated value (<code>csv</code>) file via a click on the csv button (search
+                              and sorting are contained in the downloaded file).</p>
+
+                            <h3>Glossary</h3>
+
+                            <ul>
+                              <li><strong>Contigs</strong>: Set of overlapping DNA segments (reads).</li>
+
+                              <li><strong>Coverage</strong>: Mean read coverage of this contig.</li>
+
+                              <li><strong># Gaps</strong>: Amount of space (bp) between assembled nucleotides in this contig.</li>
+
+                              <li><strong>GC</strong>: GC content in percent.</li>
+
+                              <li><strong>Length</strong>: Length of the contig in base pairs.</li>
+
+                              <li><strong>N50 length</strong>: Given ordered contigs from longest to smallest, length of the
+                                contig at 50% of the genome length.</li>
+
+                              <li><strong>N90 length</strong>: Given ordered contigs from longest to smallest, length of the
+                                contig at 90% of the genome length.</li>
+
+                              <li><strong>Name</strong>: Name of this contig.</li>
+
+                              <li><strong>Scaffolds</strong>: Consists of aligned contigs with the sequence 'NNNNNNNNNNCTAGCTAGCTAGCNNNNNNNNNN'
+                                in between them.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4" id="chartContigLength"></div>
+                        <div class="col-lg-4 col-md-4" id="chartContigCoverage"></div>
+                        <div class="col-lg-4 col-md-4" id="chartContigGC"></div>
+                    </div>
+
+                    <!-- Assembly overview -->
+                    <div class="row voffset">
+                        <div class="col-sm-3 col-md-3 col-md-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Genome Assembly</caption>
+                                <tbody>
+                                    <tr><td>Contigs [#]</td><td class="text-center">30</td></tr>
+                                    <tr><td>Genome Size [Mb]</td><td class="text-center">640,083</td></tr>
+                                    <tr><td>N50 [kb]</td><td class="text-center">216,060</td></tr>
+                                    <tr><td>N90 [kb]</td><td class="text-center">167,723</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Contig lengths -->
+                        <div class="col-sm-3 col-md-3 col-md-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Contig Lengths</caption>
+                                <tbody>
+                                    <tr><td>Min [bp]</td><td class="text-center">155</td></tr>
+                                    <tr><td>Max [kb]</td><td class="text-center">225,816</td></tr>
+                                    <tr><td>Mean [kb]</td><td class="text-center">21,336</td></tr>
+                                    <tr><td>Median [kb]</td><td class="text-center">179.5</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Downloads -->
+                        <div id="downloadsTypes" class="col-sm-2 col-md-2 col-md-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Downloads</caption>
+                                <tbody>
+                                    <tr><td>Contigs /<br>Scaffolds</td><td class="text-center"><a href="./Mycoplasma_meleagridis_26/Mycoplasma_meleagridis_26.fasta">fasta</a></td></tr>
+                                    <tr><td>Discarded Contigs /<br>Scaffolds</td><td class="text-center"><a href="./Mycoplasma_meleagridis_26/Mycoplasma_meleagridis_26-discarded.fasta">fasta</a></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row voffset">
+                        <!-- Contig Table -->
+                        <div class="col-sm-10 col-md-10">
+                            <h2><small>Contigs</small></h2>
+                            <table id="contigTable" class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th class="text-center">Length</th>
+                                        <th class="text-center">Coverage</th>
+                                        <th class="text-center"><abbr title="GC content [%]">GC</abbr></th>
+                                        <th class="text-center"># Gaps</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>NODE_1_length_225816_cov_82.500122</td>
+                                        <td class="text-center">225,816</td>
+                                        <td class="text-center">83</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_2_length_216060_cov_95.499618</td>
+                                        <td class="text-center">216,060</td>
+                                        <td class="text-center">95</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_3_length_167723_cov_77.066444</td>
+                                        <td class="text-center">167,723</td>
+                                        <td class="text-center">77</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_4_length_21625_cov_82.763783</td>
+                                        <td class="text-center">21,625</td>
+                                        <td class="text-center">83</td>
+                                        <td class="text-center">26</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_5_length_2062_cov_120.171788</td>
+                                        <td class="text-center">2,062</td>
+                                        <td class="text-center">120</td>
+                                        <td class="text-center">47</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_6_length_1003_cov_154.033477</td>
+                                        <td class="text-center">1,003</td>
+                                        <td class="text-center">154</td>
+                                        <td class="text-center">48</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_7_length_886_cov_160.960445</td>
+                                        <td class="text-center">886</td>
+                                        <td class="text-center">161</td>
+                                        <td class="text-center">37</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_8_length_584_cov_156.816568</td>
+                                        <td class="text-center">584</td>
+                                        <td class="text-center">157</td>
+                                        <td class="text-center">46</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_9_length_528_cov_140.762749</td>
+                                        <td class="text-center">528</td>
+                                        <td class="text-center">141</td>
+                                        <td class="text-center">44</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_10_length_360_cov_152.579505</td>
+                                        <td class="text-center">360</td>
+                                        <td class="text-center">153</td>
+                                        <td class="text-center">28</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_11_length_267_cov_79.794737</td>
+                                        <td class="text-center">267</td>
+                                        <td class="text-center">80</td>
+                                        <td class="text-center">23</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_12_length_221_cov_71.770833</td>
+                                        <td class="text-center">221</td>
+                                        <td class="text-center">72</td>
+                                        <td class="text-center">24</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_13_length_213_cov_73.919118</td>
+                                        <td class="text-center">213</td>
+                                        <td class="text-center">74</td>
+                                        <td class="text-center">28</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_14_length_206_cov_141.798450</td>
+                                        <td class="text-center">206</td>
+                                        <td class="text-center">142</td>
+                                        <td class="text-center">24</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_15_length_192_cov_87.191304</td>
+                                        <td class="text-center">192</td>
+                                        <td class="text-center">87</td>
+                                        <td class="text-center">24</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_16_length_167_cov_97.977778</td>
+                                        <td class="text-center">167</td>
+                                        <td class="text-center">98</td>
+                                        <td class="text-center">18</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_17_length_155_cov_81.525641</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">82</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_18_length_155_cov_77.512821</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">78</td>
+                                        <td class="text-center">51</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_19_length_155_cov_76.153846</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">76</td>
+                                        <td class="text-center">46</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_20_length_155_cov_75.935897</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">76</td>
+                                        <td class="text-center">44</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_21_length_155_cov_75.179487</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">75</td>
+                                        <td class="text-center">41</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_22_length_155_cov_75.102564</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">75</td>
+                                        <td class="text-center">44</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_23_length_155_cov_74.769231</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">75</td>
+                                        <td class="text-center">48</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_24_length_155_cov_73.884615</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">74</td>
+                                        <td class="text-center">50</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_25_length_155_cov_73.128205</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">73</td>
+                                        <td class="text-center">46</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_26_length_155_cov_73.025641</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">73</td>
+                                        <td class="text-center">17</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_27_length_155_cov_64.756410</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">65</td>
+                                        <td class="text-center">48</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_28_length_155_cov_63.115385</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">63</td>
+                                        <td class="text-center">46</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_29_length_155_cov_57.666667</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">58</td>
+                                        <td class="text-center">48</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NODE_30_length_155_cov_36.961538</td>
+                                        <td class="text-center">155</td>
+                                        <td class="text-center">37</td>
+                                        <td class="text-center">24</td>
+                                        <td class="text-center">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
