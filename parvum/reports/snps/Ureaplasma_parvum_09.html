@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <meta name="description" content="ASA?P results for \"Short reads test 03\" project">
+        <meta name="author" content="Oliver Schwengers">
+
+        <title>ASA&#179;P: Short reads test 03</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="../css/dashboard.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="../js/back-to-top.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip( {html: true} );
+            });
+        </script>
+
+        <link href="../css/asap.css" rel="stylesheet">
+
+
+	<link href="../css/datatables.min.css" rel="stylesheet">
+        <script src="../js/datatables.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.min.js"></script>
+	<script src="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.min.js"></script>
+
+        <style>
+            #chartCont svg {
+                height: 200px;
+                width: 800px;
+            }
+        </style>
+
+        <script>
+            $(document).ready(function() {
+                $('#hisnps').DataTable( {
+                    paging:   true,
+                    ordering: true,
+                    info:     true,
+		    dom: "<'row'<'col-md-3'l><'col-md-3 col-md-offset-5'f><'col-md-1'B>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+                    buttons: [
+                        {
+                            extend: 'csv',
+                            text: 'csv',
+                            filename: 'snp-details-U_parvum_09',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                            }
+                        }
+                    ]
+                } );
+            } );
+        </script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="../index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Short reads test 03</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="../help.html">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Analyses</a></li>
+                <li><a href="../qc.html">Quality Control</a></li>
+                <li><a href="../assemblies.html">Assembly</a></li>
+                <li><a href="../scaffolds.html">Scaffolds</a></li>
+                <li><a href="../annotations.html">Annotation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Characterization</a></li>
+                <li><a href="../taxonomy.html">Taxonomic Classification</a></li>
+                <li><a href="../mlst.html">MLST</a></li>
+                <li><a href="../abr.html">Antibiotic Resistances</a></li>
+                <li><a href="../vf.html">Virulence Factors</a></li>
+                <!--<li><a href="../plasmids.html">Plasmids</a></li>-->
+                <!--<li><a href="../phages.html">Phages</a></li>-->
+                <li><a href="../mapping.html">Reference Mapping</a></li>
+                <li><a href="../snps.html">SNP Detection</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Comparative Analyses</a></li>
+                            <li><a href="../corepan.html">Core/Pan Genome</a></li>
+                <li><a href="../phylogeny.html">Phylogeny</a></li>
+            </ul>
+        </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                    <ol class="breadcrumb">
+                        <li><a href="../index.html">Dashboard</a></li>
+                        <li><a href="../snps.html">SNPs</a></li>
+                        <li class="active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">U. parvum 09 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#basic">SNP Distribution</a></li>
+                                <li><a href="#pbsc">SNP Statistics</a></li>
+                                <li><a href="#psq">SNP Effects</a></li>
+                                <li><a href="#hisnps">High Impact SNPs</a></li>
+                            </ul>
+                        </li>
+                        <!-- trigger help-modal -->
+                        <i class="fa fa-question fa-3x helpBtn" data-toggle="modal" data-target="#myModal"></i>
+                    </ol>
+
+                    <!-- help-modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h2 class="modal-title" id="myModalLabel">ASA&#179;P single nucleotide polymorphism detail</h2>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              This analysis provides information on SNPs compared to the reference genome. Via the mpileup function of <code>SAMtools</code> the mapped BAM files together
+                              with the reference fasta are used to compute the likelihood of each possible genotype. The resulting
+                              likelihoods containing genomic positions are stored as Binary Variant Call Format (BCF). <code>BCFtools</code>is
+                              then used to call variants in the sequence compared to the reference. The genomic variants in
+                              the resulting Variant Call Format (VCF) file are then filtered via <code>SnpSift</code>. The
+                              filtered variants are then analysed by <code>SnpEff</code> to predict the resulting effects.
+                              To improve further processing and compressing <code>HTSlib</code> is used. Finally a consensus
+                              sequence and statistics is calculated with <code>BCFtools</code>. This page provides an average
+                              SNP distribution mapping and a SNP comparison of the analysed genome.</p>
+
+                            <h3>SNP distribution graph</h3>
+
+                            <p>The <code>mean number of SNPs</code> per <code>10 kb</code> compared to the reference genome
+                              are displayed. Mouse over the graph to display the position and mean SNP number of an individual
+                              peak.</p>
+
+                            <h3>Interactive data table</h3>
+
+                            <p><code>Individual sorting</code> can be applied via clicking on the respective column header.
+                              Use the <code>Search</code> function (top right of the table) to display only genomes that
+                              contain the search term in any of their table fields. The <code>number of entries</code> displayed
+                              per page can be chosen on the top left of the table. <code>Blue horizontal bar plots</code>                              are displayed in most columns containing numeric values. They visualize the relative relation
+                              of this value compared to the according values of the other genomes. Mouse over on underlined
+                              term to display further information on it.</p>
+
+                            <h3>Downloads</h3>
+
+                            <p>The table can be saved as comma separated value (<code>csv</code>) file via click on the csv
+                              button (search and sorting are contained in the downloaded file). The <code>vcf</code> file
+                              of each genome can be downloaded.</p>
+
+                            <h3>Links</h3>
+
+                            <ul>
+                                <li><a href="http://www.htslib.org/">SAMtools</a>: Li H., Handsaker B., Wysoker A., Fennell T., Ruan J., Homer N., Marth G., Abecasis G., Durbin R., 1000 Genome Project Data Processing Subgroup
+                                    The Sequence alignment/map (SAM) format and SAMtools.
+                                    Bioinformatics, 2009, 25, 2078-9.
+                                    <a href="https://www.ncbi.nlm.nih.gov/pubmed/19505943">PubMed</a>
+                                </li>
+
+                                <li><a href="https://github.com/samtools/bcftools">BCFtools</a>: Included in SAMtools.
+                                </li>
+
+                                <li><a href="http://snpeff.sourceforge.net/SnpSift.html">SnpSift</a>: Cingolani, P., et. al.
+                                    Using Drosophila melanogaster as a model for genotoxic chemical mutational studies with a new program, SnpSift
+                                    Frontiers in Genetics, 2012, 3
+                                    <a href="https://www.ncbi.nlm.nih.gov/pubmed/22435069">PubMed</a>
+                                </li>
+
+                                <li><a href="http://snpeff.sourceforge.net/">SnpEff</a>: Cingolani P, Platts A, Wang le L, Coon M, Nguyen T, Wang L, Land SJ, Lu X, Ruden DM.
+                                    A program for annotating and predicting the effects of single nucleotide polymorphisms, SnpEff: SNPs in the genome of Drosophila melanogaster strain w1118; iso-2; iso-3.
+                                    Fly (Austin), 2012 Apr-Jun;6(2):80-92. <a href="https://www.ncbi.nlm.nih.gov/pubmed/22728672">PubMed</a>
+                                </li>
+                            </ul>
+
+                            <h3>Glossary</h3>
+
+                            <ul>
+                              <li><strong>Change Range</strong>: Ratio of number single nucleotide polymorphisms to genome size.</li>
+
+                              <li><strong>Genome</strong>: Name of the processed genome.</li>
+
+                              <li><strong>HI SNPs</strong>: Number of high impact single nucleotide polymorphisms. SNPs are considered
+                                high impact if they result in the gain or loss of a start or stop codon.</li>
+
+                              <li><strong>SNPs</strong>: Number of single nucleotide polymorphisms.</li>
+
+                              <li><strong>TS/TV</strong>: Ratio of number nucleotide transitions to number nucleotide transversions.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="chartSNPDist"></div>
+                            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                            <script type="text/javascript">
+                                google.charts.load( 'current', {'packages': ['corechart'] } );
+                                google.charts.setOnLoadCallback( drawChart );
+                                function drawChart() {
+                                    var data = google.visualization.arrayToDataTable( [
+                                        ['Position', '# ? SNPs', '# SNPs'],
+                                        [0,166,167],[10000,40,40],[20000,20,20],[30000,31,34],[40000,4,4],[50000,7,7],[60000,33,33],[70000,2,2],[80000,12,12],[90000,33,33],[100000,101,101],[110000,141,140],[120000,125,134],[130000,28,32],[140000,106,103],[150000,45,46],[160000,179,179],[170000,255,259],[180000,114,116],[190000,7,7],[200000,6,6],[210000,11,12],[220000,3,3],[230000,3,3],[240000,2,2],[250000,15,15],[260000,2,2],[270000,3,3],[280000,10,11],[290000,20,20],[300000,19,19],[310000,33,34],[320000,35,36],[330000,45,46],[340000,41,41],[350000,15,15],[360000,10,10],[370000,20,20],[380000,46,46],[390000,41,41],[400000,4,4],[410000,16,16],[420000,28,28],[430000,108,109],[440000,8,9],[450000,89,90],[460000,23,24],[470000,6,6],[480000,58,59],[490000,3,3],[500000,7,7],[510000,20,21],[520000,49,51],[530000,42,43],[540000,25,25],[550000,4,5],[560000,11,13],[570000,6,7],[580000,7,7],[590000,3,3],[600000,9,9],[610000,4,5],[620000,0,0],[630000,4,4],[640000,2,2],[650000,3,4],[660000,4,4],[670000,17,17],[680000,5,5],[690000,5,6],[700000,3,3],[710000,6,6],[720000,5,6]
+                                    ] );
+                                    var options = { // chart options
+                                        legend: { position: 'bottom' },
+                                        colors: ['#428bca', '#cd2d50'],
+                                        width: '100%',
+                                        height: 300,
+                                        chartArea: {
+                                            left:50,
+                                            top:20,
+                                            width: '94%',
+                                            height: '80%'
+                                        },
+                                        hAxis: {
+                                            title: '# SNPs'
+                                        },
+                                        vAxis: {
+                                            title: 'Position [10 kb]'
+                                        },
+                                        axisTitlesPosition: 'in'
+                                    };
+                                    var chart = new google.visualization.LineChart( document.getElementById( 'chartSNPDist' ) );
+                                    chart.draw( data, options );
+                                }
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="row voffset" id="stats">
+                        <div class="col-sm-4 col-md-4">
+                            <div id="chartSNPRegions"></div>
+                            <script type="text/javascript">
+                                google.charts.setOnLoadCallback( function () {
+                                    var data = google.visualization.arrayToDataTable( [
+                                        ['Region', '# SNPs'],
+                                        ["upstream", 0],
+                                        ["gene", 0],
+                                        ["downstream", 0],
+                                        ["intergenic", 0]
+                                    ] );
+                                    var options = { // chart options
+                                        legend: { position: 'none' },
+                                    title: "Regions",
+                                        colors: ['#428bca'],
+                                        width: '100%',
+                                        height: 200,
+                                        orientation: 'horizontal',
+                                        chartArea: {
+                                            left:50,
+                                            top:20,
+                                            width: '94%',
+                                            height: '80%'
+                                        },
+                                        vAxis: {format: 'short'}
+                                    };
+                                    var chart = new google.visualization.BarChart( document.getElementById( "chartSNPRegions" ) );
+                                    chart.draw( data, options );
+                                } );
+                            </script>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <div id="chartSNPClasses"></div>
+                            <script type="text/javascript">
+                                google.charts.setOnLoadCallback( function () {
+                                    var data = google.visualization.arrayToDataTable( [
+                                        ['Classes', '# SNPs'],
+                                        ["missense", 0],
+                                        ["nonsense", 0],
+                                        ["silent", 0]
+                                    ] );
+                                    var options = { // chart options
+                                    title: "Classes",
+                                        legend: { position: 'none' },
+                                        colors: ['#428bca'],
+                                        width: '100%',
+                                        height: 200,
+                                        orientation: 'horizontal',
+                                        chartArea: {
+                                            left:50,
+                                            top:20,
+                                            width: '94%',
+                                            height: '80%'
+                                        },
+                                        vAxis: {format: 'short'}
+                                    };
+                                    var chart = new google.visualization.BarChart( document.getElementById( "chartSNPClasses" ) );
+                                    chart.draw( data, options );
+                                } );
+                            </script>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <div id="chartSNPImpacts"></div>
+                            <script type="text/javascript">
+                                google.charts.setOnLoadCallback( function () {
+                                    var data = google.visualization.arrayToDataTable( [
+                                        ['Impacts', '# SNPs'],
+                                        ["high", 0],
+                                        ["moderate", 0],
+                                        ["low", 0],
+                                        ["modifier", 0]
+                                    ] );
+                                    var options = { // chart options
+                                    title: "Impacts",
+                                        legend: { position: 'none' },
+                                        colors: ['#428bca'],
+                                        width: '100%',
+                                        height: 200,
+                                        orientation: 'horizontal',
+                                        chartArea: {
+                                            left:50,
+                                            top:20,
+                                            width: '94%',
+                                            height: '80%'
+                                        },
+                                        vAxis: {format: 'short'}
+                                    };
+                                    var chart = new google.visualization.BarChart( document.getElementById( "chartSNPImpacts" ) );
+                                    chart.draw( data, options );
+                                } );
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="row voffset" id="stats">
+                        <div class="col-sm-3 col-md-3 col-md-offset-3 col-sm-offset-3">
+                            <table class="table table-hover table-condensed">
+                                <caption>Statistics</caption>
+                                <tbody>
+                                    <tr><td># SNPs</td><td class="text-center">2,455</td></tr>
+                                    <tr><td><abbr title="transitions / transversions ratio">TS/TV</abrr></td><td class="text-center">4.18</td></tr>
+                                    <tr><td><abbr title="Base pairs per SNP (1 SNP every x base pairs">Change Range</abrr></td><td class="text-center">307.488</td></tr>
+                                    <tr><td><abbr title="high impact SNPs">HI</abrr> SNPs</td><td class="text-center">0</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-sm-3 col-md-3">
+                            <table class="table table-hover table-condensed">
+                                <caption>Genetic Effects</caption>
+                                <tbody>
+                                    <tr><td>Start Lost</td><td class="text-center">0</td></tr>
+                                    <tr><td>Stop Gained</td><td class="text-center">0</td></tr>
+                                    <tr><td>Stop Lost</td><td class="text-center">0</td></tr>
+                                    <tr><td>Synonymous Variant</td><td class="text-center">0</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row voffset" id="stats">
+                        <div class="col-md-10">
+                            <h2><small>High Impact SNPs</small></h2>
+                            <table id="hisnps" class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th><span class="glyphicon glyphicon-barcode"></span></th>
+                                        <th class="text-center">Contig</th>
+                                        <th class="text-center">Gene</th>
+                                        <th class="text-center">Position</th>
+                                        <th class="text-center"><abbr title="base in reference">Reference</abbr></th>
+                                        <th class="text-center"><abbr title="base in sample">Sample</abbr></th>
+                                        <th class="text-center">Coverage</th>
+                                        <th class="text-center"><abbr title="mean quality [PHRED 33]">Mean Qual</abbr></th>
+                                        <th class="text-center">Effect</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

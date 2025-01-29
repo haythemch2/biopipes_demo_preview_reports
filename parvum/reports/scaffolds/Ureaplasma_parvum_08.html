@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <meta name="description" content="ASA?P results for \"Short reads test 03\" project">
+        <meta name="author" content="Oliver Schwengers">
+
+        <title>ASA&#179;P: Short reads test 03</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="../css/dashboard.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="../js/back-to-top.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip( {html: true} );
+            });
+        </script>
+
+        <link href="../css/asap.css" rel="stylesheet">
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.1/d3.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.js"></script>
+        <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.js"></script>
+
+        <script src="../js/synteny.js"></script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="../index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Short reads test 03</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="../help.html">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Analyses</a></li>
+                <li><a href="../qc.html">Quality Control</a></li>
+                <li><a href="../assemblies.html">Assembly</a></li>
+                <li><a href="../scaffolds.html">Scaffolds</a></li>
+                <li><a href="../annotations.html">Annotation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Characterization</a></li>
+                <li><a href="../taxonomy.html">Taxonomic Classification</a></li>
+                <li><a href="../mlst.html">MLST</a></li>
+                <li><a href="../abr.html">Antibiotic Resistances</a></li>
+                <li><a href="../vf.html">Virulence Factors</a></li>
+                <!--<li><a href="../plasmids.html">Plasmids</a></li>-->
+                <!--<li><a href="../phages.html">Phages</a></li>-->
+                <li><a href="../mapping.html">Reference Mapping</a></li>
+                <li><a href="../snps.html">SNP Detection</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Comparative Analyses</a></li>
+                            <li><a href="../corepan.html">Core/Pan Genome</a></li>
+                <li><a href="../phylogeny.html">Phylogeny</a></li>
+            </ul>
+        </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                    <ol class="breadcrumb">
+                        <li><a href="../index.html">Dashboard</a></li>
+                        <li><a href="../scaffolds.html">Scaffolds</a></li>
+                        <li class="active">U. parvum 08</li>
+                        <!-- trigger help-modal -->
+                        <i class="fa fa-question fa-3x helpBtn" data-toggle="modal" data-target="#myModal"></i>
+                    </ol>
+
+                    <!-- help-modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h2 class="modal-title" id="myModalLabel">ASA&#179;P scaffolds detail</h2>
+                          </div>
+                          <div class="modal-body">
+                            <p>This site provides information on contig alignment and assignment to reference genome(s). The contigs of
+                              the particular Whole Genome Assembly (<code>WGA</code>) are compared to each of the reference
+                              genomes via Synteny plots. In order to visualize the scaffolding quality the comparison is
+                              done before and after the scaffolding process.</p>
+
+                            <h3>Basic scaffolding statistics</h3>
+
+                            <p>Provides information on scaffolding in general and on the scaffold length.</p>
+
+                            <h3>DNA synteny plots</h3>
+
+                            <p>The upper synteny plot of each genome comparison displays the position of all contigs in both
+                              genomes before the scaffolding process (<code>Pre Scaffolding</code>). The lower synteny plot
+                              after scaffolding (<code>Post Scaffolding</code>). On the x-axis the contig position in the
+                              reference genome is displayed. On the y-axis the contig position in the <code>WGA</code> is
+                              displayed. Contigs referenced to the minus strand are displayed in orange the ones referenced
+                              to the plus strand are displayed in blue. Mouse over a contig to receive information on its
+                              name, length assigned strand as well as start and end position in the reference.</p>
+
+                            <h3>Downloads</h3>
+
+                            <p>The scaffolds and the generated pseudo genome can be downloaded as <code>fasta</code> on the
+                              top right.</p>
+
+                            <h3>Glossary</h3>
+
+                            <ul>
+                              <li><strong># Contigs</strong>: Number of contigs (set of overlapping DNA segments).</li>
+
+                              <li><strong>Genome Size [Mb]</strong>: Size of the WGA in million/mega bases.</li>
+
+                              <li><strong>N50</strong>: Given ordered contigs from longest to smallest, length of the contig
+                                at 50% of the genome length.</li>
+
+                              <li><strong>N90</strong>: Given ordered contigs from longest to smallest, length of the contig
+                                at 90% of the genome length.</li>
+
+                              <li><strong># Scaffolds</strong>: Number of scaffolds (joined, aligned and assigned contigs) after
+                                polishing.</li>
+
+                              <li><strong>WGA</strong>: Whole Genome Assembly generated via joining all sequence elements after
+                                scaffolding with the sequence 'NNNNNNNNNNCTAGCTAGCTAGCNNNNNNNNNN'.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+
+                         <!-- Assembly overview -->
+                        <div class="col-sm-3 col-md-3 col-md-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Scaffolded Genome</caption>
+                                <tbody>
+                                    <tr><td>Scaffolds [#]</td><td class="text-center">5</td></tr>
+                                    <tr><td>Contigs [#]</td><td class="text-center">7</td></tr>
+                                    <tr><td>Genome Size [Mb]</td><td class="text-center">729,026</td></tr>
+                                    <tr><td>N50 [kb]</td><td class="text-center">465,066</td></tr>
+                                    <tr><td>N90 [kb]</td><td class="text-center">253,879</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Scaffold lengths -->
+                        <div class="col-sm-3 col-md-3 col-md-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Scaffold Lengths</caption>
+                                <tbody>
+                                    <tr><td>Min [bp]</td><td class="text-center">152</td></tr>
+                                    <tr><td>Max [kb]</td><td class="text-center">465,066</td></tr>
+                                    <tr><td>Mean [kb]</td><td class="text-center">60,752</td></tr>
+                                    <tr><td>Median [kb]</td><td class="text-center">907</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Downloads -->
+                        <div class="col-sm-2 col-md-2 col-md-offset-1 col-sm-offset-1">
+                            <table class="table table-hover table-condensed">
+                                <caption>Downloads</caption>
+                                <tbody>
+                                    <tr><td>Scaffolds</td><td class="text-center"><a href="./Ureaplasma_parvum_08/Ureaplasma_parvum_08.fasta">fasta</a></td></tr>
+                                    <tr><td>Pseudo Genome</td><td class="text-center"><a href="./Ureaplasma_parvum_08/Ureaplasma_parvum_08-pseudo.fasta">fasta</a></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="row voffset">
+                        <div class="col">
+                            <h2><small>WGA vs. Upserovar1</small></h2>
+                            <div class="row">
+                                <div class="col-md-1 col-sd-2">
+                                    <h4><small>Pre Scaffolding</small></h4>
+                                </div>
+                                <div class="col-md-11 col-sd-10">
+                                    <section id="Upserovar1-pre" class="caption" role="region">
+                                    <script>
+                                        $(() => {
+                                            let data = [{"contig":"NODE_1_length_464533_cov_46.528388","contigLength":"464533","rStart":1890,"rEnd":2294,"cStart":1591,"cEnd":1986,"noNonIdentities":38,"length":396,"strand":"-"},{"contig":"NODE_1_length_464533_cov_46.528388","contigLength":"464533","rStart":3266,"rEnd":111356,"cStart":2609,"cEnd":110732,"noNonIdentities":718,"length":108124,"strand":"+"},{"contig":"NODE_1_length_464533_cov_46.528388","contigLength":"464533","rStart":111357,"rEnd":120034,"cStart":110667,"cEnd":119344,"noNonIdentities":158,"length":8678,"strand":"+"},{"contig":"NODE_1_length_464533_cov_46.528388","contigLength":"464533","rStart":120021,"rEnd":120671,"cStart":119331,"cEnd":119981,"noNonIdentities":1,"length":651,"strand":"-"},{"contig":"NODE_1_length_464533_cov_46.528388","contigLength":"464533","rStart":120658,"rEnd":120944,"cStart":119968,"cEnd":120253,"noNonIdentities":3,"length":286,"strand":"+"},{"contig":"NODE_1_length_464533_cov_46.528388","contigLength":"464533","rStart":120895,"rEnd":360944,"cStart":120891,"cEnd":360994,"noNonIdentities":1805,"length":240104,"strand":"+"},{"contig":"NODE_1_length_464533_cov_46.528388","contigLength":"464533","rStart":364390,"rEnd":440244,"cStart":361860,"cEnd":437702,"noNonIdentities":306,"length":75843,"strand":"+"},{"contig":"NODE_1_length_464533_cov_46.528388","contigLength":"464533","rStart":121486,"rEnd":121734,"cStart":442368,"cEnd":442616,"noNonIdentities":3,"length":249,"strand":"-"},{"contig":"NODE_1_length_464533_cov_46.528388","contigLength":"464533","rStart":120895,"rEnd":121086,"cStart":443064,"cEnd":443255,"noNonIdentities":5,"length":192,"strand":"-"},{"contig":"NODE_1_length_464533_cov_46.528388","contigLength":"464533","rStart":120222,"rEnd":120318,"cStart":444270,"cEnd":444365,"noNonIdentities":4,"length":96,"strand":"+"},{"contig":"NODE_1_length_464533_cov_46.528388","contigLength":"464533","rStart":448206,"rEnd":466742,"cStart":445995,"cEnd":464533,"noNonIdentities":135,"length":18539,"strand":"+"},{"contig":"NODE_2_length_173514_cov_48.716819","contigLength":"173514","rStart":509173,"rEnd":644955,"cStart":1,"cEnd":135794,"noNonIdentities":205,"length":135794,"strand":"-"},{"contig":"NODE_2_length_173514_cov_48.716819","contigLength":"173514","rStart":471383,"rEnd":509139,"cStart":135744,"cEnd":173514,"noNonIdentities":87,"length":37771,"strand":"-"},{"contig":"NODE_3_length_80365_cov_42.269704","contigLength":"80365","rStart":649733,"rEnd":729599,"cStart":506,"cEnd":80365,"noNonIdentities":69,"length":79860,"strand":"-"},{"contig":"NODE_10_length_533_cov_67.291667","contigLength":"533","rStart":467088,"rEnd":467620,"cStart":1,"cEnd":533,"noNonIdentities":0,"length":533,"strand":"+"},{"contig":"NODE_19_length_155_cov_35.500000","contigLength":"155","rStart":645301,"rEnd":645455,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"-"},{"contig":"NODE_20_length_155_cov_33.025641","contigLength":"155","rStart":649596,"rEnd":649750,"cStart":1,"cEnd":155,"noNonIdentities":0,"length":155,"strand":"+"}]
+                                            drawDotPlot( data, '#Upserovar1-pre', 'WGA - Pre Scaffolding', 'Upserovar1', 'Ureaplasma_parvum_08');
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1 col-sd-2">
+                                    <h4><small>Post Scaffolding</small></h4>
+                                </div>
+                                <div class="col-md-11 col-sd-10">
+                                    <section id="Upserovar1-post" class="caption" role="region">
+                                    <script>
+                                        $(() => {
+                                            let data = [{"contig":"Uparv_08_1","contigLength":"253879","rStart":509173,"rEnd":644955,"cStart":1,"cEnd":135794,"noNonIdentities":205,"length":135794,"strand":"-"},{"contig":"Uparv_08_1","contigLength":"253879","rStart":471383,"rEnd":509139,"cStart":135744,"cEnd":173514,"noNonIdentities":87,"length":37771,"strand":"-"},{"contig":"Uparv_08_1","contigLength":"253879","rStart":649733,"rEnd":729599,"cStart":174020,"cEnd":253879,"noNonIdentities":69,"length":79860,"strand":"-"},{"contig":"Uparv_08_2","contigLength":"465066","rStart":448206,"rEnd":466742,"cStart":1,"cEnd":18539,"noNonIdentities":135,"length":18539,"strand":"-"},{"contig":"Uparv_08_2","contigLength":"465066","rStart":120222,"rEnd":120318,"cStart":20169,"cEnd":20264,"noNonIdentities":4,"length":96,"strand":"-"},{"contig":"Uparv_08_2","contigLength":"465066","rStart":120895,"rEnd":121086,"cStart":21279,"cEnd":21470,"noNonIdentities":5,"length":192,"strand":"+"},{"contig":"Uparv_08_2","contigLength":"465066","rStart":121486,"rEnd":121734,"cStart":21918,"cEnd":22166,"noNonIdentities":3,"length":249,"strand":"+"},{"contig":"Uparv_08_2","contigLength":"465066","rStart":364390,"rEnd":440244,"cStart":26832,"cEnd":102674,"noNonIdentities":306,"length":75843,"strand":"-"},{"contig":"Uparv_08_2","contigLength":"465066","rStart":120895,"rEnd":360944,"cStart":103540,"cEnd":343643,"noNonIdentities":1805,"length":240104,"strand":"-"},{"contig":"Uparv_08_2","contigLength":"465066","rStart":120658,"rEnd":120944,"cStart":344281,"cEnd":344566,"noNonIdentities":3,"length":286,"strand":"-"},{"contig":"Uparv_08_2","contigLength":"465066","rStart":120021,"rEnd":120671,"cStart":344553,"cEnd":345203,"noNonIdentities":1,"length":651,"strand":"+"},{"contig":"Uparv_08_2","contigLength":"465066","rStart":111357,"rEnd":120034,"cStart":345190,"cEnd":353867,"noNonIdentities":158,"length":8678,"strand":"-"},{"contig":"Uparv_08_2","contigLength":"465066","rStart":3266,"rEnd":111356,"cStart":353802,"cEnd":461925,"noNonIdentities":718,"length":108124,"strand":"-"},{"contig":"Uparv_08_2","contigLength":"465066","rStart":1890,"rEnd":2294,"cStart":462548,"cEnd":462943,"noNonIdentities":38,"length":396,"strand":"+"},{"contig":"Uparv_08_2","contigLength":"465066","rStart":467088,"rEnd":467620,"cStart":464534,"cEnd":465066,"noNonIdentities":0,"length":533,"strand":"-"},{"contig":"Uparv_08_4","contigLength":"2696","rStart":645301,"rEnd":645455,"cStart":533,"cEnd":687,"noNonIdentities":0,"length":155,"strand":"+"},{"contig":"Uparv_08_5","contigLength":"1691","rStart":649596,"rEnd":649750,"cStart":189,"cEnd":343,"noNonIdentities":0,"length":155,"strand":"+"}]
+                                            drawDotPlot( data, '#Upserovar1-post', 'WGA - Post Scaffolding', 'Upserovar1', 'Ureaplasma_parvum_08');
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

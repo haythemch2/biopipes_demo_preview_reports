@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <meta name="description" content="ASA?P results for \"Short reads test 03\" project">
+        <meta name="author" content="Oliver Schwengers">
+
+        <title>ASA&#179;P: Short reads test 03</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="css/dashboard.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="js/back-to-top.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip( {html: true} );
+            });
+        </script>
+
+        <link href="css/asap.css" rel="stylesheet">
+
+	<link href="css/datatables.min.css" rel="stylesheet">
+        <script src="js/datatables.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('.abr-circle').tooltip( { html: true, container: 'body', placement: 'top' } );
+                $('.abr-list').popover( { html: true, trigger: "hover", placement: "top"} );
+                $('#abr').DataTable( {
+                    paging:   true,
+                    ordering: true,
+                    info:     true,
+                    columnDefs: [
+                        { orderable: false, targets: [6] }
+                    ],
+		    dom: "<'row'<'col-md-3'l><'col-md-3 col-md-offset-5'f><'col-md-1'B>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+                    buttons: [
+                        {
+                            extend: 'csv',
+                            text: 'csv',
+                            filename: 'abr',
+                            exportOptions: {
+                                columns: [ 0, 1, 4, 5 ]
+                            }
+                        }
+                    ]
+                } );
+            } );
+        </script>
+
+        <script src="js/gradient.js" defer></script>
+
+        <!-- ABR profile circles -->
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="js/abrs.js" defer></script>
+
+        <!-- ABR profile tooltips -->
+        <style>
+            .tooltip-inner {
+                white-space:pre;
+                max-width:none;
+            }
+        </style>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Short reads test 03</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="help.html">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Analyses</a></li>
+                <li><a href="qc.html">Quality Control</a></li>
+                <li><a href="assemblies.html">Assembly</a></li>
+                <li><a href="scaffolds.html">Scaffolds</a></li>
+                <li><a href="annotations.html">Annotation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Characterization</a></li>
+                <li><a href="taxonomy.html">Taxonomic Classification</a></li>
+                <li><a href="mlst.html">MLST</a></li>
+                <li><a href="abr.html">Antibiotic Resistances</a></li>
+                <li><a href="vf.html">Virulence Factors</a></li>
+                <!--<li><a href="plasmids.html">Plasmids</a></li>-->
+                <!--<li><a href="phages.html">Phages</a></li>-->
+                <li><a href="mapping.html">Reference Mapping</a></li>
+                <li><a href="snps.html">SNP Detection</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Comparative Analyses</a></li>
+                            <li><a href="corepan.html">Core/Pan Genome</a></li>
+                <li><a href="phylogeny.html">Phylogeny</a></li>
+            </ul>
+        </div>
+
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Dashboard</a></li>
+                        <li class="active">Antibiotic Resistances</li>
+                        <!-- trigger help-modal -->
+                        <i class="fa fa-question fa-3x helpBtn" data-toggle="modal" data-target="#myModal"></i>
+                    </ol>
+
+                    <!-- help-modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h2 class="modal-title" id="myModalLabel">ASA&#179;P antibiotic resistances overview</h2>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              There are many different molecular mechanisms for ABR posing them as a major bioinformatic challenge. Addressing this issue ASA&#179;P
+                              takes advantage of the Comprehensive Antibiotic Resistance Database (<code>CARD</code>) and its
+                              corresponding search tool. The database is manually curated and provides its own sophisticated ontology in order to classify detected ABRs. To our best
+                              knowledge it?s the only database/tool which can detect, classify and describe several different
+                              types of ABR, e.g. gene homology and mutations driven mechanisms.</p>
+
+                            <h3>Interactive data table</h3>
+
+                            <p><code>Individual sorting</code> can be applied via clicking on the respective column header.
+                              Use the <code>Search</code> function (top right of the table) to display only genomes that
+                              contain the search term in any of their table fields. The <code>number of entries</code> displayed
+                              per page can be chosen on the top left of the table. <code>Blue horizontal bar plots</code>
+                              are displayed in columns containing numeric values. They visualize the relative relation of
+                              this value compared to the according values of the other genomes. The <code>red colored bar plots</code>
+                              indicates outliners based on Z-score. In the <code>ABR Profile</code> column found antibiotic
+                              agent resistances are visualized as colored circles. You can mouse over the circles to display
+                              the individual resistances. Mouse over on underlined terms to display further information.</p>
+
+                            <h3>Downloads</h3>
+
+                            <p>The table can be saved as a comma separated value (<code>csv</code>) file via a click on the csv
+                              button (search and sorting are contained in the downloaded file).</p>
+
+                            <h3>Links</h3>
+
+                            <ul>
+                                <li><code>Details</code> on the resistance of a particular genome can be accessed via a click on
+                                    the magnifying glass in the overview table.
+                                </li>
+
+                                <li><a href="https://card.mcmaster.ca/">CARD</a>: Jia et al.
+                                    CARD 2017: expansion and model-centric curation of the Comprehensive Antibiotic Resistance Database.
+                                    Nucleic Acids Research, 2017, 45:D566-573.
+                                    <a href="https://www.ncbi.nlm.nih.gov/pubmed/27789705">PubMed</a>
+                                </li>
+                            </ul>
+
+                            <h3>Glossary</h3>
+
+                            <ul>
+                              <li><strong># ABR Genes</strong>: Number of antibiotic resistance genes found.</li>
+
+                              <li><strong>Target Drug Class Profile</strong>: Found target drug class resistances.</li>
+
+                              <li><strong># Target Drugs</strong>: Number of antibiotic agent resistances.</li>
+
+                              <li><strong>Genome</strong>: Name of the processed genome.</li>
+
+                              <li><strong># Potential ABR Genes</strong>: Number of potential antibiotic resistance genes found.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                    <div class="row" id="warnings">
+                        <div class="col-md-4">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading collapsible">
+                                    <h3 class="panel-title"><a data-toggle="collapse" data-target="#stepTableFailed" href="#">2 Failed ABR Detections</a></h3>
+                                </div>
+                                <div id="stepTableFailed" class="panel-body panel-collapse collapse in">
+                                    <table class="table table-hover table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th><span class="glyphicon glyphicon-barcode"></span></th>
+                                                <th>Genome</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>U. parvum 08</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>U. parvum 09</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

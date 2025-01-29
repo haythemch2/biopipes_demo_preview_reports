@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <meta name="description" content="ASA?P results for \"Short reads test 03\" project">
+        <meta name="author" content="Oliver Schwengers">
+
+        <title>ASA&#179;P: Short reads test 03</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="css/dashboard.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="js/back-to-top.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip( {html: true} );
+            });
+        </script>
+
+        <link href="css/asap.css" rel="stylesheet">
+
+	<link href="css/datatables.min.css" rel="stylesheet">
+        <script src="js/datatables.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#assemblies').DataTable( {
+                    paging:   true,
+                    ordering: true,
+                    info:     true,
+                    columnDefs: [
+                        { orderable: false, targets: [7,8] }
+                    ],
+		    dom: "<'row'<'col-md-3'l><'col-md-3 col-md-offset-5'f><'col-md-1'B>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+                    buttons: [
+                        {
+                            extend: 'csv',
+                            text: 'csv',
+                            filename: 'assemblies',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3, 4, 5, 6 ]
+                            }
+                        }
+                    ]
+                } );
+            } );
+        </script>
+
+        <script src="js/gradient.js" defer></script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Short reads test 03</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="help.html">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Analyses</a></li>
+                <li><a href="qc.html">Quality Control</a></li>
+                <li><a href="assemblies.html">Assembly</a></li>
+                <li><a href="scaffolds.html">Scaffolds</a></li>
+                <li><a href="annotations.html">Annotation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Characterization</a></li>
+                <li><a href="taxonomy.html">Taxonomic Classification</a></li>
+                <li><a href="mlst.html">MLST</a></li>
+                <li><a href="abr.html">Antibiotic Resistances</a></li>
+                <li><a href="vf.html">Virulence Factors</a></li>
+                <!--<li><a href="plasmids.html">Plasmids</a></li>-->
+                <!--<li><a href="phages.html">Phages</a></li>-->
+                <li><a href="mapping.html">Reference Mapping</a></li>
+                <li><a href="snps.html">SNP Detection</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Comparative Analyses</a></li>
+                            <li><a href="corepan.html">Core/Pan Genome</a></li>
+                <li><a href="phylogeny.html">Phylogeny</a></li>
+            </ul>
+        </div>
+
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Dashboard</a></li>
+                        <li class="active">Assemblies</li>
+                        <!-- trigger help-modal -->
+                        <i class="fa fa-question fa-3x helpBtn" data-toggle="modal" data-target="#myModal"></i>
+                    </ol>
+
+                    <!-- help-modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h2 class="modal-title" id="myModalLabel">ASA&#179;P assembly overview</h2>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                              Reads which pass the quality control steps get subsequenlty assembled. PacBio reads get assembled by <code>HGap4</code>.
+                              Assemblies of short reads are performed with <code>SPAdes</code>. Nanopore or Illumina+Nanopore hybrid assemblies
+                              are performed via Unicycler. This page provides an overview on assembly key data of all genomes in this analysis.</p>
+
+                            <h3>Interactive dotplot</h3>
+
+                            <p>Via the radio buttons on the right <code>key data</code> for X and Y axis can be selected. Mouse
+                              over a dot of interest to display the according <code>genome name</code> as well as horizontal
+                              and vertical value extensions. <code>Zooming</code> can be applied via marking the area of
+                              interest with left mouse button down. To reset the view right click.</p>
+
+                            <h3>Interactive data table</h3>
+
+                            <p><code>Individual sorting</code> can be applied via clicking on the respective column header.
+                              Use the <code>Search</code> function (top right of the table) to display only genomes that
+                              contain the search term in any of their table fields. The <code>number of entries</code> displayed
+                              per page can be chosen on the top left of the table. <code>Blue horizontal bar plots</code>                              are displayed in most columns containing numeric values. Their data field filling ratio corresponds
+                              to the ratio of field value to column maximum. Mouse over on underlined table headers to display
+                              further information on it.</p>
+
+                            <h3>Downloads</h3>
+
+                            <p>The table can be saved as a comma separated value (<code>csv</code>) file via a click on the csv
+                              button (search and sorting are contained in the downloaded file). To download the <code>fasta</code>
+                              file of a particular genome assembly click on "fasta" in the data table.</p>
+
+                            <h3>Links</h3>
+
+                            <ul>
+                                <li>Assembly <code>Details</code> of a particular genome can be accessed via a click on the
+                                    magnifying glass in the overview table.
+                                </li>
+
+                                <li><a href="https://github.com/PacificBiosciences/Bioinformatics-Training/wiki/HGAP">HGap</a>: Chin, Chen-Shan, et al.
+                                    Nonhybrid, finished microbial genome assemblies from long-read SMRT sequencing data.
+                                    Nature methods, 2013, 10.6:563-569.
+                                    <a href="https://www.ncbi.nlm.nih.gov/pubmed/23644548">PubMed</a>
+                                </li>
+
+                                <li><a href="http://cab.spbu.ru/software/spades/">SPAdes</a>: Bankevich A., Nurk S., Antipov D., Gurevich A., Dvorkin M., Kulikov A. S., Lesin V., Nikolenko S., Pham S., Prjibelski A., Pyshkin A., Sirotkin A., Vyahhi N., Tesler G., Alekseyev M. A., Pevzner P. A.
+                                    SPAdes: A New Genome Assembly Algorithm and Its Applications to Single-Cell Sequencing.
+                                    Journal of Computational Biology, 2012
+                                    <a href="https://www.ncbi.nlm.nih.gov/pubmed/22506599">PubMed</a>
+                                </li>
+
+                                <li><a href="https://github.com/rrwick/Unicycler">Unicycler</a>: Wick RR, Judd LM, Gorrie CL, Holt KE
+                                    Unicycler: Resolving bacterial genome assemblies from short and long sequencing reads.
+                                    PLOS Computational Biology, 2017, 13(6):e1005595.
+                                    <a href="https://www.ncbi.nlm.nih.gov/pubmed/28594827">PubMed</a>
+                                </li>
+                            </ul>
+
+                            <h3>Glossary</h3>
+
+                            <ul>
+                              <li><strong># Contigs</strong>: Number of contigs (set of overlapping DNA segments).</li>
+
+                              <li><strong>GC</strong>: GC content in percent.</li>
+
+                              <li><strong>Genome</strong>: Name of the processed genome.</li>
+
+                              <li><strong>Genome size</strong>: Genome size in 1000 bases [kb].</li>
+
+                              <li><strong>Mean contig lengths</strong>: Mean contig lengths of this particular genome.</li>
+
+                              <li><strong>Median contig lengths</strong>: Median contig lengths of this particular genome.</li>
+
+                              <li><strong>N50</strong>: Given ordered contigs from longest to smallest, length of the contig
+                                at 50% of the genome length.</li>
+
+                              <li><strong>N50 coverage</strong>: Length weighted mean coverage of sequences with N50 length or
+                                longer.
+                              </li>
+
+                              <li><strong>N90</strong>: Given ordered contigs from longest to smallest, length of the contig
+                                at 90% of the genome length.</li>
+
+                              <li><strong>N90 coverage</strong>: Length weighted mean coverage with sequenced reads of N90 contigs.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="row" id="charts">
+                        <div class="col-md-10">
+
+                            <div id="chartAssemblies"></div>
+
+                            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                            <script type="text/javascript">
+
+                                // get values from Groovy
+                                const genomes = [ 'U. parvum 08','U. parvum 09', ];
+                                const noContigs = [ 21,21, ];
+                                const meanCLengths = [ 34707.6666666667,35635.8095238095, ];
+                                const medianCLengths = [ 499,269, ];
+                                const genomeSizes = [ 728861,748352, ];
+                                const gcs = [ 25.3827376,25.39181266, ];
+                                const n50s = [ 464533,463307, ];
+                                const n90s = [ 80365,81053, ];
+                                const n50Covs = [ 46.528388,57.238756, ];
+                                const n90Covs = [ 30.085760904333448,36.95879253621023, ];
+
+                                // load google charts
+                                google.charts.load( 'current', { 'packages': ['corechart'] } );
+
+                                // preselect the first 2 choices
+                                createPlot( "Genome Size", "# Contigs", genomeSizes, noContigs );
+
+                                function updateGraph() {
+                                    // getting reference to radio box array
+                                    const xboxes = document.forms['menu'].elements[ 'xaxis' ];
+                                    const yboxes = document.forms['menu'].elements[ 'yaxis' ];
+                                    const ids = [];
+                                    const valueArrays = [];
+                                    // getting IDs of checked boxes
+                                    for( let i=0; i<xboxes.length; i++ ) {
+                                        if (xboxes[i].checked){ids.push(xboxes[i].id)}
+                                    }
+                                    for( let i=0; i<yboxes.length; i++ ) {
+                                        if (yboxes[i].checked){ids.push(yboxes[i].id)}
+                                    }
+
+                                    // getting arrays of json values for according IDs
+                                    for( let i=0; i<2; i++ ){
+                                        if (ids[i] == "# Contigs" ) valueArrays.push( noContigs )
+                                        else if (ids[i] == "Mean Contig Length" ) valueArrays.push( meanCLengths )
+                                        else if (ids[i] == "Median Contig Length" ) valueArrays.push( medianCLengths )
+                                        else if (ids[i] == "Genome Size" ) valueArrays.push( genomeSizes )
+                                        else if (ids[i] == "GC" ) valueArrays.push( gcs )
+                                        else if (ids[i] == "N50" ) valueArrays.push( n50s )
+                                        else if (ids[i] == "N90" ) valueArrays.push( n90s )
+                                        else if (ids[i] == "N50 Coverage" ) valueArrays.push( n50Covs )
+                                        else if (ids[i] == "N90 Coverage" ) valueArrays.push( n90Covs )
+                                    }
+                                    // passing axis names (from IDs) and arrays with json values to createPlot function
+                                    createPlot( ids[0], ids[1], valueArrays[0], valueArrays[1] );
+                                }
+
+                                // function to draw the graph with desired values. The name for x- and y-axis as well as
+                                // the two arrays containing the values are passed as arguments
+                                function createPlot( x_name, y_name, x_array, y_array ) {
+
+                                    google.charts.setOnLoadCallback( function() {
+
+                                        const data = new google.visualization.DataTable();
+
+                                        data.addColumn( 'number', x_name );
+                                        data.addColumn( 'number', y_name );
+                                        data.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
+
+                                        for( let i = 0; i < x_array.length; i++ ){
+                                            while(genomes[i].indexOf(' ') !== -1)
+                                                genomes[i] = genomes[i].replace(" ", "&nbsp")
+                                            data.addRow( [ { v: x_array[i], f: genomes[i] }, y_array[i],
+                                                `
+                                                    <div style="padding:1.3rem;">
+                                                        <p style="margin:0;"><b>Genome</b>&nbsp` + genomes[i] + `</p>
+                                                        <hr style="height: 1px; border: 0; border-top: 1px solid #ccc; margin: 10px 0;">
+                                                        <p style="margin:0;"><b>`+y_name+`</b></p>
+                                                        <p style="margin:0; margin-bottom:5px;">`+ y_array[i].toLocaleString() + `</p>
+                                                        <p style="margin:0;"><b>`+x_name+`</b></p>
+                                                        <p style="margin:0;">`+x_array[i].toLocaleString()+`</p>
+                                                    </div>
+                                                `
+                                            ] );
+                                        }
+
+                                        const options = {
+                                            tooltip: {isHtml: true},
+                                            hAxis: {title: x_name, minValue: Math.min(x_array), maxValue: Math.max(x_array)},
+                                            vAxis: {title: y_name, minValue: Math.min(y_array), maxValue: Math.max(y_array)},
+                                            chartArea:{left:100,top:10,width:"90%",height:"80%"},
+                                            height: 500,
+                                            pointSize: 3,
+                                            axisTitlesPosition: 'out',
+                                            crosshair: { trigger: 'focus' },
+                                            explorer: {
+                                                actions: ['dragToZoom', 'rightClickToReset'],
+                                                // keepInBounds: true,
+                                            },
+                                            legend: 'none'
+                                        };
+
+                                        const chart = new google.visualization.ScatterChart( document.getElementById( 'chartAssemblies' ) );
+                                            chart.draw( data, options );
+
+                                        document.getElementById('chartAssemblies').addEventListener('contextmenu', function (ev) {
+                                            var chart = new google.visualization.ScatterChart(document.getElementById('chartAssemblies'));
+                                            chart.draw(data, options);
+                                        });
+
+                                    } )
+
+                                }
+                            </script>
+                        </div>
+                        <div class="col-md-2">
+                            <form name="menu">
+                                <table class="table table-condensed table-borderless">
+                                    <tr>
+                                        <th></th>
+                                        <th>X</th>
+                                        <th>Y</th>
+                                        </tr>
+                                    <tr>
+                                        <td># Contigs</td>
+                                        <td><input type="radio" name="xaxis" value="1" id="# Contigs" onclick=updateGraph()></td>
+                                        <td><input type="radio" name="yaxis" value="1" id="# Contigs" checked="true" onclick=updateGraph()></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mean Contig Lengths</td>
+                                        <td><input type="radio" name="xaxis" value="5" id="Mean Contig Length" onclick=updateGraph()></td>
+                                        <td><input type="radio" name="yaxis" value="5" id="Mean Contig Length" onclick=updateGraph()></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Median Contig Lengths</td>
+                                        <td><input type="radio" name="xaxis" value="5" id="Median Contig Length" onclick=updateGraph()></td>
+                                        <td><input type="radio" name="yaxis" value="5" id="Median Contig Length" onclick=updateGraph()></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Genome Size</td>
+                                        <td><input type="radio" name="xaxis" value="4" id="Genome Size" checked="true" onclick=updateGraph()></td>
+                                        <td><input type="radio" name="yaxis" value="4" id="Genome Size" onclick=updateGraph()></td>
+                                    </tr>
+                                    <tr>
+                                        <td>GC</td>
+                                        <td><input type="radio" name="xaxis" value="3" id="GC" onclick=updateGraph()></td>
+                                        <td><input type="radio" name="yaxis" value="3" id="GC" onclick=updateGraph()></td>
+                                    </tr>
+                                    <tr>
+                                        <td>N50</td>
+                                        <td><input type="radio" name="xaxis" value="0" id="N50" onclick=updateGraph()></td>
+                                        <td><input type="radio" name="yaxis" value="0" id="N50" onclick=updateGraph()></td>
+                                    </tr>
+                                    <tr>
+                                        <td>N90</td>
+                                        <td><input type="radio" name="xaxis" value="2" id="N90" onclick=updateGraph()></td>
+                                        <td><input type="radio" name="yaxis" value="2" id="N90" onclick=updateGraph()></td>
+                                    </tr>
+                                    <tr>
+                                        <td>N50 Coverage</td>
+                                        <td><input type="radio" name="xaxis" value="0" id="N50 Coverage" onclick=updateGraph()></td>
+                                        <td><input type="radio" name="yaxis" value="0" id="N50 Coverage" onclick=updateGraph()></td>
+                                    </tr>
+                                    <tr>
+                                        <td>N90 Coverage</td>
+                                        <td><input type="radio" name="xaxis" value="2" id="N90 Coverage" onclick=updateGraph()></td>
+                                        <td><input type="radio" name="yaxis" value="2" id="N90 Coverage" onclick=updateGraph()></td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <div class="row voffset" id="warnings">
+                    </div>
+                    <div class="row voffset" id="stats">
+                        <div class="col-md-12">
+                            <table id="assemblies" class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th><span class="glyphicon glyphicon-barcode"></span></th>
+                                        <th>Genome</th>
+                                        <th class="text-center"># Contigs</th>
+                                        <th class="text-center"><abbr title="length weighted mean coverage of N50 contigs">N50 Cov</abbr></th>
+                                        <th class="text-center">N50</th>
+                                        <th class="text-center">Genome Size</th>
+                                        <th class="text-center"><abbr title="GC content [%]">GC</abbr></th>
+                                        <th class="text-center">Downloads</th>
+                                        <th class="text-center">Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>U. parvum 08</td>
+                                        <td class="text-center" gradient="1">21</td>
+                                        <td class="text-center" gradient="2">47</td>
+                                        <td class="text-center" gradient="3">464,533</td>
+                                        <td class="text-center" gradient="4">728,861</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center"><a href="./assemblies/Ureaplasma_parvum_08/Ureaplasma_parvum_08.fasta">fasta</a></td>
+                                        <td class="text-center"><a href="./assemblies/Ureaplasma_parvum_08.html"><span class="glyphicon glyphicon-search"></span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>U. parvum 09</td>
+                                        <td class="text-center" gradient="1">21</td>
+                                        <td class="text-center" gradient="2">57</td>
+                                        <td class="text-center" gradient="3">463,307</td>
+                                        <td class="text-center" gradient="4">748,352</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center"><a href="./assemblies/Ureaplasma_parvum_09/Ureaplasma_parvum_09.fasta">fasta</a></td>
+                                        <td class="text-center"><a href="./assemblies/Ureaplasma_parvum_09.html"><span class="glyphicon glyphicon-search"></span></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

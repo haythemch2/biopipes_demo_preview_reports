@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <meta name="description" content="ASA?P results for \"Short reads test 03\" project">
+        <meta name="author" content="Oliver Schwengers">
+
+        <title>ASA&#179;P: Short reads test 03</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="../css/dashboard.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="../js/back-to-top.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip( {html: true} );
+            });
+        </script>
+
+        <link href="../css/asap.css" rel="stylesheet">
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+
+	<link href="../css/datatables.min.css" rel="stylesheet">
+        <script src="../js/datatables.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#accessory').DataTable( {
+                    paging:   true,
+                    ordering: true,
+                    info:     true,
+		    dom: "<'row'<'col-md-3'l><'col-md-3 col-md-offset-5'f><'col-md-1'B>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+                    buttons: [
+                        {
+                            extend: 'csv',
+                            text: 'csv',
+                            filename: 'accessory-U_parvum_09',
+                            exportOptions: {
+                                columns: [ 0, 1, 2 ]
+                            }
+                        }
+                    ]
+                } );
+            } );
+            $(document).ready(function() {
+                $('#singletons').DataTable( {
+                    paging:   true,
+                    ordering: true,
+                    info:     true,
+		    dom: "<'row'<'col-md-3'l><'col-md-3 col-md-offset-5'f><'col-md-1'B>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+                    buttons: [
+                        {
+                            extend: 'csv',
+                            text: 'csv',
+                            filename: 'singletons-U_parvum_09',
+                            exportOptions: {
+                                columns: [ 0, 1 ]
+                            }
+                        }
+                    ]
+                } );
+            } );
+        </script>
+
+        <script src="../js/gradient.js" defer></script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="../index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Short reads test 03</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="../help.html">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Analyses</a></li>
+                <li><a href="../qc.html">Quality Control</a></li>
+                <li><a href="../assemblies.html">Assembly</a></li>
+                <li><a href="../scaffolds.html">Scaffolds</a></li>
+                <li><a href="../annotations.html">Annotation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Characterization</a></li>
+                <li><a href="../taxonomy.html">Taxonomic Classification</a></li>
+                <li><a href="../mlst.html">MLST</a></li>
+                <li><a href="../abr.html">Antibiotic Resistances</a></li>
+                <li><a href="../vf.html">Virulence Factors</a></li>
+                <!--<li><a href="../plasmids.html">Plasmids</a></li>-->
+                <!--<li><a href="../phages.html">Phages</a></li>-->
+                <li><a href="../mapping.html">Reference Mapping</a></li>
+                <li><a href="../snps.html">SNP Detection</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Comparative Analyses</a></li>
+                            <li><a href="../corepan.html">Core/Pan Genome</a></li>
+                <li><a href="../phylogeny.html">Phylogeny</a></li>
+            </ul>
+        </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                    <ol class="breadcrumb">
+                        <li><a href="../index.html">Dashboard</a></li>
+                        <li><a href="../corepan.html">Core / Pan Genome</a></li>
+                        <li class="active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">U. parvum 09 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#aPlots">Distribution Plot</a></li>
+                                <li><a href="#aAccessory">Accessory Genome</a></li>
+                                <li><a href="#aSingletons">Singleton Genes</a></li>
+                            </ul>
+                        </li>
+                        <!-- trigger help-modal -->
+                        <i class="fa fa-question fa-3x helpBtn" data-toggle="modal" data-target="#myModal"></i>
+                    </ol>
+
+                    <!-- help-modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h2 class="modal-title" id="myModalLabel">ASA&#179;P core and pan genome detail</h2>
+                          </div>
+                          <div class="modal-body">
+                            <h3>Interactive donut chart</h3>
+
+                            <p>The percentage distribution of Core, Accessory and Singletons genes is displayed.</p>
+
+                            <h3>Interactive data tables</h3>
+
+                            <p><code>Individual sorting</code> can be applied via clicking on the respective column header.
+                              Use the <code>Search</code> function (top right of the table) to display only genomes that
+                              contain the search term in any of their table fields. The <code>number of entries</code> displayed
+                              per page can be chosen on the top left of the table.</p>
+
+                            <h5>Accessory Genome</h5>
+
+                            <p>In this table loci of this particular genome that are present in at least one other analysed
+                              genome can be compared. <code>Blue horizontal bar plots</code> are displayed in the Abundance
+                              column. They visualize the relative relation of this value compared to the according values
+                              of the other loci.</p>
+
+                            <h5>Singletons</h5>
+
+                            <p>In this table loci that have only been found in this particular genome can be observed.</p>
+
+                            <h3>Downloads</h3>
+
+                            <p>The table can be saved as comma separated value (<code>csv</code>) file via click on the csv
+                              button (search and sorting are contained in the downloaded file).</p>
+
+                            <h3>Glossary</h3>
+
+                            <ul>
+                              <li><strong>Abundance</strong>: Number of locus occurrences in this analysis.</li>
+
+                              <li><strong>Accessory</strong>: Number of genes that are contained in at least one other analysed
+                                organism (also known as dispensable genome).</li>
+
+                              <li><strong>Core</strong>: Number of genes contained in all analysed genomes.</li>
+
+                              <li><strong>Locus</strong>: Defined contiguous nucleotide sequence in the genome. The name can
+                                refer to a locus tag, gene name, synthetic cluster or group name.</li>
+
+                              <li><strong>Product</strong>: Functional information on the associated locus.</li>
+
+                              <li><strong>Singletons</strong>: Number of genes contained only in this genome out of the analysed
+                                set.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="row" id="aPlots">
+                        <div class="col-md-4 col-md-offset-2">
+                            <div id="casChart"></div>
+                            <script>
+                                var chart = c3.generate( {
+                                    bindto: '#casChart',
+                                    data: {
+                                        columns: [
+                                            [ 'Core', 1136 ],
+                                            [ 'Accessory', 0 ],
+                                            [ 'Singletons', 42 ]
+                                        ],
+                                        type : 'donut'
+                                    },
+                                    donut: {
+                                        title: "Composition"
+                                    }
+                                } );
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="row voffset" id="aAccessory">
+                        <div class="col-md-10 col-md-offset-1">
+                            <h2><small>Accessory Genome</small></h2>
+                            <table id="accessory" class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Locus</th>
+                                        <th class="text-center">Abundance</th>
+                                        <th class="text-center">Product</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row voffset" id="aSingletons">
+                        <div class="col-md-10 col-md-offset-1">
+                            <h2><small>Singletons</small></h2>
+                            <table id="singletons" class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Locus</th>
+                                        <th class="text-center">Product</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">group_23</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_24</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_25</td>
+                                        <td class="text-center">PBSX family phage terminase large subunit</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_26</td>
+                                        <td class="text-center">PBSX family phage terminase large subunit</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_27</td>
+                                        <td class="text-center">PBSX family phage terminase large subunit</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_28</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_29</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_30</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_31</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_32</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_33</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_34</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_35</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_36</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_37</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_38</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_39</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_40</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_41</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_42</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_43</td>
+                                        <td class="text-center">ATP/GTP-binding protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_44</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_45</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_46</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_47</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_48</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_49</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_50</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_51</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_52</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_53</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_54</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">bet</td>
+                                        <td class="text-center">phage recombination protein Bet</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_56</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_57</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_58</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_59</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_60</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">ripX_1</td>
+                                        <td class="text-center">integrase-recombinase</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">ripX_2</td>
+                                        <td class="text-center">integrase-recombinase</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_63</td>
+                                        <td class="text-center">hypothetical protein</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">group_64</td>
+                                        <td class="text-center">membrane lipoprotein</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

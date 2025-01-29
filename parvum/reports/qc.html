@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <meta name="description" content="ASA?P results for \"Short reads test 03\" project">
+        <meta name="author" content="Oliver Schwengers">
+
+        <title>ASA&#179;P: Short reads test 03</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="css/dashboard.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="js/back-to-top.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip( {html: true} );
+            });
+        </script>
+
+        <link href="css/asap.css" rel="stylesheet">
+
+	<link href="css/datatables.min.css" rel="stylesheet">
+        <script src="js/datatables.min.js"></script>
+
+        <script src="js/gradient.js" defer></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#qc').DataTable( {
+                    paging:   true,
+                    ordering: true,
+                    info:     true,
+                    columnDefs: [
+                        { orderable: false, targets: 7 }
+                    ],
+		    dom: "<'row'<'col-md-3'l><'col-md-3 col-md-offset-5'f><'col-md-1'B>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+                    buttons: [
+                        {
+                            extend: 'csv',
+                            text: 'csv',
+                            filename: 'qc',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3, 4, 5, 6 ]
+                            }
+                        }
+                    ]
+                } );
+            } );
+        </script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Short reads test 03</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="help.html">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Analyses</a></li>
+                <li><a href="qc.html">Quality Control</a></li>
+                <li><a href="assemblies.html">Assembly</a></li>
+                <li><a href="scaffolds.html">Scaffolds</a></li>
+                <li><a href="annotations.html">Annotation</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Genome Characterization</a></li>
+                <li><a href="taxonomy.html">Taxonomic Classification</a></li>
+                <li><a href="mlst.html">MLST</a></li>
+                <li><a href="abr.html">Antibiotic Resistances</a></li>
+                <li><a href="vf.html">Virulence Factors</a></li>
+                <!--<li><a href="plasmids.html">Plasmids</a></li>-->
+                <!--<li><a href="phages.html">Phages</a></li>-->
+                <li><a href="mapping.html">Reference Mapping</a></li>
+                <li><a href="snps.html">SNP Detection</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Comparative Analyses</a></li>
+                            <li><a href="corepan.html">Core/Pan Genome</a></li>
+                <li><a href="phylogeny.html">Phylogeny</a></li>
+            </ul>
+        </div>
+
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Dashboard</a></li>
+                        <li class="active">Quality Control</li>
+                        <!-- trigger help-modal -->
+                        <i class="fa fa-question fa-3x helpBtn" data-toggle="modal" data-target="#myModal"></i>
+                    </ol>
+
+                    <!-- help-modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h2 class="modal-title" id="myModalLabel">ASA&#179;P quality control overview</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <p>This site provides an overview on the quality control of the analysed genomes. The quality of the sequenced reads is determined via <code>FastQC</code>.
+                                        For reference based quality acquisition <code>FastQ Screen</code> is utilised. Depending on sequencing source (NGS, PacBio, Nanopore) filtering based
+                                        on lengths and qualities is performed with <code>Trimmomatic</code> or <code>Filtlong</code>.
+                                        Trimmomatic setting are: "ILLUMINACLIP: <PE or SE adapter> and <phiX data base> :2:30:10", 'LEADING:15', 'TRAILING:15', 'SLIDINGWINDOW:4:20', 'MINLEN:20', 'TOPHRED33'.
+                                        Filtlong settings are: "--min_length 500 --min_mean_q 85 --min_window_q 65".
+                                        Only reads that pass the quality control are included in the following analysis.</p>
+
+                                    <h3>Interactive data table</h3>
+
+                                    <p><code>Individual sorting</code> can be applied via clicking on the respective column header. Use the <code>Search</code> function (top right of the table) to display only genomes that contain the search term in any of their table fields. The <code>number of entries</code> displayed per page can be chosen on the top left of the table.  <code>Blue horizontal bar plots</code> are displayed in '# Reads' column. Their data field filling ratio corresponds to the ratio of field value to column maximum. Mouse over on underlined table headers to display further information on it.</p>
+
+                                    <h3>Downloads</h3>
+
+                                    <p>The table can be saved as comma separated value (<code>csv</code>) file via click on the csv button (search and sorting are contained in the downloaded file).</p>
+
+                                    <h3>Links</h3>
+
+                                    <ul>
+                                        <li><code>Details</code> on the quality control of a particular genome can be accessed via click on the magnifying glass in the overview table.</li>
+
+                                        <li><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a>: Simon Andrews
+                                            FastQC: A quality control tool for high throughput sequence data.
+                                            2010
+                                        </li>
+
+                                        <li><a href="http://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/">FastQ Screen</a>: Steven Wingett
+                                            FastQ Screen allows you to screen a library of sequences in FastQ format against a set of sequence databases so you can see if the composition of the library matches with what you expect.
+                                            2011
+                                        </li>
+
+                                        <li><a href="http://www.usadellab.org/cms/?page=trimmomatic">Trimmomatic</a>: Bolger, A. M., Lohse, M., &amp; Usadel, B.
+                                            Trimmomatic: A flexible trimmer for Illumina Sequence Data.
+                                            Bioinformatics, 2014, btu170.
+                                            <a href="https://www.ncbi.nlm.nih.gov/pubmed/24695404">PubMed</a>
+                                        </li>
+
+                                        <li><a href="https://github.com/rrwick/Filtlong">Filtlong</a>: Wick, R.
+                                            2017
+                                        </li>
+                                    </ul>
+
+                                    <h3>Glossary</h3>
+
+                                    <ul>
+                                    <li><strong>GC</strong>: GC content in percent.</li>
+
+                                    <li><strong>Genome</strong>: Name of the processed genome.</li>
+
+                                    <li><strong>Length</strong>: Minimal/ mean/ maximal read length for this particular genome.</li>
+
+                                    <li><strong>PC</strong>: Read percentage of potential contaminations. Based on a 10% random subset mapping against a contamination references data base (e.g. containing phiX sequences).</li>
+
+                                    <li><strong>Quality</strong>: Minimal/ mean/ maximal PHRED score of sequenced reads for this particular genome (error probability; PHRED 20: 1 in 100; PHRED 30: 1 in 1000).</li>
+
+                                    <li><strong># Reads</strong>: Number of sequenced reads for this particular genome.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row" id="warnings">
+                    </div>
+
+
+                    <div class="row" id="stats">
+                        <div class="col-md-10">
+                            <table id="qc" class="table table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th><span class="glyphicon glyphicon-barcode"></span></th>
+                                        <th>Genome</th>
+                                        <th class="text-center"># Reads</th>
+                                        <th class="text-center"><abbr title="[min / mean / max]">Lengths</abbr></th>
+                                        <th class="text-center"><abbr title="GC content [%]">GC</abbr></th>
+                                        <th class="text-center"><abbr title="PHRED score [min / mean / max]">Quality</abbr></th>
+                                        <th class="text-center"><abbr title="possible contamination (reads mapping to foreign genomes) [%]">PC</abbr></th>
+                                        <th class="text-center">Details</th>
+                                        </tr>
+                                    </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>U. parvum 08</td>
+                                        <td class="text-center" gradient="1">484,366</td>
+                                        <td class="text-center">20 / 146.8 / 151</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">34 / 36.1 / 36</td>
+                                        <td class="text-center">0.2</td>
+                                        <td class="text-center"><a href="reads_qc/Ureaplasma_parvum_08.html"><span class="glyphicon glyphicon-search"></span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>U. parvum 09</td>
+                                        <td class="text-center" gradient="1">617,514</td>
+                                        <td class="text-center">20 / 146.6 / 151</td>
+                                        <td class="text-center">25</td>
+                                        <td class="text-center">34 / 36.1 / 36</td>
+                                        <td class="text-center">0.3</td>
+                                        <td class="text-center"><a href="reads_qc/Ureaplasma_parvum_09.html"><span class="glyphicon glyphicon-search"></span></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
